@@ -5,7 +5,7 @@ import Link from "next/link";
  
 const link = [
   { platform: "Github", link: "https://github.com/nbcgww" },
-  { platform: "Youtube", link: "github.com" },
+  { platform: "Youtube", link: "https://www.youtube.com/@nbcuong" },
 ];
 export default function HomePage() {
   return (
