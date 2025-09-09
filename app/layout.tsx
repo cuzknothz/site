@@ -6,8 +6,8 @@ import { Metadata, Viewport } from "next";
 import "./globals.css";
  
 export const metadata: Metadata = {
-  title: " ",
-  description: " ",
+  title: "nbcuong",
+  description: "nbcuong",
 };
 export const viewport: Viewport = {
   themeColor: "#fff",

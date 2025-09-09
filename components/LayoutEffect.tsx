@@ -1,5 +1,5 @@
 "use client";
- 
+
 import { useGlobalStore } from "@/store/global-store";
 import devfools from "devfools";
 import gsap from "gsap";
@@ -11,7 +11,7 @@ import {
   SplitText,
 } from "gsap/all";
 import { ReactNode, useCallback, useEffect } from "react";
- 
+
 interface Props {
   children: ReactNode;
 }
@@ -23,21 +23,31 @@ export default function LayoutEffect({ children }: Props) {
     ScrollSmoother,
     SplitText
   );
- 
+
   const setFontReady = useGlobalStore((state) => state.setFontReady);
   const fontReady = useGlobalStore((state) => state.fontReady);
- 
+
   const checkFontReady = useCallback(() => {
     document.fonts.ready.then(() => {
       setFontReady(true);
     });
   }, [setFontReady]);
- 
+
   useEffect(() => {
     checkFontReady();
     devfools("all");
+
+    // gsap.to(document.getElementsByTagName("title"), {
+    //   scrambleText: {
+    //     text: "",
+    //     chars: "!@#$%^&*()_+",
+    //     revealDelay: 0.5,
+    //     speed: 1,
+    //   },
+    //   repeat: -1,
+    // });
   }, [checkFontReady, setFontReady]);
- 
+
   return (
     <html lang="en" className=" dark:text-[#fff] dark:bg-[#000]">
       <body className="antialiased">
