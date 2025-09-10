@@ -1,11 +1,11 @@
-import { ReactNode } from "react";
- 
+import { ReactNode } from 'react';
+
 interface Props {
   children: ReactNode;
 }
 export const BackDrop = ({ children }: Props) => {
   return (
-    <div className="w-screen h-screen bg-[#ffffff14] z-10 flex justify-center items-center fixed top-0 left-0 backdrop-blur-[2px]">
+    <div className='fixed top-0 left-0 z-10 flex h-screen w-screen items-center justify-center bg-[#ffffff14] backdrop-blur-[2px]'>
       {children}
     </div>
   );

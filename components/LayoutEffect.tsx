@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import { useGlobalStore } from "@/store/global-store";
-import devfools from "devfools";
-import gsap from "gsap";
+import { useGlobalStore } from '@/store/global-store';
+import devfools from 'devfools';
+import gsap from 'gsap';
 import {
   Flip,
   ScrambleTextPlugin,
   ScrollSmoother,
   ScrollTrigger,
   SplitText,
-} from "gsap/all";
-import { ReactNode, useCallback, useEffect } from "react";
+} from 'gsap/all';
+import { ReactNode, useCallback, useEffect } from 'react';
 
 interface Props {
   children: ReactNode;
@@ -21,7 +21,7 @@ export default function LayoutEffect({ children }: Props) {
     ScrambleTextPlugin,
     ScrollTrigger,
     ScrollSmoother,
-    SplitText
+    SplitText,
   );
 
   const setFontReady = useGlobalStore((state) => state.setFontReady);
@@ -35,7 +35,7 @@ export default function LayoutEffect({ children }: Props) {
 
   useEffect(() => {
     checkFontReady();
-    devfools("all");
+    devfools('all');
 
     // gsap.to(document.getElementsByTagName("title"), {
     //   scrambleText: {
@@ -49,9 +49,9 @@ export default function LayoutEffect({ children }: Props) {
   }, [checkFontReady, setFontReady]);
 
   return (
-    <html lang="en" className=" dark:text-[#fff] dark:bg-[#000]">
-      <body className="antialiased">
-        <div className="sm:w-[500px] w-full mx-auto mt-[100px] mb-[100px] px-[30px] [&>*]:text-[13px] selection:text-[white] selection:bg-[black]">
+    <html lang='en' className='dark:bg-[#000] dark:text-[#fff]'>
+      <body className='antialiased'>
+        <div className='mx-auto mt-[100px] mb-[100px] w-full px-[30px] selection:bg-[black] selection:text-[white] sm:w-[500px] [&>*]:text-[13px]'>
           {fontReady && children}
         </div>
       </body>

@@ -1,12 +1,12 @@
-"use client";
-import Spline from "@splinetool/react-spline";
+'use client';
+import Spline from '@splinetool/react-spline';
 
 export default function CarftPage() {
   return (
-    <div className="w-screen h-screen fixed top-0 left-0 flex items-center justify-center">
-      <div className="[&__canvas]:!h-[80vh] relative">
-        <Spline scene="https://prod.spline.design/EuSCdtdmk4-yN3ly/scene.splinecode" />
-        <div className="absolute bottom-[10px] right-0 w-[200px] h-[50px] bg-[#fff] dark:bg-[#000]"></div>
+    <div className='fixed top-0 left-0 flex h-screen w-screen items-center justify-center'>
+      <div className='relative [&__canvas]:!h-[80vh] [&__canvas]:sm:max-w-[500px]'>
+        <Spline scene='https://prod.spline.design/EuSCdtdmk4-yN3ly/scene.splinecode' />
+        <div className='absolute right-0 bottom-[10px] h-[50px] w-[200px] bg-[#fff] dark:bg-[#000]'></div>
       </div>
     </div>
   );
