@@ -29,10 +29,6 @@ export const NightMode = () => {
   }
  
   return (
-    <div>
-      <button onClick={toggle} className="cursor-pointer">
-        <div ref={containerRef}>{isDark ? <MoonIcon /> : <SunIcon />}</div>
-      </button>
-    </div>
+    <div><button onClick={toggle} className="cursor-pointer"><div ref={containerRef}>{isDark?<MoonIcon />:<SunIcon />}</div></button></div>
   );
 };
