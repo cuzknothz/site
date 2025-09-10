@@ -19,11 +19,11 @@ export const NightMode = () => {
     };
 
     tl.to(containerRef.current, {
-      duration: 0.5,
+      duration: 0.1,
       opacity: 0,
       onComplete: handler,
     }).to(containerRef.current, {
-      duration: 0.5,
+      duration: 0.1,
       opacity: 1,
     });
   }

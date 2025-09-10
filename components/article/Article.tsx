@@ -18,7 +18,7 @@ export const Article = ({ title, contentPreview }: Props) => {
   }, []);
   return (
     <div ref={articleRef}>
-      <div className='min-h-[70px] w-full cursor-pointer rounded-[16px] border-[1px] border-[#00000028] p-[15px] duration-500 dark:border-[#65656563]'>
+      <div className='min-h-[70px] w-full cursor-pointer rounded-[16px] border-[1px] border-[#00000028] p-[15px] dark:border-[#65656563]'>
         <Textz text={title} bold className='selection:!bg-[#3bafd9]' />
         <Textz
           text={contentPreview}
