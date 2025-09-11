@@ -13,9 +13,13 @@ export const NightMode = () => {
     const tl = gsap.timeline({});
     const handler = () => {
       const htmlElement = document.documentElement;
-      const isDark = htmlElement.classList.contains('dark');
-      htmlElement.classList[isDark ? 'remove' : 'add']('dark');
-      setIsDark(isDark);
+      const metaThemeColor = document.querySelector('meta[name=theme-color]')!;
+
+      const isDarkz = htmlElement.classList.contains('dark');
+
+      htmlElement.classList[isDarkz ? 'remove' : 'add']('dark');
+      setIsDark(isDarkz);
+      metaThemeColor.setAttribute('content', isDarkz ? 'black' : 'white');
     };
 
     tl.to(containerRef.current, {

@@ -17,7 +17,7 @@ export const Dizzle = () => {
   return (
     <header
       ref={headerRef}
-      className='fixed top-0 right-1/2 z-10 flex h-[80px] w-[100vw] translate-x-1/2 items-center justify-between px-[30px] pt-[30px] backdrop-blur-[5px] sm:w-[500px]'
+      className='fixed top-0 right-1/2 z-10 flex h-[80px] w-[100vw] translate-x-1/2 items-center justify-between px-[30px] pt-[30px] backdrop-blur-[5px] sm:w-[600px]'
     >
       {/* <SunIcon /> */}
       {/* <RabbitIcon /> */}
@@ -28,10 +28,9 @@ export const Dizzle = () => {
         viewBox='0 0 24 24'
         fill='none'
         stroke='currentColor'
-        stroke-width='2'
-        stroke-linecap='round'
-        stroke-linejoin='round'
-        class='lucide lucide-bubbles-icon lucide-bubbles'
+        strokeWidth='2'
+        strokeLinecap='round'
+        strokeLinejoin='round'
       >
         <path d='M7.2 14.8a2 2 0 0 1 2 2' />
         <circle cx='18.5' cy='8.5' r='3.5' />
