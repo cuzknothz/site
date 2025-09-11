@@ -10,7 +10,7 @@ const article = {
   twoK25: [
     {
       title: 'Threads',
-      contentPreview: 'In 3d world',
+      contentPreview: 'In the universe 🪐',
       link: 'https://threads-00.vercel.app/',
     },
   ],
