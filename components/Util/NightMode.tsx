@@ -19,7 +19,7 @@ export const NightMode = () => {
 
       htmlElement.classList[isDarkz ? 'remove' : 'add']('dark');
       setIsDark(isDarkz);
-      metaThemeColor.setAttribute('content', isDarkz ? 'black' : 'white');
+      metaThemeColor.setAttribute('content', isDarkz ? 'white' : 'black');
     };
 
     tl.to(containerRef.current, {
