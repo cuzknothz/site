@@ -39,12 +39,12 @@ export default function LayoutEffect({ children }: Props) {
 
     // gsap.to(document.getElementsByTagName("title"), {
     //   scrambleText: {
-    //     text: "",
+    //     text: "illuzion",
     //     chars: "!@#$%^&*()_+",
     //     revealDelay: 0.5,
-    //     speed: 1,
+    //     speed: 0.3,
     //   },
-    //   repeat: -1,
+    //   // repeat: -1,
     // });
   }, [checkFontReady, setFontReady]);
 

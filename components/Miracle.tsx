@@ -172,9 +172,9 @@ export const MiracleButton = ({
     <div
       onClick={onClick}
       className={clsx(
-        'flex h-[50px] min-w-[50px] cursor-pointer items-center justify-center overflow-hidden rounded-[16px] border-[1px] p-[12px] backdrop-blur-[5px]',
+        'z-[100] flex h-[50px] min-w-[50px] cursor-pointer items-center justify-center overflow-hidden rounded-[16px] border-[1px] p-[12px] backdrop-blur-[5px]',
         isSelected
-          ? 'border-transparent bg-[#00000032] dark:bg-[#47474757]'
+          ? 'border-transparent bg-[#00000032] dark:bg-[#6e6e6e]'
           : 'border-[#00000028] bg-[#00000008] dark:border-[#65656563]',
       )}
     >
