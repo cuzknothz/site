@@ -94,7 +94,7 @@ export const Miracle = () => {
 
   return (
     <div
-      className='fixed right-1/2 bottom-0 flex h-[80px] w-full translate-x-1/2 justify-center gap-[12px] pt-[30px] sm:w-[600px] sm:gap-[8px]'
+      className='fixed right-1/2 bottom-0 flex h-[80px] w-full translate-x-1/2 justify-center gap-[12px] pt-[30px] sm:w-[500px] sm:gap-[8px]'
       ref={clusterBtn}
     >
       <MiracleButton

@@ -51,7 +51,7 @@ export default function LayoutEffect({ children }: Props) {
   return (
     <html lang='en' className='dark:bg-[#000] dark:text-[#fff]'>
       <body className='antialiased'>
-        <div className='mx-auto mt-[100px] mb-[100px] w-full px-[30px] selection:bg-[black] selection:text-[white] sm:w-[600px] [&>*]:text-[13px]'>
+        <div className='mx-auto mt-[100px] mb-[100px] w-full px-[30px] selection:bg-[black] selection:text-[white] sm:w-[500px] [&>*]:text-[13px]'>
           {fontReady && children}
         </div>
       </body>
