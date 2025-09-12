@@ -2,6 +2,7 @@
 
 import { Article } from '@/components/article/Article';
 import { Textz } from '@/components/Util/Tezt';
+import { useArticleListStore } from '@/store/article-list';
 import { sleep } from '@/utils/app';
 import { useEffect, useState } from 'react';
 
@@ -25,6 +26,7 @@ const article = {
 };
 
 export default function ArticlePage() {
+  const modify = useArticleListStore((state) => state.modify);
   const [articles, setArticles] = useState<typeof article.twoK25>([]);
 
   const pushArticle = async () => {
@@ -45,7 +47,7 @@ export default function ArticlePage() {
       <Textz text={'twoK25'} bold className='selection:!bg-[#710bf7]' />
       <div className='mt-[10px] flex flex-col gap-[10px]'>
         {articles.map((i, idx) => (
-          <Article key={idx} {...i} />
+          <Article key={idx} {...i} modify={modify} idx={idx} />
         ))}
       </div>
     </div>

@@ -11,6 +11,8 @@ import {
   SplitText,
 } from 'gsap/all';
 import { ReactNode, useCallback, useEffect } from 'react';
+import { Squeze } from './Util/Squeze';
+import { useSquezeStore } from '@/store/squeze';
 
 interface Props {
   children: ReactNode;
@@ -36,23 +38,20 @@ export default function LayoutEffect({ children }: Props) {
   useEffect(() => {
     checkFontReady();
     devfools('all');
-
-    // gsap.to(document.getElementsByTagName("title"), {
-    //   scrambleText: {
-    //     text: "illuzion",
-    //     chars: "!@#$%^&*()_+",
-    //     revealDelay: 0.5,
-    //     speed: 0.3,
-    //   },
-    //   // repeat: -1,
-    // });
   }, [checkFontReady, setFontReady]);
 
+  const showSqueze = useSquezeStore((state) => state.show);
+  const titleSqueze = useSquezeStore((state) => state.title);
+  const contentSqueze = useSquezeStore((state) => state.content);
+  const toogleShow = useSquezeStore((state) => state.toogleShow);
+
   return (
-    <html lang='en' className='dark:bg-[#000] dark:text-[#fff]'>
+    <html lang='en' className='duration-0 dark:bg-[#000] dark:text-[#fff]'>
       <body className='antialiased'>
-        <div className='mx-auto mt-[100px] mb-[100px] w-full px-[30px] selection:bg-[black] selection:text-[white] sm:w-[500px] [&>*]:text-[13px]'>
+        <div className='mx-auto mt-[100px] mb-[100px] w-full px-[30px] selection:bg-[black] selection:text-[white] sm:w-[500px] [&__button]:cursor-pointer [&>*]:text-[13px]'>
           {fontReady && children}
+
+          {showSqueze && <Squeze title={titleSqueze} content={contentSqueze} />}
         </div>
       </body>
     </html>
