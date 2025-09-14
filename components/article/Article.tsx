@@ -40,7 +40,7 @@ export const Article = ({ title, contentPreview, modify, idx }: Props) => {
     });
   }, [modify]);
 
-  function clickEdit() {
+  function clickEdit(e) {
     trigger({
       title: '',
       content: '',
@@ -64,15 +64,16 @@ export const Article = ({ title, contentPreview, modify, idx }: Props) => {
       >
         <Link href={`${'/articles/' + 1}`}>
           <Textz text={title} bold className='inline selection:!bg-[#3bafd9]' />
+
+          <Textz
+            text={contentPreview}
+            className='line-clamp-3 dark:selection:bg-[#3bafd9]'
+            delay={200}
+          />
         </Link>
-        <Textz
-          text={contentPreview}
-          className='line-clamp-3 dark:selection:bg-[#3bafd9]'
-          delay={200}
-        />
         {modify === modifyMode.modify && (
           <div className='flex w-full gap-[15px]'>
-            <Box className='!rounded-[10px] overflow-hidden'>
+            <Box className='overflow-hidden !rounded-[10px]'>
               <button
                 title='Edit'
                 onClick={clickEdit}
@@ -81,7 +82,7 @@ export const Article = ({ title, contentPreview, modify, idx }: Props) => {
                 Edit
               </button>
             </Box>
-            <Box className='!rounded-[10px] overflow-hidden'>
+            <Box className='overflow-hidden !rounded-[10px]'>
               <button
                 title='Delete'
                 onClick={clickDelete}

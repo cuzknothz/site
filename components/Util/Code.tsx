@@ -76,7 +76,7 @@ export const Code = ({ code = '' }: Props) => {
   return (
     <Fragment>
       <div className='relative' ref={codeContainer}>
-        <div className='flex h-[40px] w-full items-center justify-between rounded-t-[6px] border-[1px] border-b-[0px] border-[#00000000] bg-[#383838] px-[15px] dark:border-[#07cdff]'>
+        <div className='flex h-[40px] w-full items-center justify-between rounded-t-[16px] border-[1px] border-b-[0px] border-[#00000000] bg-[#383838] px-[15px] dark:border-[#07cdff]'>
           <div>
             <svg
               xmlns='http://www.w3.org/2000/svg'
@@ -131,7 +131,7 @@ export const Code = ({ code = '' }: Props) => {
         {/* <Scrollbar scrollbarWidth={2} style={{ height: 200 }}> */}
         <div
           ref={codeBlockRef}
-          className='dsalkjf kljkl duration-500 [&>pre]:rounded-b-[6px] [&>pre]:!border-[1px] [&>pre]:!border-[#00000000] [&>pre]:!p-[16px] [&>pre]:whitespace-break-spaces [&>pre]:dark:!border-[#07cdff]'
+          className='dsalkjf kljkl duration-500 [&>pre]:rounded-b-[16px] [&>pre]:!border-[1px] [&>pre]:!border-[#00000000] [&>pre]:!p-[16px] [&>pre]:whitespace-break-spaces [&>pre]:dark:!border-[#07cdff]'
           dangerouslySetInnerHTML={{ __html: codeHTML }}
         />
         {/* </Scrollbar> */}
