@@ -7,6 +7,7 @@ import { Textz } from '../Util/Tezt';
 import CloseIcon from '@/assets/svg/close.svg';
 import { useSquezeStore } from '@/store/squeze';
 import { Box } from '../ui/Box';
+import clsx from 'clsx';
 
 interface Props {
   title: string;
@@ -55,7 +56,12 @@ export const Article = ({ title, contentPreview, modify, idx }: Props) => {
 
   return (
     <div ref={articleRef} className='relative'>
-      <div className='flex min-h-[70px] w-full flex-col gap-[5px] rounded-[16px] border-[1px] border-[#00000028] p-[15px] dark:border-[#65656563]'>
+      <div
+        className={clsx(
+          'flex min-h-[70px] w-full flex-col gap-[5px] rounded-[16px] border-[1px] border-[#00000028] p-[15px] dark:border-[#65656563]',
+          modify === modifyMode.modify ? '!pb-[10px]' : 'pb-[15px]',
+        )}
+      >
         <Link href={`${'/articles/' + 1}`}>
           <Textz text={title} bold className='inline selection:!bg-[#3bafd9]' />
         </Link>
@@ -65,7 +71,7 @@ export const Article = ({ title, contentPreview, modify, idx }: Props) => {
           delay={200}
         />
         {modify === modifyMode.modify && (
-          <div className='flex gap-[15px] mt-[10px]'>
+          <div className='flex gap-[15px] w-full'>
             <Box>
               <button
                 title='Edit'
