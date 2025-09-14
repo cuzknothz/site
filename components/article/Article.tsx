@@ -72,20 +72,20 @@ export const Article = ({ title, contentPreview, modify, idx }: Props) => {
         />
         {modify === modifyMode.modify && (
           <div className='flex w-full gap-[15px]'>
-            <Box>
+            <Box className='!rounded-[10px] overflow-hidden'>
               <button
                 title='Edit'
                 onClick={clickEdit}
-                className='rounded-[10px] bg-[#b5e832] px-[10px] py-[5px]'
+                className='bg-[#b5e832] px-[10px] py-[5px]'
               >
                 Edit
               </button>
             </Box>
-            <Box>
+            <Box className='!rounded-[10px] overflow-hidden'>
               <button
                 title='Delete'
                 onClick={clickDelete}
-                className='rounded-[10px] bg-[#32c3e8] px-[10px] py-[5px]'
+                className='bg-[#32c3e8] px-[10px] py-[5px]'
               >
                 Delete
               </button>
