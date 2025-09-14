@@ -10,6 +10,7 @@ import {
 import { Scrollbar } from 'react-scrollbars-custom';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import TerminalIcon from '@/assets/svg/terminal.svg';
 
 interface Props {
   code: string;
@@ -76,24 +77,11 @@ export const Code = ({ code = '' }: Props) => {
   return (
     <Fragment>
       <div className='relative' ref={codeContainer}>
-        <div className='flex h-[40px] w-full items-center justify-between rounded-t-[16px] border-[1px] border-b-[0px] border-[#00000000] bg-[#383838] px-[15px] dark:border-[#07cdff]'>
+        <div className='flex h-[40px] w-full items-center justify-between rounded-t-[16px] border-[1px] border-b-[0px] border-[#00000000] bg-[#383838] px-[15px] dark:border-[#07cdff] [&__svg]:text-[#fff]'>
           <div>
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              width='16'
-              height='16'
-              viewBox='0 0 24 24'
-              fill='none'
-              stroke='currentColor'
-              strokeWidth='2'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            >
-              <path d='M12 19h8' />
-              <path d='m4 17 6-6-6-6' />
-            </svg>{' '}
+            <TerminalIcon />
           </div>
-          <button className=''>
+          <button>
             {isCopied ? (
               <svg
                 xmlns='http://www.w3.org/2000/svg'

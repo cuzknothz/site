@@ -241,7 +241,7 @@ export const MiracleButton = ({
       )}
     >
       {children}
-      <div className='' ref={labelRef}>
+      <div ref={labelRef}>
         <p
           ref={labelText}
           className='ml-[8px] flex justify-center overflow-hidden text-[13px] select-none'
