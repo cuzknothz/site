@@ -7,7 +7,7 @@ import { sleep } from '@/utils/app';
 import { useEffect, useState } from 'react';
 
 const article = {
-  twoK25: [
+  ['2025']: [
     {
       title: 'A slightly belated 2024 retrospective',
       contentPreview:
@@ -27,14 +27,14 @@ const article = {
 
 export default function ArticlePage() {
   const modify = useArticleListStore((state) => state.modify);
-  const [articles, setArticles] = useState<typeof article.twoK25>([]);
+  const [articles, setArticles] = useState<typeof article['2025']>([]);
 
   const pushArticle = async () => {
-    const lengthAricles = article.twoK25.length;
+    const lengthAricles = article['2025'].length;
 
     for (let i = 0; i < lengthAricles; i++) {
       await sleep(200);
-      setArticles((prevState) => [...prevState, article.twoK25[i]]);
+      setArticles((prevState) => [...prevState, article['2025'][i]]);
     }
   };
 
@@ -44,7 +44,7 @@ export default function ArticlePage() {
 
   return (
     <div>
-      <Textz text={'twoK25'} bold className='selection:!bg-[#710bf7]' />
+      <Textz text={'2025'} bold className='selection:!bg-[#710bf7]' />
       <div className='mt-[10px] flex flex-col gap-[10px]'>
         {articles.map((i, idx) => (
           <Article key={idx} {...i} modify={modify} idx={idx} />
