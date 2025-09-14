@@ -16,8 +16,8 @@ export const Work = ({ title, contentPreview, link }: Props) => {
   const articleRef = useRef<HTMLDivElement>(null);
   useGSAP(() => {
     gsap.from(articleRef.current, {
-      y: '50',
-      rotate: 'random([-5, 5])',
+      y: '200',
+      rotate: 'random([-15, 15])',
     });
   }, []);
 
@@ -27,11 +27,11 @@ export const Work = ({ title, contentPreview, link }: Props) => {
   return (
     <div ref={articleRef}>
       <Link href={link} target='_blank'>
-        <div className='flex min-h-[150px] w-full cursor-pointer items-center gap-[10px] rounded-[16px] border-[1px] border-[#00000028] p-[15px] dark:border-[#65656563]'>
+        <div className='flex w-full cursor-pointer items-center gap-[10px] rounded-[16px] border-[1px] border-[#00000028] p-[15px] dark:border-[#65656563]'>
           <Image
             src={'/threads.png'}
-            width={200}
-            height={100}
+            width={160}
+            height={60}
             alt={title}
             className='rounded-[10px]'
           />
