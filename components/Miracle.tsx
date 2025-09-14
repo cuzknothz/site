@@ -182,7 +182,7 @@ export const MiracleButton = ({
       rotate: 180,
     })
       .to(circleRef.current, {
-        translateY: 20,
+        translateY: 0,
       })
       .to(circleRef.current, {
         rotate: 0,
@@ -190,6 +190,8 @@ export const MiracleButton = ({
   };
 
   function clickModify() {
+    animateCircle();
+    setIsMore(false);
     const isSuperior = true;
     if (!isSuperior) {
       triggerSqueze({
@@ -199,7 +201,15 @@ export const MiracleButton = ({
     }
     setModifyMode(modifyMode.modify);
     setIsModify(true);
+  }
+
+  function clickCreate() {
+    animateCircle();
     setIsMore(false);
+    triggerSqueze({
+      title: '',
+      content: '',
+    });
   }
 
   useEffect(() => {
@@ -244,7 +254,10 @@ export const MiracleButton = ({
           <div ref={moreRef}>
             {isMore && (
               <Box className='absolute right-1/2 bottom-[60px] w-[100px] translate-x-1/2 cursor-pointer overflow-hidden'>
-                <div className='flex h-[35px] w-full items-center gap-[10px] px-[10px] hover:bg-[#00b7ff]'>
+                <div
+                  className='flex h-[35px] w-full items-center gap-[10px] px-[10px] hover:bg-[#00b7ff]'
+                  onClick={clickCreate}
+                >
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     width='16'
