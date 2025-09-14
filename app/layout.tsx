@@ -4,6 +4,7 @@ import LayoutEffect from '@/components/LayoutEffect';
 import { Miracle } from '@/components/Miracle';
 import { Metadata, Viewport } from 'next';
 import './globals.css';
+import { Slashhhhhhhhhhhhhhhhhhhhhhhhh } from '@/components/Slashhhhhhhhhhhhhhhhhhhhhhhhh';
 
 export const metadata: Metadata = {
   title: 'illuzion',

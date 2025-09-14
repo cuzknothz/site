@@ -3,30 +3,21 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { Textz } from './Util/Tezt';
+import { useRef } from 'react';
 
 export const Slashhhhhhhhhhhhhhhhhhhhhhhhh = () => {
+  const slashRef = useRef<HTMLDivElement>(null);
   useGSAP(() => {
-    const loadingLines = document.querySelectorAll('.loading-line');
-
-    loadingLines.forEach((line, index) => {
-      gsap.to(line, {
-        translateX: index % 2 === 0 ? 1000 : -1000,
-        duration: 50,
-        repeat: -1,
-        ease: 'none',
-      });
+    gsap.to(slashRef.current, {
+      top: '-100vh',
+      duration: 1,
     });
   });
 
   return (
-    <div className='fixed top-0 left-1/2 z-[1] h-screen w-[500px] -translate-x-1/2'>
-      <div className='absolute right-1/2 bottom-1/2 flex translate-x-1/2 translate-y-1/2 rotate-[20deg] flex-col gap-[10px] bg-[#ffffff0c] backdrop-blur-[2px]'>
-        {[...Array(100).keys()].map((i) => (
-          <div key={i} className='loading-line w-max select-none'>
-            {'loading...'.repeat(80)}
-          </div>
-        ))}
-      </div>
-    </div>
+    <div
+      ref={slashRef}
+      className='fixed top-[100vh] left-0 z-[10] h-[100vh] w-screen bg-[#000]'
+    ></div>
   );
 };
