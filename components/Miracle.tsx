@@ -239,7 +239,7 @@ export const MiracleButton = ({
           {label}
         </p>
       </div>
-      {isSelected && ([SECTION.ARTICLE]).includes(label) && (
+      {isSelected && [SECTION.ARTICLE].includes(label) && (
         <>
           <div ref={moreRef}>
             {isMore && (

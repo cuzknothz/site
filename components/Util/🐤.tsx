@@ -30,7 +30,7 @@ export const Squeze = ({
     <div>
       <BackDrop>
         <div ref={boxRef}>
-          <Box className='w-[300px]'>
+          <Box className='w-[300px] bg-[#fff] dark:bg-[#000]'>
             <div className='flex h-[40px] w-full items-center justify-between border-b-[1px] border-[#00000028] px-[10px] dark:border-[#65656563]'>
               <Textz text={title} bold />
               <button onClick={close} className='cursor-pointer'>

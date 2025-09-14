@@ -71,7 +71,7 @@ export const Article = ({ title, contentPreview, modify, idx }: Props) => {
           delay={200}
         />
         {modify === modifyMode.modify && (
-          <div className='flex gap-[15px] w-full'>
+          <div className='flex w-full gap-[15px]'>
             <Box>
               <button
                 title='Edit'
