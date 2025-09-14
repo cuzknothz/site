@@ -11,7 +11,7 @@ import {
   SplitText,
 } from 'gsap/all';
 import { ReactNode, useCallback, useEffect } from 'react';
-import { Squeze } from './Util/Squeze';
+import { Squeze } from './Util/🐤';
 import { useSquezeStore } from '@/store/squeze';
 
 interface Props {

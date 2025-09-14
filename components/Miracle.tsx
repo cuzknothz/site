@@ -142,14 +142,14 @@ export const Miracle = () => {
 interface MiracleButtonProps {
   isSelected: boolean;
   children: ReactNode;
-  label: string;
+  label: SECTION;
   onClick: MouseEventHandler;
   firstMounted: boolean;
 }
 export const MiracleButton = ({
   isSelected = false,
   children = <></>,
-  label = '',
+  label,
   onClick,
   firstMounted,
 }: MiracleButtonProps) => {
@@ -239,7 +239,7 @@ export const MiracleButton = ({
           {label}
         </p>
       </div>
-      {isSelected && (
+      {isSelected && ([SECTION.ARTICLE]).includes(label) && (
         <>
           <div ref={moreRef}>
             {isMore && (

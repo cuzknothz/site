@@ -4,6 +4,8 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { useRef } from 'react';
 import { NightMode } from './Util/NightMode';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export const Dizzle = () => {
   const headerRef = useRef<HTMLDivElement>(null);
@@ -21,22 +23,15 @@ export const Dizzle = () => {
     >
       {/* <SunIcon /> */}
       {/* <RabbitIcon /> */}
-      <svg
-        xmlns='http://www.w3.org/2000/svg'
-        width='24'
-        height='24'
-        viewBox='0 0 24 24'
-        fill='none'
-        stroke='currentColor'
-        strokeWidth='2'
-        strokeLinecap='round'
-        strokeLinejoin='round'
-      >
-        <path d='M7.2 14.8a2 2 0 0 1 2 2' />
-        <circle cx='18.5' cy='8.5' r='3.5' />
-        <circle cx='7.5' cy='16.5' r='5.5' />
-        <circle cx='7.5' cy='4.5' r='2.5' />
-      </svg>
+      <Link href={'/'}>
+        <Image
+          src={'/web-app-manifest-192x192.png'}
+          alt=''
+          width={30}
+          height={30}
+          className='translate-y-[-5px] dark:invert'
+        />
+      </Link>
       <div>
         <NightMode />
       </div>
