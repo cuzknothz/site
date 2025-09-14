@@ -22,16 +22,16 @@ export const Article = ({ title, contentPreview, modify, idx }: Props) => {
 
   const trigger = useSquezeStore((state) => state.trigger);
 
+  useGSAP(() => {
+    gsap.from(articleRef.current, {
+      y: '200',
+      rotate: idx % 2 == 0 ? -10 : 10,
+    });
+  }, []);
+
   useEffect(() => {
     setModifyMode(modifyMode.null);
   }, [setModifyMode]);
-
-  useEffect(() => {
-    gsap.from(articleRef.current, {
-      y: '200',
-      rotate: idx % 2 == 0 ? -15 : 15,
-    });
-  }, [idx, modify]);
 
   useEffect(() => {
     gsap.to(modifyContainerRef.current!, {
@@ -65,7 +65,7 @@ export const Article = ({ title, contentPreview, modify, idx }: Props) => {
           delay={200}
         />
         {modify === modifyMode.modify && (
-          <div className='flex gap-[15px]'>
+          <div className='flex gap-[15px] mt-[10px]'>
             <Box>
               <button
                 title='Edit'
