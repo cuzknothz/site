@@ -9,7 +9,7 @@ export const Slashhhhhhhhhhhhhhhhhhhhhhhhh = () => {
   const slashRef = useRef<HTMLDivElement>(null);
   useGSAP(() => {
     gsap.to(slashRef.current, {
-      top: '-100vh',
+      top: '-200vh',
       duration: 1,
     });
   });
@@ -17,7 +17,7 @@ export const Slashhhhhhhhhhhhhhhhhhhhhhhhh = () => {
   return (
     <div
       ref={slashRef}
-      className='fixed top-[100vh] left-0 z-[10] h-[100vh] w-screen bg-[#000]'
+      className='fixed top-[100vh] left-0 z-[10] h-[200vh] w-screen bg-[#000]'
     ></div>
   );
 };
