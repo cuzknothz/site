@@ -22,7 +22,7 @@ export const Dizzle = () => {
     >
       <Link href={'/'}>
         <div className='relative h-[30px] w-[30px]'>
-          <div className='absolute right-1/2 bottom-[2px] h-[4px] w-[65%] translate-x-1/2 bg-[#000]' />
+          <div className='absolute right-1/2 bottom-[2px] h-[4px] w-[65%] translate-x-1/2 bg-[#000] dark:bg-[#fff]' />
         </div>
       </Link>
       <div>
