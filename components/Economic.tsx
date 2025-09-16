@@ -27,7 +27,7 @@ export const Economic = () => {
 
   return (
     <div>
-      <Textz bold text='Important Economic Event Today' className='mb-[10px]' />
+      <Textz bold text={`Important Economic Event Today ${format(new Date(), 'dd-MM-yyyy')}`}  className='mb-[10px]' />
       <table className='w-full border-collapse border border-gray-400'>
         <thead>
           <tr className='h-[30px]'>
