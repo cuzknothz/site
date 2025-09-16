@@ -40,24 +40,14 @@ export const Economic = () => {
             <th className='w-[200px] border border-gray-300'>
               <Textz text='Event' />
             </th>
-            <th className='border border-gray-300'>
-              <Textz text='Prev' />
-            </th>
-            <th className='border border-gray-300'>
-              <Textz text='Forecast' />
-            </th>
-            <th className='border border-gray-300'>
-              {' '}
-              <Textz text='Actual' />
-            </th>
+            {/* <th className='border border-gray-300'>Pre | Fcast | Actual</th> */}
           </tr>
         </thead>
         <tbody>
           {state.map((i, idx) => (
             <tr key={idx} className=''>
               <td className='border border-gray-300 text-center'>
-               
-                 <Textz text={ vnTime(i.date, 'HH:mm')} />
+                {vnTime(i.date, 'HH:mm')}
               </td>
               <td className='border border-gray-300'>
                 <div className='flex h-full w-full items-center justify-center'>
@@ -70,18 +60,16 @@ export const Economic = () => {
                 </div>
               </td>
 
-              <td className='border border-gray-300'> <Textz text={i.indicator ?? ''} /></td>
-              <td className='border border-gray-300 text-center'>
-                {i.previous ?? ''}
-                
+              <td className='border border-gray-300 px-[10px]'>
+                <div className='line-clamp-1' title={i.comment}>
+                  <Textz text={i.indicator} />
+                </div>
               </td>
-
-              <td className='border border-gray-300 text-center'>
-                {i.forecast ?? ''}
-              </td>
-              <td className='border border-gray-300 bg-[#64d0e8] text-center'>
-                {i.actual ?? ''}
-              </td>
+              {/* <td>
+                <span>{i.previous}</span>
+                <span>{i.forecast}</span>
+                <span>{i.actual}</span>
+              </td> */}
             </tr>
           ))}
         </tbody>
