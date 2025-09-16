@@ -111,14 +111,7 @@ export const Miracle = () => {
       >
         <Toilet />
       </MiracleButton>
-      <MiracleButton
-        isSelected={getIsSelect(SECTION.CRAFT)}
-        label={SECTION.CRAFT}
-        onClick={changeTo(SECTION.CRAFT, '/crafts')}
-        firstMounted={firstMounted}
-      >
-        <Craft />
-      </MiracleButton>
+
       <MiracleButton
         isSelected={getIsSelect(SECTION.WORK)}
         label={SECTION.WORK}
@@ -134,6 +127,14 @@ export const Miracle = () => {
         firstMounted={firstMounted}
       >
         <Article />
+      </MiracleButton>
+      <MiracleButton
+        isSelected={getIsSelect(SECTION.CRAFT)}
+        label={SECTION.CRAFT}
+        onClick={changeTo(SECTION.CRAFT, '/crafts')}
+        firstMounted={firstMounted}
+      >
+        <Craft />
       </MiracleButton>
     </div>
   );

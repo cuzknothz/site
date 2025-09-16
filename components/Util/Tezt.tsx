@@ -7,7 +7,7 @@ import gsap from 'gsap';
 import { Fragment, useRef } from 'react';
 
 interface Props {
-  text: string;
+  text: string| number
   className?: string;
   bold?: boolean;
   delay?: number;
