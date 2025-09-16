@@ -25,16 +25,16 @@ export const NightMode = () => {
       setIsDark(isDark);
     };
 
-    const setScale0 = () => {
-      gsap.set(zzzzzzzzzzzzzzzz.current, {
-        scale: 0,
-      });
-    };
+    // const setScale0 = () => {
+    //   gsap.set(zzzzzzzzzzzzzzzz.current, {
+    //     scale: 0,
+    //   });
+    // };
 
-    tl.to(zzzzzzzzzzzzzzzz.current!, {
-      scale: 50,
-      onComplete: setScale0,
-    });
+    // tl.to(zzzzzzzzzzzzzzzz.current!, {
+    //   scale: 50,
+    //   onComplete: setScale0,
+    // });
 
     tl.to(containerRef.current, {
       duration: 0,
