@@ -114,7 +114,7 @@ export const Miracle = () => {
     tlHidden.current = gsap.timeline({});
     tlHidden.current.to(clusterBtn.current!.childNodes, {
       scale: 0,
-      rotate: 360,
+      rotate: 960,
       translateY: 50,
       stagger: {
         each: 0.15,

@@ -12,11 +12,11 @@ export const Chat = () => {
   return (
     <div
       className={clsx(
-        'relative w-full',
-        isFullScreen ? 'h-[calc(100vh-120px)]' : 'h-[calc(100vh-200px)]',
+        'fixed top-0 right-1/2 h-screen w-full translate-x-1/2 sm:w-[500px]',
+        isFullScreen ? '' : 'h-[calc(100vh-200px)]',
       )}
     >
-      <div className='flex h-full w-full flex-col items-center justify-center gap-[10px]'>
+      <div className='flex h-full w-full flex-col items-center justify-center gap-[10px] px-[20px]'>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           width='80'
@@ -34,7 +34,12 @@ export const Chat = () => {
         </svg>
         <Textz delay={1000} text='This feature is under development' />
       </div>
-      <div className='absolute bottom-0 flex w-full gap-[10px]'>
+      <div
+        className={clsx(
+          'absolute flex w-full gap-[10px] px-[20px] duration-500',
+          isFullScreen ? 'bottom-[30px]' : 'bottom-[90px]',
+        )}
+      >
         <Box className='flex h-[50px] w-[50px] cursor-pointer items-center justify-center'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
