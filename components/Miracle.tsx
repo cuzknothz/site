@@ -4,6 +4,9 @@ import Article from '@/assets/svg/article.svg';
 import CircleUp from '@/assets/svg/circle-up.svg';
 import CloseIcon from '@/assets/svg/close.svg';
 import Craft from '@/assets/svg/craft.svg';
+import Magic from '@/assets/svg/miracle.svg';
+import BrightToFront from '@/assets/svg/bright-to-front.svg';
+
 import Toilet from '@/assets/svg/toilet.svg';
 import Work from '@/assets/svg/work.svg';
 import { modifyMode, useArticleListStore } from '@/store/article-list';
@@ -23,15 +26,18 @@ import {
 } from 'react';
 import { useClickAway } from 'react-use';
 import { Box } from './ui/Box';
+import { useChatStore } from '@/store/chat';
 
 enum SECTION {
   HOME = 'Home',
   CRAFT = 'Craft',
   WORK = 'Work',
   ARTICLE = 'Article',
+  CHAT = 'AI',
 }
 
 export const Miracle = () => {
+  const setFullScreen = useChatStore((state) => state.setFullScreen);
   const [currentSelect, setCurrentSelect] = useState<SECTION | ''>(
     SECTION.HOME,
   );
@@ -56,6 +62,7 @@ export const Miracle = () => {
       '/crafts': SECTION.CRAFT,
       '/works': SECTION.WORK,
       '/articles': SECTION.ARTICLE,
+      '/chat': SECTION.CHAT,
     }[pathname];
 
     setCurrentSelect(to || '');
@@ -98,45 +105,90 @@ export const Miracle = () => {
     });
   }, []);
 
-  return (
-    <div
-      className='fixed right-1/2 bottom-0 flex h-[80px] w-full translate-x-1/2 justify-center gap-[12px] pt-[30px] sm:w-[500px] sm:gap-[8px]'
-      ref={clusterBtn}
-    >
-      <MiracleButton
-        isSelected={getIsSelect(SECTION.HOME)}
-        label={SECTION.HOME}
-        onClick={changeTo(SECTION.HOME, '/')}
-        firstMounted={firstMounted}
-      >
-        <Toilet />
-      </MiracleButton>
+  const tlHidden = useRef<TimelineLite>(null);
 
-      <MiracleButton
-        isSelected={getIsSelect(SECTION.WORK)}
-        label={SECTION.WORK}
-        onClick={changeTo(SECTION.WORK, '/works')}
-        firstMounted={firstMounted}
+  const [showAppArrow, setShowAppArrow] = useState(false);
+  const clickChat = () => {
+    changeTo(SECTION.CHAT, '/chat')();
+
+    tlHidden.current = gsap.timeline({});
+    tlHidden.current.to(clusterBtn.current!.childNodes, {
+      scale: 0,
+      rotate: 360,
+      translateY: 50,
+      stagger: {
+        each: 0.15,
+        from: 'random',
+      },
+      onComplete: () => {
+        setShowAppArrow(true);
+        setFullScreen(true);
+      },
+    });
+  };
+
+  const showAllApp = () => {
+    tlHidden.current?.reverse();
+    setShowAppArrow(false);
+    setFullScreen(false);
+  };
+  return (
+    <>
+      <div
+        className='fixed right-1/2 bottom-0 flex h-[80px] w-full translate-x-1/2 justify-center gap-[12px] pt-[30px] sm:w-[500px] sm:gap-[8px]'
+        ref={clusterBtn}
       >
-        <Work />
-      </MiracleButton>
-      <MiracleButton
-        isSelected={getIsSelect(SECTION.ARTICLE)}
-        label={SECTION.ARTICLE}
-        onClick={changeTo(SECTION.ARTICLE, '/articles')}
-        firstMounted={firstMounted}
-      >
-        <Article />
-      </MiracleButton>
-      <MiracleButton
-        isSelected={getIsSelect(SECTION.CRAFT)}
-        label={SECTION.CRAFT}
-        onClick={changeTo(SECTION.CRAFT, '/crafts')}
-        firstMounted={firstMounted}
-      >
-        <Craft />
-      </MiracleButton>
-    </div>
+        <MiracleButton
+          isSelected={getIsSelect(SECTION.HOME)}
+          label={SECTION.HOME}
+          onClick={changeTo(SECTION.HOME, '/')}
+          firstMounted={firstMounted}
+        >
+          <Toilet />
+        </MiracleButton>
+
+        <MiracleButton
+          isSelected={getIsSelect(SECTION.WORK)}
+          label={SECTION.WORK}
+          onClick={changeTo(SECTION.WORK, '/works')}
+          firstMounted={firstMounted}
+        >
+          <Work />
+        </MiracleButton>
+        <MiracleButton
+          isSelected={getIsSelect(SECTION.ARTICLE)}
+          label={SECTION.ARTICLE}
+          onClick={changeTo(SECTION.ARTICLE, '/articles')}
+          firstMounted={firstMounted}
+        >
+          <Article />
+        </MiracleButton>
+        <MiracleButton
+          isSelected={getIsSelect(SECTION.CRAFT)}
+          label={SECTION.CRAFT}
+          onClick={changeTo(SECTION.CRAFT, '/crafts')}
+          firstMounted={firstMounted}
+        >
+          <Craft />
+        </MiracleButton>
+        <MiracleButton
+          isSelected={getIsSelect(SECTION.CHAT)}
+          label={SECTION.CHAT}
+          onClick={clickChat}
+          firstMounted={firstMounted}
+        >
+          <Magic />
+        </MiracleButton>
+      </div>
+      {showAppArrow && (
+        <div
+          className='fixed right-1/2 bottom-[0px] translate-x-1/2'
+          onClick={showAllApp}
+        >
+          <BrightToFront />
+        </div>
+      )}
+    </>
   );
 };
 
