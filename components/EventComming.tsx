@@ -1,17 +1,31 @@
 'use client';
 import { EconomicEvent } from '@/types/app';
-import { vnTime } from '@/utils/app';
+import {  vnTime } from '@/utils/app';
+import { useGSAP } from '@gsap/react';
 import { format, addDays } from 'date-fns';
-import { useEffect, useState } from 'react';
+import gsap from 'gsap';
+import { useEffect, useRef, useState } from 'react';
+// import useSWR from 'swr';
+// const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 export const CommingEvent = () => {
   const [state, setState] = useState<EconomicEvent | null>();
+  const today = format(new Date(), 'yyyy-MM-dd');
+  const nextDay = format(addDays(new Date(), 1), 'yyyy-MM-dd');
+  const eventRef = useRef<HTMLDivElement>(null);
+  const eventParentRef = useRef<HTMLDivElement>(null);
+
+  // const { data, error } = useSWR(
+  //   `/api/economic?minImportance=1&from=${today}T00:00:00.000Z&to=${nextDay}T00:00:00.000Z`,
+  //   fetcher,
+  // );
+  // console.log(data);
   useEffect(() => {
     const handler = async () => {
       const today = format(new Date(), 'yyyy-MM-dd');
       const nextDay = format(addDays(new Date(), 1), 'yyyy-MM-dd');
       const res = await fetch(
-        `/api/economic?minImportance=1&from=${today}T00:00:00.000Z&to=${nextDay}T00:00:00.000Z`,
+        `https://chartevents-reuters.tradingview.com/events?minImportance=1&from=${today}T00:00:00.000Z&to=${nextDay}T00:00:00.000Z`,
       );
 
       const data = await res.json();
@@ -21,22 +35,37 @@ export const CommingEvent = () => {
       } else {
         setState(null);
       }
-
-      console.log('data', data);
     };
     handler();
   }, []);
 
+  useGSAP(() => {
+    const wParent = eventParentRef.current!.getBoundingClientRect().width ?? 0;
+    const wEvent = eventRef.current!.getBoundingClientRect().width ?? 0;
+    gsap.to(eventRef.current, {
+      right: wParent + wEvent,
+      duration: 10,
+      ease: 'none',
+      repeat: -1,
+    });
+  }, [state]);
+
   return (
-    <div>
-      <marquee>
-        <span>Next Important Event Today: </span>
+    <div
+      className='fixed top-[5px] right-1/2 h-[20px] w-full translate-x-1/2 overflow-hidden sm:w-[500px]'
+      ref={eventParentRef}
+    >
+      <div
+        className='absolute top-0 right-0 w-max translate-x-[100%]'
+        ref={eventRef}
+      >
+        <span> Next Economic Event: </span>
         {state ? (
           <span>{`${vnTime(state.date)} ${state.country} ${state.indicator}`}</span>
         ) : (
-          <span> No important event today :)</span>
+          <span> None </span>
         )}
-      </marquee>
+      </div>
     </div>
   );
 };

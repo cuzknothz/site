@@ -18,7 +18,7 @@ const article = {
 };
 
 export default function ArticlePage() {
-  const [articles, setArticles] = useState<typeof article['2025']>([]);
+  const [articles, setArticles] = useState<(typeof article)['2025']>([]);
 
   const pushArticle = async () => {
     const lengthAricles = article['2025'].length;

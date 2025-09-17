@@ -2,10 +2,10 @@ import { toDate, format } from 'date-fns-tz';
 export function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
- 
+
 export const vnTime = (
   utcDateString: string,
-  fm: string = 'dd/MM/yyyy HH:mm:ss'
+  fm: string = 'dd/MM/yyyy HH:mm:ss',
 ) => {
   if (!utcDateString) {
     return '';
@@ -17,5 +17,3 @@ export const vnTime = (
   });
   return formatted;
 };
-
-

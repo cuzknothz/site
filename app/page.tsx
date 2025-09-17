@@ -17,7 +17,7 @@ export default function HomePage() {
       </div>
       <div>
         <Textz text='Today' bold className='selection:!bg-[#710bf7]' />
-        <Textz text='Working as Web developer.' delay={100}  />
+        <Textz text='Working as Web developer.' delay={100} />
       </div>
       <div>
         <Textz

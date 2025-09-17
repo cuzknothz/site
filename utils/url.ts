@@ -1,1 +1,1 @@
-export const urlEconomic = 'https://chartevents-reuters.tradingview.com/events'
+export const urlEconomic = 'https://chartevents-reuters.tradingview.com/events';

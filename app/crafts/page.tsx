@@ -4,8 +4,8 @@ import Spline from '@splinetool/react-spline';
 
 export default function CarftPage() {
   return (
-   <div>
-    <Economic/>
-   </div>
+    <div>
+      <Economic />
+    </div>
   );
 }
