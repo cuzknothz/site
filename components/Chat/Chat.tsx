@@ -12,8 +12,7 @@ export const Chat = () => {
   return (
     <div
       className={clsx(
-        'fixed top-0 right-1/2 h-screen w-full translate-x-1/2 sm:w-[500px]',
-        isFullScreen ? '' : 'h-[calc(100vh-200px)]',
+        'fixed top-0 right-1/2 h-[100dvh] w-full translate-x-1/2 sm:w-[500px]',
       )}
     >
       <div className='flex h-full w-full flex-col items-center justify-center gap-[10px] px-[20px]'>
