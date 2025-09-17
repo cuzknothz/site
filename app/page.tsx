@@ -11,7 +11,7 @@ const link = [
 export default function HomePage() {
   return (
     <div className='flex flex-col gap-[20px]'>
-      <div className='relative h-[55vh] [&__canvas]:!h-[55vh] [&__canvas]:sm:max-w-[500px]'>
+      <div className='relative h-[55dvh] [&__canvas]:!h-[55dvh] [&__canvas]:sm:max-w-[500px]'>
         <Spline scene='https://prod.spline.design/wGWWmsOIBBVIUAb8/scene.splinecode' />
         <div className='absolute right-0 bottom-[10px] h-[50px] w-[200px] bg-[#fff] dark:bg-[#000]'></div>
       </div>
