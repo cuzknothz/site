@@ -1,5 +1,5 @@
 'use client';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Box } from '../ui/Box';
 import { Textz } from '../Util/Tezt';
 import { useChatStore } from '@/store/chat';
@@ -12,15 +12,23 @@ export const Chat = () => {
   const [chatInput, setChatInput] = useState<string>('');
   const isFullScreen = useChatStore((state) => state.fullScreen);
   const showFullMenu = useGlobalStore((s) => s.showFullMenu);
+  const sendButtonRef = useRef<HTMLDivElement>(null);
 
   const chatAreaRef = useRef<HTMLDivElement>(null);
 
-  useEffectNext(() => {
+  useEffect(() => {
     gsap.to(chatAreaRef.current, {
       bottom: showFullMenu ? 110 : 40,
       delay: showFullMenu ? 0 : 0.6,
     });
   }, [showFullMenu]);
+
+  useEffectNext(() => {
+    if (!chatInput) {
+      return;
+    }
+
+  }, [chatInput]);
 
   return (
     <div
@@ -46,12 +54,7 @@ export const Chat = () => {
         </svg>
         <Textz delay={1000} text='This feature is under development' />
       </div>
-      <div
-        ref={chatAreaRef}
-        className={clsx(
-          'absolute w-full',
-        )}
-      >
+      <div ref={chatAreaRef} className={clsx('absolute w-full')}>
         <Box className='relative !w-full flex-1 overflow-hidden'>
           <textarea
             value={chatInput}
@@ -78,22 +81,24 @@ export const Chat = () => {
                 <path d='M12 5v14' />
               </svg>
             </Box>
-            <Box className='bottom-[10px] left-[10px] flex h-[40px] w-[40px] items-center justify-center'>
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                width='20'
-                height='20'
-                viewBox='0 0 24 24'
-                fill='none'
-                stroke='currentColor'
-                stroke-width='2'
-                stroke-linecap='round'
-                stroke-linejoin='round'
-              >
-                <path d='m5 12 7-7 7 7' />
-                <path d='M12 19V5' />
-              </svg>
-            </Box>
+            <div ref={sendButtonRef}>
+              <Box shadow className={clsx('bottom-[10px] left-[10px] flex h-[40px] w-[40px] items-center justify-center duration-500', chatInput ? 'bg-[#3333335d]': '')}>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  width='20'
+                  height='20'
+                  viewBox='0 0 24 24'
+                  fill='none'
+                  stroke='currentColor'
+                  stroke-width='2'
+                  stroke-linecap='round'
+                  stroke-linejoin='round'
+                >
+                  <path d='m5 12 7-7 7 7' />
+                  <path d='M12 19V5' />
+                </svg>
+              </Box>
+            </div>
           </div>
         </Box>
       </div>
