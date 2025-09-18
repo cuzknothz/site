@@ -102,7 +102,7 @@ export const MenuItem = ({
         text: label,
         chars: ' ',
         revealDelay: 0,
-        speed: 0.3,
+        speed: 1,
       },
     });
     Flip.from(labelState, { duration: 0.6 });
