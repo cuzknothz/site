@@ -36,7 +36,7 @@ export const Chat = () => {
       <div
         className={clsx(
           'absolute w-full',
-          isFullScreen ? 'bottom-[30px]' : 'bottom-[90px]',
+          isFullScreen ? 'bottom-[40px]' : 'bottom-[110px]',
         )}
       >
         <Box className='relative !w-full flex-1 overflow-hidden'>

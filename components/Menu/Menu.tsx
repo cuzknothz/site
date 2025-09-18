@@ -110,7 +110,7 @@ export const Menu = () => {
         },
       });
       gsap.to(clusterBtn.current!.childNodes, {
-        transform: 'translateY(-30px)',
+        transform: 'translateY(-40px)',
         scale: 1,
         rotate: 0,
         stagger: {

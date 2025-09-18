@@ -11,7 +11,7 @@ export const Box = ({
   children,
   className = '',
   onClick = () => {},
-  shadow = true,
+  shadow = false,
 }: Props) => {
   return (
     <div
