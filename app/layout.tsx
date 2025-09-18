@@ -7,6 +7,9 @@ import './globals.css';
 import { Slashhhhhhhhhhhhhhhhhhhhhhhhh } from '@/components/Slashhhhhhhhhhhhhhhhhhhhhhhhh';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/next';
+import { NextEvent } from '@/components/NextEvent';
+import { Menu } from '@/components/Menu/Menu';
+import { Header } from '@/components/Header/Header';
 
 export const metadata: Metadata = {
   title: 'illuzion',
@@ -28,12 +31,13 @@ export default function RootLayout({
   return (
     <>
       <LayoutEffect>
+        <NextEvent />
         {/* <Slashhhhhhhhhhhhhhhhhhhhhhhhh /> */}
-        <Dizzle />
+        <Header />
         {children}
         <SpeedInsights />
         <Analytics />
-        <Miracle />
+        <Menu />
         <EnterSecret />
       </LayoutEffect>
     </>

@@ -1,17 +1,15 @@
 'use client';
 import { EconomicEvent } from '@/types/app';
-import {  vnTime } from '@/utils/app';
+import { vnTime } from '@/utils/app';
 import { useGSAP } from '@gsap/react';
-import { format, addDays } from 'date-fns';
+import { addDays, format } from 'date-fns';
 import gsap from 'gsap';
 import { useEffect, useRef, useState } from 'react';
 // import useSWR from 'swr';
 // const fetcher = (...args) => fetch(...args).then(res => res.json())
 
-export const CommingEvent = () => {
+export const NextEvent = () => {
   const [state, setState] = useState<EconomicEvent | null>();
-  const today = format(new Date(), 'yyyy-MM-dd');
-  const nextDay = format(addDays(new Date(), 1), 'yyyy-MM-dd');
   const eventRef = useRef<HTMLDivElement>(null);
   const eventParentRef = useRef<HTMLDivElement>(null);
 
@@ -52,14 +50,28 @@ export const CommingEvent = () => {
 
   return (
     <div
-      className='fixed top-[5px] right-1/2 h-[20px] w-full translate-x-1/2 overflow-hidden sm:w-[500px]'
+      className='fixed top-[5px] right-1/2 z-[200] h-[20px] w-full translate-x-1/2 overflow-hidden sm:w-[500px]'
       ref={eventParentRef}
     >
       <div
-        className='absolute top-0 right-0 w-max translate-x-[100%]'
+        className='absolute top-0 right-0 flex w-max translate-x-[100%] gap-[5px]'
         ref={eventRef}
       >
-        <span> Next Economic Event: </span>
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          width='18'
+          height='18'
+          viewBox='0 0 24 24'
+          fill='none'
+          stroke='currentColor'
+          stroke-width='1'
+          stroke-linecap='round'
+          stroke-linejoin='round'
+        >
+          <path d='M16 7h6v6' />
+          <path d='m22 7-8.5 8.5-5-5L2 17' />
+        </svg>
+        <span> Next Economic Event:</span>
         {state ? (
           <span>{`${vnTime(state.date)} ${state.country} ${state.indicator}`}</span>
         ) : (

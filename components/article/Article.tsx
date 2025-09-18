@@ -56,7 +56,7 @@ export const Article = ({ title, contentPreview, modify, idx }: Props) => {
 
   return (
     <div ref={articleRef} className='relative'>
-      <div
+      <Box
         className={clsx(
           'flex min-h-[70px] w-full flex-col gap-[5px] rounded-[16px] border-[1px] border-[#00000028] p-[15px] dark:border-[#65656563]',
           modify === modifyMode.modify ? '!pb-[10px]' : 'pb-[15px]',
@@ -93,7 +93,7 @@ export const Article = ({ title, contentPreview, modify, idx }: Props) => {
             </Box>
           </div>
         )}
-      </div>
+      </Box>
     </div>
   );
 };

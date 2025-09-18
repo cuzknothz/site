@@ -1,16 +1,27 @@
 import { clsx } from 'clsx';
-import { ReactNode } from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 
 interface Props {
   children: ReactNode;
   className?: string;
+  onClick?: MouseEventHandler;
+  shadow?: boolean;
 }
-export const Box = ({ children, className = '' }: Props) => {
+export const Box = ({
+  children,
+  className = '',
+  onClick = () => {},
+  shadow = false,
+}: Props) => {
   return (
     <div
+      onClick={onClick}
       className={clsx(
-        'rounded-[16px] border-[1px] border-[#00000028] dark:border-[#65656563]',
+        'rounded-[20px] border-[1px] border-[#00000013] dark:border-[#65656563]',
         className,
+        {
+          'shadow shadow-[#00000018]': shadow,
+        },
       )}
     >
       {children}

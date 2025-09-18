@@ -1,15 +1,13 @@
 'use client';
-import RabbitIcon from '@/assets/svg/rabbit.svg';
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
-import { useRef } from 'react';
-import { NightMode } from './Util/NightMode';
-import Link from 'next/link';
-import { CommingEvent } from './EventComming';
 import { useChatStore } from '@/store/chat';
+import { useGSAP } from '@gsap/react';
 import clsx from 'clsx';
+import gsap from 'gsap';
+import Link from 'next/link';
+import { useRef } from 'react';
+import { NightMode } from '../Util/NightMode';
 
-export const Dizzle = () => {
+export const Header = () => {
   const headerRef = useRef<HTMLDivElement>(null);
   const isFullScreen = useChatStore((state) => state.fullScreen);
 
@@ -28,10 +26,6 @@ export const Dizzle = () => {
           isFullScreen && 'hidden',
         )}
       >
-        <div className='absolute top-[10px] left-0 mx-[30px] [&__*]:text-[13px]'>
-          <CommingEvent />
-        </div>
-
         <Link href={'/'}>
           <div className='relative h-[30px] w-[30px]'>
             <div className='absolute right-1/2 bottom-[2px] h-[4px] w-[65%] translate-x-1/2 bg-[#000] dark:bg-[#fff]' />

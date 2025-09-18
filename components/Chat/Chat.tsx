@@ -35,42 +35,41 @@ export const Chat = () => {
       </div>
       <div
         className={clsx(
-          'absolute flex w-full gap-[10px] px-[20px] duration-500',
+          'absolute w-full',
           isFullScreen ? 'bottom-[30px]' : 'bottom-[90px]',
         )}
       >
-        <Box className='flex h-[50px] w-[50px] cursor-pointer items-center justify-center'>
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            width='18'
-            height='18'
-            viewBox='0 0 24 24'
-            fill='none'
-            stroke='currentColor'
-            stroke-width='2'
-            stroke-linecap='round'
-            stroke-linejoin='round'
-          >
-            <path d='m16 6-8.414 8.586a2 2 0 0 0 2.829 2.829l8.414-8.586a4 4 0 1 0-5.657-5.657l-8.379 8.551a6 6 0 1 0 8.485 8.485l8.379-8.551' />
-          </svg>
-        </Box>
-
-        <Box className='relative h-[50px] !w-full flex-1'>
-          <input
+        <Box className='relative !w-full flex-1 overflow-hidden'>
+          <textarea
             value={chatInput}
             onChange={(e) => {
               setChatInput(e.target.value);
             }}
-            type='text'
-            className='h-full w-full px-[15px] focus:outline-0'
+            className='field-sizing-content max-h-[200px] w-full resize-none p-[10px] px-[15px] focus:outline-0'
             placeholder='Ask anything'
           />
-          {chatInput && (
-            <Box className='absolute right-[10px] bottom-1/2 flex h-[30px] w-[30px] translate-y-1/2 items-center justify-center'>
+          <div className='flex w-full justify-between p-[0px_10px_10px_10px]'>
+            <Box className='right-[10px] bottom-[10px] flex h-[40px] w-[40px] items-center justify-center'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
-                width='18'
-                height='18'
+                width='20'
+                height='20'
+                viewBox='0 0 24 24'
+                fill='none'
+                stroke='currentColor'
+                strokeWidth='2'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              >
+                <path d='M5 12h14' />
+                <path d='M12 5v14' />
+              </svg>
+            </Box>
+            <Box className='bottom-[10px] left-[10px] flex h-[40px] w-[40px] items-center justify-center'>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                width='20'
+                height='20'
                 viewBox='0 0 24 24'
                 fill='none'
                 stroke='currentColor'
@@ -82,7 +81,7 @@ export const Chat = () => {
                 <path d='M12 19V5' />
               </svg>
             </Box>
-          )}
+          </div>
         </Box>
       </div>
     </div>
