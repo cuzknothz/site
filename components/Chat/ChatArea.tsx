@@ -61,7 +61,7 @@ export const ChatArea = () => {
   };
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} className='w-full px-[10px] sm:px-[30px]'>
       <Box className='relative !w-full flex-1 overflow-hidden bg-[#fff] dark:bg-[black]'>
         <textarea
           value={chatInput}
