@@ -25,14 +25,12 @@ interface MiracleButtonProps {
   children: ReactNode;
   label: SECTION;
   onClick: MouseEventHandler;
-  firstMounted: boolean;
 }
 export const MenuItem = ({
   isSelected = false,
   children = <></>,
   label,
   onClick,
-  firstMounted,
 }: MiracleButtonProps) => {
   const labelRef = useRef<HTMLDivElement>(null);
   const labelText = useRef<HTMLDivElement>(null);
@@ -106,7 +104,7 @@ export const MenuItem = ({
       },
     });
     Flip.from(labelState, { duration: 0.6 });
-  }, [isSelected, label, firstMounted]);
+  }, [isSelected, label]);
 
   return (
     <Box

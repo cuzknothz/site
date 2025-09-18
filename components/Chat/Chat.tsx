@@ -1,13 +1,26 @@
 'use client';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Box } from '../ui/Box';
 import { Textz } from '../Util/Tezt';
 import { useChatStore } from '@/store/chat';
 import clsx from 'clsx';
+import { useGlobalStore } from '@/store/global-store';
+import { useEffectNext } from '@/hooks/useEffectNext';
+import gsap from 'gsap';
 
 export const Chat = () => {
   const [chatInput, setChatInput] = useState<string>('');
   const isFullScreen = useChatStore((state) => state.fullScreen);
+  const showFullMenu = useGlobalStore((s) => s.showFullMenu);
+
+  const chatAreaRef = useRef<HTMLDivElement>(null);
+
+  useEffectNext(() => {
+    gsap.to(chatAreaRef.current, {
+      bottom: showFullMenu ? 110 : 40,
+      delay: showFullMenu ? 0 : 0.6,
+    });
+  }, [showFullMenu]);
 
   return (
     <div
@@ -34,9 +47,9 @@ export const Chat = () => {
         <Textz delay={1000} text='This feature is under development' />
       </div>
       <div
+        ref={chatAreaRef}
         className={clsx(
           'absolute w-full',
-          isFullScreen ? 'bottom-[40px]' : 'bottom-[110px]',
         )}
       >
         <Box className='relative !w-full flex-1 overflow-hidden'>

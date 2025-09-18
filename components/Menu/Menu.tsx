@@ -13,6 +13,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { MenuItem } from './Item';
 import { ShowMenu } from './ShowMenu';
 import { useGlobalStore } from '@/store/global-store';
+import { useEffectNext } from '@/hooks/useEffectNext';
 // import { useDidMountEffect } from '@/hooks/useDidMountEffect';
 
 enum SECTION {
@@ -28,12 +29,10 @@ export const Menu = () => {
     SECTION.HOME,
   );
   const clusterBtn = useRef<HTMLDivElement>(null);
-  const [firstMounted, setFirstMounted] = useState(true);
   const router = useRouter();
   const pathname = usePathname();
 
   function changeTo(to: SECTION, path: string) {
-    console.log('sadjfslkdjfklsdfjkljsdklafjsldkfjsdflk;jfl;kdsj;klf');
     return () => {
       setCurrentSelect(to);
       router.push(path);
@@ -56,15 +55,8 @@ export const Menu = () => {
     setCurrentSelect(to || '');
   }, [pathname]);
 
-  function firstMouted() {
-    setTimeout(() => {
-      setFirstMounted(false);
-    }, 1000);
-  }
-
   useEffect(() => {
     syncSelect();
-    firstMouted();
   }, [syncSelect]);
 
   // useGSAP(() => {
@@ -131,48 +123,25 @@ export const Menu = () => {
   const setShowFullMenu = useGlobalStore((s) => s.setShowFullMenu);
   const showFullMenu = useGlobalStore((s) => s.showFullMenu);
 
-  useEffect(() => {
-    console.log(showFullMenu);
-    console.log('sadkljfksldf');
-  }, [showFullMenu]);
+  useEffect(() => {}, [showFullMenu]);
 
   const clickChat = () => {
     changeTo(SECTION.CHAT, '/chat')();
 
-    // tlHidden.current = gsap.timeline({});
-    // tlHidden.current.to(clusterBtn.current!.childNodes, {
-    //   translateY: 70,
-    //   stagger: {
-    //     each: 0.15,
-    //     from: 'random',
-    //   },
-    //   onComplete: () => {
-    //     setShowFullMenu(false);
-    //   },
-    // });
+    setTimeout(() => {
+      setShowFullMenu(false);
+    }, 1000);
   };
 
-  // useDidMountEffect(() => {
-  //   gsap.to(clusterBtn.current!.childNodes, {
-  //     translateY: showFullMenu ? 70 : -30,
-  //     stagger: {
-  //       each: 0.15,
-  //       from: 'random',
-  //     },
-  //   });
-  //   console.log("HJKSFLHSAKJFHKJ");
-  // }, [showFullMenu]);
-
-  // useGSAP(() => {
-  //   console.log("IUWROPIUTROIUROI");
-  //   gsap.to(clusterBtn.current!.childNodes, {
-  //     translateY: showFullMenu ? 70 : -30,
-  //     stagger: {
-  //       each: 0.15,
-  //       from: 'random',
-  //     },
-  //   });
-  // }, [showFullMenu]);
+  useEffectNext(() => {
+    gsap.to(clusterBtn.current!.childNodes, {
+      translateY: showFullMenu ? -40 : 70,
+      stagger: {
+        each: 0.15,
+        from: 'random',
+      },
+    });
+  }, [showFullMenu]);
 
   return (
     <>
@@ -184,7 +153,6 @@ export const Menu = () => {
           isSelected={getIsSelect(SECTION.HOME)}
           label={SECTION.HOME}
           onClick={changeTo(SECTION.HOME, '/')}
-          firstMounted={firstMounted}
         >
           <Toilet />
         </MenuItem>
@@ -193,7 +161,6 @@ export const Menu = () => {
           isSelected={getIsSelect(SECTION.WORK)}
           label={SECTION.WORK}
           onClick={changeTo(SECTION.WORK, '/works')}
-          firstMounted={firstMounted}
         >
           <Work />
         </MenuItem>
@@ -201,7 +168,6 @@ export const Menu = () => {
           isSelected={getIsSelect(SECTION.ARTICLE)}
           label={SECTION.ARTICLE}
           onClick={changeTo(SECTION.ARTICLE, '/articles')}
-          firstMounted={firstMounted}
         >
           <Article />
         </MenuItem>
@@ -209,7 +175,6 @@ export const Menu = () => {
           isSelected={getIsSelect(SECTION.CRAFT)}
           label={SECTION.CRAFT}
           onClick={changeTo(SECTION.CRAFT, '/crafts')}
-          firstMounted={firstMounted}
         >
           <Craft />
         </MenuItem>
@@ -217,7 +182,6 @@ export const Menu = () => {
           isSelected={getIsSelect(SECTION.CHAT)}
           label={SECTION.CHAT}
           onClick={clickChat}
-          firstMounted={firstMounted}
         >
           <Magic />
         </MenuItem>
