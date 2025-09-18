@@ -49,6 +49,7 @@ export const ChatArea = () => {
     }
 
     setChatInput('');
+
   };
 
   const onKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {

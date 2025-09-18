@@ -2,13 +2,21 @@ import { useChatStore } from '@/store/chat';
 import { Box } from '../ui/Box';
 import { useGlobalStore } from '@/store/global-store';
 import clsx from 'clsx';
+import { useEffect, useRef } from 'react';
 
 export const Conversation = () => {
   const list = useChatStore((s) => s.list);
   const showFullMenu = useGlobalStore((s) => s.showFullMenu);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // containerRef.current!.scrollIntoView(false);
+    containerRef.current!.scrollTop = containerRef.current!.scrollHeight;
+  }, [list.length]);
 
   return (
     <div
+      ref={containerRef}
       className={clsx(
         'flex w-full flex-col overflow-y-scroll px-[30px] duration-500',
         showFullMenu ? 'h-[calc(100dvh-308px)]' : 'h-[calc(100dvh-237px)]',
