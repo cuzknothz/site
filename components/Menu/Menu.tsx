@@ -59,32 +59,6 @@ export const Menu = () => {
     syncSelect();
   }, [syncSelect]);
 
-  // useGSAP(() => {
-  //   const allSvg = document.querySelectorAll('svg');
-  //   gsap.set(allSvg, {
-  //     rotate: '360deg',
-  //   });
-  //   gsap.to(allSvg, {
-  //     rotate: 0,
-  //     stagger: {
-  //       each: 0.15,
-  //       from: 'random',
-  //     },
-  //   });
-  //   gsap.to(clusterBtn.current!.childNodes, {
-  //     transform: 'translateY(-30px)',
-  //     scale: 1,
-  //     rotate: 0,
-  //     stagger: {
-  //       each: 0.15,
-  //       from: 'random',
-  //     },
-  //     onComplete: () => {
-  //       // setFirstMounted(false);
-  //     },
-  //   });
-  // }, []);
-
   const timeLineIntro = useRef<TimelineLite>(null);
 
   const { contextSafe } = useGSAP(
@@ -109,9 +83,6 @@ export const Menu = () => {
           each: 0.15,
           from: 'random',
         },
-        onComplete: () => {
-          // setFirstMounted(false);
-        },
       });
     },
     { scope: clusterBtn },
@@ -135,7 +106,7 @@ export const Menu = () => {
 
   useEffectNext(() => {
     gsap.to(clusterBtn.current!.childNodes, {
-      translateY: showFullMenu ? -40 : 70,
+      translateY: showFullMenu ? -40 : 80,
       stagger: {
         each: 0.15,
         from: 'random',

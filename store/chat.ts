@@ -1,11 +1,11 @@
 import { create } from 'zustand';
 
 interface ChatState {
-  fullScreen: boolean;
-  setFullScreen: (val: boolean) => void;
+  list: any[];
+  push: (val: any) => any;
 }
 
 export const useChatStore = create<ChatState>()((set) => ({
-  fullScreen: false,
-  setFullScreen: (val) => set({ fullScreen: val }),
+  list: [],
+  push: (val) => set((state) => ({ list: [...state.list, val] })),
 }));
