@@ -17,7 +17,7 @@ export const Box = ({
     <div
       onClick={onClick}
       className={clsx(
-        'rounded-[20px] border-[1px] border-[#00000013] dark:border-[#65656563]',
+        'rounded-[20px] border-[1px] border-[#00000030] dark:border-[#65656563]',
         className,
         {
           'shadow shadow-[#00000018]': shadow,

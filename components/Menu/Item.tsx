@@ -115,7 +115,7 @@ export const MenuItem = ({
         'relative z-[100] flex h-[55px] min-w-[55px] cursor-pointer items-center justify-center p-[12px] backdrop-blur-[5px]',
         isSelected
           ? 'border-transparent bg-[#00000032] dark:bg-[#6e6e6e]'
-          : 'border-[#00000028] bg-[#00000008] dark:border-[#65656563]',
+          : 'bg-[#00000008] dark:border-[#65656563]',
       )}
     >
       {' '}
