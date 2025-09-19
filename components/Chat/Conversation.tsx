@@ -29,7 +29,7 @@ export const Conversation = () => {
           <div>
             {i.user && (
               <div className='flex w-full justify-end'>
-                <Box className='inline justify-end !border-0 bg-[#e4e4e4] px-[20px] py-[10px] dark:bg-[#616161]'>
+                <Box className='inline justify-end !border-0 bg-[#e4e4e4] px-[20px] py-[10px] dark:bg-[#616161] break-all'>
                   {i.user}
                 </Box>
               </div>
