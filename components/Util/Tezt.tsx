@@ -11,6 +11,7 @@ interface Props {
   className?: string;
   bold?: boolean;
   delay?: number;
+chars?:string;
 }
 
 export const Textz = ({
@@ -18,6 +19,7 @@ export const Textz = ({
   className = '',
   bold = false,
   delay = 0,
+chars = '!@#$%^&*()_+'
 }: Props) => {
   const textRef = useRef<HTMLDivElement>(null);
   useGSAP(async () => {
@@ -26,7 +28,7 @@ export const Textz = ({
       duration: 1,
       scrambleText: {
         text,
-        chars: '!@#$%^&*()_+',
+        chars,
         // chars: "  _ _ _",
         revealDelay: 0.5,
         speed: 0.3,
