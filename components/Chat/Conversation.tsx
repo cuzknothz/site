@@ -3,6 +3,7 @@ import { Box } from '../ui/Box';
 import { useGlobalStore } from '@/store/global-store';
 import clsx from 'clsx';
 import { useEffect, useRef } from 'react';
+import { Textz } from '../Util/Tezt';
 
 export const Conversation = () => {
   const list = useChatStore((s) => s.list);
@@ -38,7 +39,7 @@ export const Conversation = () => {
             {i.bot && (
               <div className='flex w-full justify-start'>
                 <Box className='inline justify-end !border-0 bg-transparent py-[10px]'>
-                  {i.bot}
+                  <Textz text={i.bot} chars=' ' />
                 </Box>
               </div>
             )}
