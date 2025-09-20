@@ -19,7 +19,7 @@ export const Conversation = () => {
     <div
       ref={containerRef}
       className={clsx(
-        'flex w-full flex-col overflow-y-scroll px-[30px] duration-500',
+        'flex w-full flex-col overflow-y-scroll px-[10px] duration-500',
         showFullMenu ? 'h-[calc(100dvh-308px)]' : 'h-[calc(100dvh-237px)]',
       )}
     >

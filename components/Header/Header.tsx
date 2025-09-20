@@ -49,7 +49,7 @@ export const Header = () => {
       <header
         ref={headerRef}
         className={clsx(
-          'fixed top-0 right-1/2 z-10 h-[80px] w-[100vw] translate-x-1/2 px-[30px] pt-[30px] backdrop-blur-[5px] sm:w-[500px]',
+          'fixed top-0 right-1/2 z-10 h-[80px] w-[100vw] translate-x-1/2 px-[10px] pt-[30px] backdrop-blur-[5px] sm:w-[500px]',
           isChatSelected
             ? 'grid grid-cols-4'
             : 'flex items-center justify-between',
