@@ -7,7 +7,6 @@ import gsap from 'gsap';
 import { useGlobalStore } from '@/store/global-store';
 import { useChatStore } from '@/store/chat';
 
-
 export const ChatArea = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const sendButtonRef = useRef<HTMLDivElement>(null);
@@ -56,9 +55,19 @@ export const ChatArea = () => {
     });
   };
 
+  const isComposing = useRef(false);
+
+  const onCompositionStart = () => {
+    isComposing.current = true;
+  };
+
+  const onCompositionEnd = () => {
+    isComposing.current = false;
+  };
+
   const onKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     // Chặn Enter: nếu chỉ Enter (không kèm Shift)
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === 'Enter' && !e.shiftKey && !isComposing.current) {
       e.preventDefault(); // không cho xuống dòng
       handleSend(); // nếu chỉ muốn chặn mà KHÔNG gửi, xóa dòng này
     }
@@ -71,6 +80,8 @@ export const ChatArea = () => {
           value={chatInput}
           onChange={onChangeInput}
           onKeyDown={onKeyDown}
+          onCompositionStart={onCompositionStart}
+          onCompositionEnd={onCompositionEnd}
           rows={1}
           className='field-sizing-content max-h-[200px] w-full resize-none p-[10px] px-[15px] focus:outline-0'
           placeholder='Ask anything'
