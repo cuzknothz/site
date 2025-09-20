@@ -1,6 +1,14 @@
 import { isBoolean } from 'lodash';
 import { create } from 'zustand';
 
+export enum SECTION {
+  HOME = 'Home',
+  CRAFT = 'Craft',
+  WORK = 'Work',
+  ARTICLE = 'Article',
+  CHAT = 'AI',
+}
+
 interface GlobalState {
   fontReady: boolean;
   setFontReady: (val: boolean) => void;
@@ -8,6 +16,8 @@ interface GlobalState {
   toggleDarkMode: (val: boolean) => void;
   showFullMenu: boolean;
   setShowFullMenu: (val: boolean) => void;
+  select: SECTION;
+  setSelect: (val: SECTION) => void;
 }
 
 export const useGlobalStore = create<GlobalState>()((set) => ({
@@ -19,4 +29,6 @@ export const useGlobalStore = create<GlobalState>()((set) => ({
   setShowFullMenu: (val) => {
     set({ showFullMenu: val });
   },
+  select: SECTION.HOME,
+  setSelect: (val) => set({ select: val }),
 }));

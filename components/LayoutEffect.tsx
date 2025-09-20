@@ -11,7 +11,7 @@ import {
   SplitText,
 } from 'gsap/all';
 import { ReactNode, useCallback, useEffect } from 'react';
-import { Squeze } from './Util/🐤';
+import { Squeze } from './Util/Confirm';
 import { useSquezeStore } from '@/store/squeze';
 
 interface Props {
@@ -44,6 +44,7 @@ export default function LayoutEffect({ children }: Props) {
   const titleSqueze = useSquezeStore((state) => state.title);
   const contentSqueze = useSquezeStore((state) => state.content);
   const toogleShow = useSquezeStore((state) => state.toogleShow);
+  const onYesSqueze = useSquezeStore((s) => s.onYes);
 
   return (
     <html lang='en' className='duration-0 dark:bg-[#000] dark:text-[#fff]'>
@@ -51,7 +52,13 @@ export default function LayoutEffect({ children }: Props) {
         <div className='mx-auto mt-[100px] mb-[100px] w-full px-[30px] selection:bg-[black] selection:text-[white] sm:w-[500px] [&__button]:cursor-pointer [&>*]:text-[13px]'>
           {fontReady && children}
 
-          {showSqueze && <Squeze title={titleSqueze} content={contentSqueze} />}
+          {showSqueze && (
+            <Squeze
+              title={titleSqueze}
+              content={contentSqueze}
+              onYes={onYesSqueze}
+            />
+          )}
         </div>
       </body>
     </html>

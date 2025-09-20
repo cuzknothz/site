@@ -11,7 +11,7 @@ interface Props {
   className?: string;
   bold?: boolean;
   delay?: number;
-chars?:string;
+  chars?: string;
 }
 
 export const Textz = ({
@@ -19,7 +19,7 @@ export const Textz = ({
   className = '',
   bold = false,
   delay = 0,
-chars = '!@#$%^&*()_+'
+  chars = '!@#$%^&*()_+',
 }: Props) => {
   const textRef = useRef<HTMLDivElement>(null);
   useGSAP(async () => {

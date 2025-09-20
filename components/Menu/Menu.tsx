@@ -5,42 +5,32 @@ import Craft from '@/assets/svg/craft.svg';
 import Magic from '@/assets/svg/miracle.svg';
 import Toilet from '@/assets/svg/toilet.svg';
 import Work from '@/assets/svg/work.svg';
-import { useChatStore } from '@/store/chat';
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { usePathname, useRouter } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { MenuItem } from './Item';
 import { ShowMenu } from './ShowMenu';
-import { useGlobalStore } from '@/store/global-store';
+import { SECTION, useGlobalStore } from '@/store/global-store';
 import { useEffectNext } from '@/hooks/useEffectNext';
-// import { useDidMountEffect } from '@/hooks/useDidMountEffect';
-
-enum SECTION {
-  HOME = 'Home',
-  CRAFT = 'Craft',
-  WORK = 'Work',
-  ARTICLE = 'Article',
-  CHAT = 'AI',
-}
 
 export const Menu = () => {
-  const [currentSelect, setCurrentSelect] = useState<SECTION | ''>(
-    SECTION.HOME,
-  );
+  const selected = useGlobalStore((s) => s.select);
+  const setSelect = useGlobalStore((s) => s.setSelect);
+
   const clusterBtn = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const pathname = usePathname();
 
   function changeTo(to: SECTION, path: string) {
     return () => {
-      setCurrentSelect(to);
+      setSelect(to);
       router.push(path);
     };
   }
 
-  function getIsSelect(section: SECTION) {
-    return currentSelect === section;
+  function isSelect(section: SECTION) {
+    return selected === section;
   }
 
   const syncSelect = useCallback(() => {
@@ -52,7 +42,9 @@ export const Menu = () => {
       '/chat': SECTION.CHAT,
     }[pathname];
 
-    setCurrentSelect(to || '');
+    if (to) {
+      setSelect(to);
+    }
   }, [pathname]);
 
   useEffect(() => {
@@ -121,7 +113,7 @@ export const Menu = () => {
         ref={clusterBtn}
       >
         <MenuItem
-          isSelected={getIsSelect(SECTION.HOME)}
+          isSelected={isSelect(SECTION.HOME)}
           label={SECTION.HOME}
           onClick={changeTo(SECTION.HOME, '/')}
         >
@@ -129,28 +121,28 @@ export const Menu = () => {
         </MenuItem>
 
         <MenuItem
-          isSelected={getIsSelect(SECTION.WORK)}
+          isSelected={isSelect(SECTION.WORK)}
           label={SECTION.WORK}
           onClick={changeTo(SECTION.WORK, '/works')}
         >
           <Work />
         </MenuItem>
         <MenuItem
-          isSelected={getIsSelect(SECTION.ARTICLE)}
+          isSelected={isSelect(SECTION.ARTICLE)}
           label={SECTION.ARTICLE}
           onClick={changeTo(SECTION.ARTICLE, '/articles')}
         >
           <Article />
         </MenuItem>
         <MenuItem
-          isSelected={getIsSelect(SECTION.CRAFT)}
+          isSelected={isSelect(SECTION.CRAFT)}
           label={SECTION.CRAFT}
           onClick={changeTo(SECTION.CRAFT, '/crafts')}
         >
           <Craft />
         </MenuItem>
         <MenuItem
-          isSelected={getIsSelect(SECTION.CHAT)}
+          isSelected={isSelect(SECTION.CHAT)}
           label={SECTION.CHAT}
           onClick={clickChat}
         >
