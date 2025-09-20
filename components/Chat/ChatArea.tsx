@@ -7,6 +7,7 @@ import gsap from 'gsap';
 import { useGlobalStore } from '@/store/global-store';
 import { useChatStore } from '@/store/chat';
 
+
 export const ChatArea = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const sendButtonRef = useRef<HTMLDivElement>(null);
@@ -26,30 +27,33 @@ export const ChatArea = () => {
     setChatInput(e.target.value);
   };
 
-  const handleSend = () => {
+  const handleSend = async () => {
     const text = chatInput.trim();
     if (!text) return;
 
     pushMess({ user: text });
     // TODO: gọi API/chat handler ở đây
     console.log('send:', text);
-
-    setTimeout(() => {
-      pushMess({
-        bot: 'This feature is under development. This feature is under development. This feature is under development',
-      });
-    }, 1000);
-
     if (sendButtonRef.current) {
       gsap.fromTo(
         sendButtonRef.current,
-        { scale: 0.9 },
+        { scale: 0.5 },
         { scale: 1, duration: 0.15, ease: 'power2.out' },
       );
     }
 
     setChatInput('');
 
+    const res = await fetch('/api/gemini', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: text }),
+    });
+    const data = await res.json();
+
+    pushMess({
+      bot: data.text,
+    });
   };
 
   const onKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
