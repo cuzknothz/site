@@ -23,7 +23,3 @@ body {
   scrollbar-color: #00b3ff #ffffff;
   scrollbar-width: thin;
 }
-
-body {
-  min-height: -webkit-fill-available;
-}
