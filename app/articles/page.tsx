@@ -11,15 +11,6 @@ import { Box } from '@/components/ui/Box';
 const article = {
   ['2025']: [
     {
-      title: 'A slightly belated 2024 retrospective',
-      contentPreview:
-        'Reflections on My First Offline Session Presentation Offline Session Presentation Offline Session PresentationOffline Session Presentation Offline Session Presentation',
-    },
-    {
-      title: 'Migrating a React Project',
-      contentPreview: 'Open Source Projects and Coderplace',
-    },
-    {
       title: 'Migrating a React Project',
       contentPreview: 'Open Source Projects and Coderplace',
     },

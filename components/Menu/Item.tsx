@@ -176,7 +176,7 @@ export const MenuItem = ({
           </div>
 
           <button
-            className='absolute top-[-25px] right-1/2 translate-x-1/2 cursor-pointer'
+            className='absolute top-[-25px] right-1/2 translate-x-1/2 cursor-pointer hidden'
             onClick={clickMore}
           >
             <div ref={circleRef}>{!isMore && <CircleUp />}</div>

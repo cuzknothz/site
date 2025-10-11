@@ -7,7 +7,7 @@ interface SquezeState {
   toogleShow: (val: boolean) => void;
   title: string;
   content: string;
-  onYes: Function;
+  onYes?: Function;
   close: () => void;
   trigger: (val: Trigger) => void;
 }

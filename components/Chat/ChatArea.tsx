@@ -6,6 +6,7 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { useGlobalStore } from '@/store/global-store';
 import { useChatStore } from '@/store/chat';
+import { Howl, Howler } from 'howler';
 
 export const ChatArea = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -29,6 +30,9 @@ export const ChatArea = () => {
   const handleSend = async () => {
     const text = chatInput.trim();
     if (!text) return;
+    new Howl({
+      src: ['/message-send.mp3'],
+    }).play();
 
     pushMess({ user: text });
     // TODO: gọi API/chat handler ở đây
