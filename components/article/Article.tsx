@@ -11,12 +11,12 @@ import clsx from 'clsx';
 
 interface Props {
   title: string;
-  contentPreview: string;
+  content: string;
   modify: modifyMode;
   idx: number;
 }
 
-export const Article = ({ title, contentPreview, modify, idx }: Props) => {
+export const Article = ({ title, content, modify, idx }: Props) => {
   const articleRef = useRef<HTMLDivElement>(null);
   const setModifyMode = useArticleListStore((state) => state.setModifyMode);
   const modifyContainerRef = useRef<HTMLDivElement>(null);
@@ -66,7 +66,7 @@ export const Article = ({ title, contentPreview, modify, idx }: Props) => {
           <Textz text={title} bold className='inline selection:!bg-[#3bafd9]' />
 
           <Textz
-            text={contentPreview}
+            text={content}
             className='line-clamp-3 dark:selection:bg-[#3bafd9]'
             delay={200}
           />

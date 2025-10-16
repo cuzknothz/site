@@ -8,11 +8,11 @@ import Image from 'next/image';
 
 interface Props {
   title: string;
-  contentPreview: string;
+  content: string;
   link: string;
 }
 
-export const Work = ({ title, contentPreview, link }: Props) => {
+export const Work = ({ title, content, link }: Props) => {
   const articleRef = useRef<HTMLDivElement>(null);
   useGSAP(() => {
     gsap.from(articleRef.current, {
@@ -20,10 +20,6 @@ export const Work = ({ title, contentPreview, link }: Props) => {
       rotate: 'random([-15, 15])',
     });
   }, []);
-
-  function goDetail(id) {
-    //
-  }
   return (
     <div ref={articleRef}>
       <Link href={link} target='_blank'>
@@ -38,7 +34,7 @@ export const Work = ({ title, contentPreview, link }: Props) => {
           <div>
             <Textz text={title} bold className='selection:!bg-[#3bafd9]' />
             <Textz
-              text={contentPreview}
+              text={content}
               className='line-clamp-2 dark:selection:bg-[#3bafd9]'
               delay={200}
             />

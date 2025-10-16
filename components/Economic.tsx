@@ -69,11 +69,6 @@ export const Economic = () => {
                   <Textz text={i.indicator} />
                 </div>
               </td>
-              {/* <td>
-                <span>{i.previous}</span>
-                <span>{i.forecast}</span>
-                <span>{i.actual}</span>
-              </td> */}
             </tr>
           ))}
         </tbody>
