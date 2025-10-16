@@ -91,9 +91,9 @@ export const Menu = () => {
   const clickChat = () => {
     changeTo(SECTION.CHAT, '/chat')();
 
-    setTimeout(() => {
-      setShowFullMenu(false);
-    }, 1000);
+    // setTimeout(() => {
+    //   setShowFullMenu(false);
+    // }, 1000);
   };
 
   useEffectNext(() => {
