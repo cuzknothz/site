@@ -7,6 +7,7 @@ import gsap from 'gsap';
 import { useGlobalStore } from '@/store/global-store';
 import { useChatStore } from '@/store/chat';
 import { Howl, Howler } from 'howler';
+import SimpleBar from 'simplebar-react';
 
 export const ChatArea = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -80,19 +81,21 @@ export const ChatArea = () => {
   return (
     <div ref={containerRef} className='w-full px-[10px] sm:px-[30px]'>
       <Box className='relative !w-full flex-1 overflow-hidden bg-[#fff] dark:bg-[black]'>
-        <textarea
-          value={chatInput}
-          onChange={onChangeInput}
-          onKeyDown={onKeyDown}
-          onCompositionStart={onCompositionStart}
-          onCompositionEnd={onCompositionEnd}
-          rows={1}
-          className='field-sizing-content max-h-[200px] w-full resize-none p-[10px] px-[15px] focus:outline-0'
-          placeholder='Ask anything'
-        />
+        <SimpleBar style={{ maxHeight: 300 }} autoHide={false}>
+          <textarea
+            value={chatInput}
+            onChange={onChangeInput}
+            onKeyDown={onKeyDown}
+            onCompositionStart={onCompositionStart}
+            onCompositionEnd={onCompositionEnd}
+            rows={1}
+            className='field-sizing-content w-full resize-none p-[10px] px-[15px] focus:outline-0'
+            placeholder='Ask anything'
+          />
+        </SimpleBar>
 
         <div className='flex w-full justify-between p-[0px_10px_10px_10px]'>
-          <Box className='right-[10px] bottom-[10px] flex h-[40px] px-[10px] gap-[10px] items-center justify-center'>
+          <Box className='right-[10px] bottom-[10px] flex h-[40px] items-center justify-center gap-[10px] px-[10px]'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               width='20'
@@ -109,8 +112,7 @@ export const ChatArea = () => {
               <path d='m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21' />
             </svg>
             {/* <input type="file" accept=''/> */}
-            <div>Attach Image</div>
-            
+            <div className='text-[10px]'>Attach Image</div>
           </Box>
 
           <div

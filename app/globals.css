@@ -1,5 +1,7 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
+@import 'simplebar-react/dist/simplebar.min.css';
+
  
 body {
   font-family: monospace, sans-serif;

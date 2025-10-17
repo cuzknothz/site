@@ -13,6 +13,7 @@ import {
 import { ReactNode, useCallback, useEffect } from 'react';
 import { Squeze } from './Util/Confirm';
 import { useSquezeStore } from '@/store/squeze';
+import SimpleBar from 'simplebar-react';
 
 interface Props {
   children: ReactNode;
@@ -49,6 +50,7 @@ export default function LayoutEffect({ children }: Props) {
   return (
     <html lang='en' className='duration-0 dark:bg-[#000] dark:text-[#fff]'>
       <body className='antialiased'>
+        <SimpleBar className='h-[100dvh]'>
         <div className='mx-auto mt-[100px] mb-[100px] w-full px-[30px] selection:bg-[black] selection:text-[white] sm:w-[500px] [&__button]:cursor-pointer [&>*]:text-[13px]'>
           {fontReady && children}
 
@@ -60,6 +62,7 @@ export default function LayoutEffect({ children }: Props) {
             />
           )}
         </div>
+        </SimpleBar>
       </body>
     </html>
   );

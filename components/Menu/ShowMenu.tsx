@@ -33,7 +33,7 @@ export const ShowMenu = () => {
 
   return (
     <button
-      className='fixed right-1/2 bottom-[8px] flex translate-x-1/2 items-center gap-[5px] [&__svg]:text-[#00000030]'
+      className='fixed right-1/2 bottom-[8px] flex translate-x-1/2 items-center gap-[5px] [&__svg]:text-[black]'
       onClick={onToggle}
       ref={showMenuRef}
     >
