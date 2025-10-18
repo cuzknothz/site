@@ -1,5 +1,6 @@
 // TradingViewWidget.jsx
 import React, { useEffect, useRef, memo } from 'react';
+import { Box } from '../ui/Box';
 
 function TradingViewWidget() {
   const container = useRef<HTMLDivElement>(null);
@@ -39,14 +40,19 @@ function TradingViewWidget() {
   }, []);
 
   return (
-    <div
-      className='tradingview-widget-container h-full w-full overflow-hidden'
-      ref={container}
-    >
-      <div
-        className='tradingview-widget-container__widget'
-        style={{ height: 'calc(100% - 32px)', width: '100%' }}
-      />
+    <div className='invert dark:invert-0'>
+      <Box className='relative sm:h-[500px] h-[400px] overflow-hidden [filter:grayscale(1)_invert(1)_brightness(1.5)] [&__*]:!text-[12px]'>
+        <div
+          className='tradingview-widget-container h-full w-full overflow-hidden'
+          ref={container}
+        >
+          <div
+            className='tradingview-widget-container__widget'
+            style={{ height: 'calc(100% - 32px)', width: '100%' }}
+          />
+        </div>
+        <div className='pointer-events-none absolute inset-0 [box-shadow:0_0_0_3px_white_inset]' />
+      </Box>
     </div>
   );
 }
