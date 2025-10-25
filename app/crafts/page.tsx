@@ -7,9 +7,8 @@ export default function CarftPage() {
   return (
     <div>
       <Economic />
-      <div className='h-[500px] mt-[20px]'>
-
-      <TradingView/>
+      <div className='mt-[20px] h-[500px]'>
+        <TradingView />
       </div>
     </div>
   );

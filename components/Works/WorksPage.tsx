@@ -11,7 +11,7 @@ interface Props {
     id: string | number;
     title: string;
     content: string;
-    link: string
+    link: string;
   }[];
 }
 

@@ -23,7 +23,7 @@ export const Work = ({ title, content, link }: Props) => {
   return (
     <div ref={articleRef}>
       <Link href={link} target='_blank'>
-        <div className='flex w-full cursor-pointer items-center gap-[10px] rounded-[16px] border-[1px] border-[#00000028] px-[15px] p-[10px] dark:border-[#65656563]'>
+        <div className='flex w-full cursor-pointer items-center gap-[10px] rounded-[16px] border-[1px] border-[#00000028] p-[10px] px-[15px] dark:border-[#65656563]'>
           <Image
             src={'/threads.png'}
             width={160}

@@ -51,17 +51,17 @@ export default function LayoutEffect({ children }: Props) {
     <html lang='en' className='duration-0 dark:bg-[#000] dark:text-[#fff]'>
       <body className='antialiased'>
         <SimpleBar className='h-[100dvh]'>
-        <div className='mx-auto mt-[100px] mb-[100px] w-full px-[30px] selection:bg-[black] selection:text-[white] sm:w-[500px] [&__button]:cursor-pointer [&>*]:text-[13px]'>
-          {fontReady && children}
+          <div className='mx-auto mt-[100px] mb-[100px] w-full px-[30px] selection:bg-[black] selection:text-[white] sm:w-[500px] [&__button]:cursor-pointer [&>*]:text-[13px]'>
+            {fontReady && children}
 
-          {showSqueze && (
-            <Squeze
-              title={titleSqueze}
-              content={contentSqueze}
-              onYes={onYesSqueze}
-            />
-          )}
-        </div>
+            {showSqueze && (
+              <Squeze
+                title={titleSqueze}
+                content={contentSqueze}
+                onYes={onYesSqueze}
+              />
+            )}
+          </div>
         </SimpleBar>
       </body>
     </html>
