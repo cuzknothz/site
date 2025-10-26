@@ -4,6 +4,7 @@ import CircleUp from '@/assets/svg/circle-up.svg';
 
 import { Box } from '@/components/ui/Box';
 import { modifyMode, useArticleListStore } from '@/store/article-list';
+import { SECTION } from '@/store/global-store';
 import { useSquezeStore } from '@/store/squeze';
 import { useGSAP } from '@gsap/react';
 import clsx from 'clsx';
@@ -11,14 +12,6 @@ import { gsap } from 'gsap';
 import { Flip } from 'gsap/Flip';
 import { MouseEventHandler, ReactNode, useRef, useState } from 'react';
 import { useClickAway } from 'react-use';
-
-enum SECTION {
-  HOME = 'Home',
-  CRAFT = 'Craft',
-  WORK = 'Work',
-  ARTICLE = 'Article',
-  CHAT = 'AI',
-}
 
 interface MiracleButtonProps {
   isSelected: boolean;
