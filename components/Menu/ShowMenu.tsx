@@ -4,7 +4,6 @@ import { useEffectNext } from '@/hooks/useEffectNext';
 import { useGlobalStore } from '@/store/global-store';
 import gsap from 'gsap';
 import { useRef } from 'react';
-import { Textz } from '../Util/Tezt';
 import { useGSAP } from '@gsap/react';
 
 export const ShowMenu = () => {
@@ -33,12 +32,12 @@ export const ShowMenu = () => {
 
   return (
     <button
-      className='fixed right-1/2 bottom-[8px] flex translate-x-1/2 items-center gap-[5px] [&__svg]:text-[black]'
+      className='fixed right-1/2 bottom-2 flex translate-x-1/2 cursor-pointer items-center gap-[5px] [&__svg]:text-[black] z-20'
       onClick={onToggle}
       ref={showMenuRef}
     >
       <BrightToFront />
-      <div> {showFullMenu ? 'Hide' : 'Menu'}</div>
+      {/* <div> {showFullMenu ? 'Hide' : 'Menu'}</div> */}
     </button>
   );
 };

@@ -1,9 +1,7 @@
 'use client';
 
 import Article from '@/assets/svg/article.svg';
-import Craft from '@/assets/svg/craft.svg';
 import Tools from '@/assets/svg/tools.svg';
-import Magic from '@/assets/svg/miracle.svg';
 import Toilet from '@/assets/svg/toilet.svg';
 import Work from '@/assets/svg/work.svg';
 import { useGSAP } from '@gsap/react';
@@ -83,23 +81,12 @@ export const Menu = () => {
     { scope: clusterBtn },
   );
 
-  const animationIntro = () => {};
-
-  const tlHidden = useRef<TimelineLite>(null);
-  const setShowFullMenu = useGlobalStore((s) => s.setShowFullMenu);
   const showFullMenu = useGlobalStore((s) => s.showFullMenu);
 
   useEffect(() => {}, [showFullMenu]);
 
-  const clickChat = () => {
-    changeTo(SECTION.CHAT, '/chat')();
-
-    // setTimeout(() => {
-    //   setShowFullMenu(false);
-    // }, 1000);
-  };
-
   useEffectNext(() => {
+    console.log('sdafsdf','jkDSLKFJDLKJ');
     gsap.to(clusterBtn.current!.childNodes, {
       translateY: showFullMenu ? -40 : 80,
       stagger: {
@@ -144,13 +131,6 @@ export const Menu = () => {
         >
           <Tools />
         </MenuItem>
-        {/* <MenuItem
-          isSelected={isSelect(SECTION.CHAT)}
-          label={SECTION.CHAT}
-          onClick={clickChat}
-        >
-          <Magic />
-        </MenuItem> */}
       </div>
       <ShowMenu />
     </>
