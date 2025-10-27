@@ -23,7 +23,7 @@ export const Work = ({ title, content, link }: Props) => {
   return (
     <div ref={articleRef}>
       <Link href={link} target='_blank'>
-        <div className='flex w-full cursor-pointer items-center gap-[10px] rounded-[16px] border-[1px] border-[#00000028] p-[10px] px-[15px] dark:border-[#65656563]'>
+        <div className='flex w-full cursor-pointer items-center gap-2.5 rounded-2xl border border-[#00000028] p-2.5 px-[15px] dark:border-[#65656563]'>
           <Image
             src={'/threads.png'}
             width={160}
@@ -32,7 +32,7 @@ export const Work = ({ title, content, link }: Props) => {
             className='rounded-[10px]'
           />
           <div>
-            <Textz text={title} bold className='selection:!bg-[#3bafd9]' />
+            <Textz text={title} bold className='selection:bg-[#3bafd9]!' />
             <Textz
               text={content}
               className='line-clamp-2 dark:selection:bg-[#3bafd9]'

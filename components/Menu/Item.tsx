@@ -103,7 +103,7 @@ export const MenuItem = ({
     <Box
       onClick={onClick}
       className={clsx(
-        'relative z-[100] flex h-[55px] min-w-[55px] cursor-pointer items-center justify-center p-[12px] backdrop-blur-[5px]',
+        'relative z-100 flex h-[55px] min-w-[55px] cursor-pointer items-center justify-center p-3 backdrop-blur-[5px]',
         isSelected
           ? 'border-transparent bg-[#00000032] dark:bg-[#6e6e6e]'
           : 'bg-[#00000008] dark:border-[#65656563]',
@@ -114,7 +114,7 @@ export const MenuItem = ({
       <div ref={labelRef}>
         <p
           ref={labelText}
-          className='ml-[8px] flex justify-center overflow-hidden text-[13px] select-none'
+          className='ml-2 flex justify-center overflow-hidden text-[13px] select-none'
         >
           {label}
         </p>
@@ -125,7 +125,7 @@ export const MenuItem = ({
             {isMore && (
               <Box className='absolute right-1/2 bottom-[60px] w-[100px] translate-x-1/2 cursor-pointer overflow-hidden'>
                 <div
-                  className='flex h-[35px] w-full items-center gap-[10px] px-[10px] hover:bg-[#00b7ff]'
+                  className='flex h-[35px] w-full items-center gap-2.5 px-2.5 hover:bg-[#00b7ff]'
                   onClick={clickCreate}
                 >
                   <svg
@@ -145,7 +145,7 @@ export const MenuItem = ({
                   <span>Create</span>
                 </div>
                 <div
-                  className='flex h-[35px] w-full items-center gap-[10px] px-[10px] hover:bg-[#00b7ff]'
+                  className='flex h-[35px] w-full items-center gap-2.5 px-2.5 hover:bg-[#00b7ff]'
                   onClick={clickModify}
                 >
                   <svg

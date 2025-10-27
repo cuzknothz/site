@@ -10,23 +10,23 @@ const link = [
 ];
 export default function HomePage() {
   return (
-    <div className='flex flex-col gap-[20px]'>
+    <div className='flex flex-col gap-5'>
       <div className='relative'>
         <Spline
           scene='https://prod.spline.design/wGWWmsOIBBVIUAb8/scene.splinecode'
-          className='[&__canvas]:!aspect-[3/4] [&__canvas]:!w-full'
+          className='[&__canvas]:aspect-3/4! [&__canvas]:w-full!'
         />
-        <div className='absolute right-0 bottom-[10px] h-[50px] w-[200px] bg-[#fff] dark:bg-[#000]'></div>
+        <div className='absolute right-0 bottom-2.5 h-[50px] w-[200px] bg-white dark:bg-black'></div>
       </div>
       <div>
-        <Textz text='Today' bold className='selection:!bg-[#710bf7]' />
+        <Textz text='Today' bold className='selection:bg-[#710bf7]!' />
         <Textz text='Working as Web developer.' delay={100} />
       </div>
       <div>
         <Textz
           text='Link'
           bold
-          className='selection:!bg-[#710bf7]'
+          className='selection:bg-[#710bf7]!'
           delay={300}
         />
         <div>

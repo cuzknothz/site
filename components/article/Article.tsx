@@ -58,12 +58,12 @@ export const Article = ({ title, content, modify, idx }: Props) => {
     <div ref={articleRef} className='relative'>
       <Box
         className={clsx(
-          'flex min-h-[70px] w-full flex-col gap-[5px] rounded-[16px] border-[1px] border-[#00000028] p-[15px] dark:border-[#65656563]',
-          modify === modifyMode.modify ? '!pb-[10px]' : 'pb-[15px]',
+          'flex min-h-[70px] w-full flex-col gap-[5px] rounded-2xl border border-[#00000028] p-[15px] dark:border-[#65656563]',
+          modify === modifyMode.modify ? 'pb-2.5!' : 'pb-[15px]',
         )}
       >
         <Link href={`${'/articles/' + 1}`}>
-          <Textz text={title} bold className='inline selection:!bg-[#3bafd9]' />
+          <Textz text={title} bold className='inline selection:bg-[#3bafd9]!' />
 
           <Textz
             text={content}
@@ -73,20 +73,20 @@ export const Article = ({ title, content, modify, idx }: Props) => {
         </Link>
         {modify === modifyMode.modify && (
           <div className='flex w-full gap-[15px]'>
-            <Box className='overflow-hidden !rounded-[10px]'>
+            <Box className='overflow-hidden rounded-[10px]!'>
               <button
                 title='Edit'
                 onClick={clickEdit}
-                className='bg-[#b5e832] px-[10px] py-[5px]'
+                className='bg-[#b5e832] px-2.5 py-[5px]'
               >
                 Edit
               </button>
             </Box>
-            <Box className='overflow-hidden !rounded-[10px]'>
+            <Box className='overflow-hidden rounded-[10px]!'>
               <button
                 title='Delete'
                 onClick={clickDelete}
-                className='bg-[#32c3e8] px-[10px] py-[5px]'
+                className='bg-[#32c3e8] px-2.5 py-[5px]'
               >
                 Delete
               </button>

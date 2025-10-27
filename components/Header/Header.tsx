@@ -49,16 +49,16 @@ export const Header = () => {
       <header
         ref={headerRef}
         className={clsx(
-          'fixed top-0 right-1/2 z-10 h-[80px] w-[100vw] translate-x-1/2 px-[10px] pt-[30px] backdrop-blur-[5px] sm:w-[500px]',
+          'fixed top-0 right-1/2 z-10 h-20 w-screen translate-x-1/2 px-2.5 pt-[30px] backdrop-blur-[5px] sm:w-[500px]',
           isChatSelected
             ? 'grid grid-cols-4'
             : 'flex items-center justify-between',
         )}
       >
-        <div className='flex items-baseline gap-[10px]'>
+        <div className='flex items-baseline gap-2.5'>
           <Link href={'/'} onClick={goHome}>
             <div className='relative h-[30px] w-[30px]'>
-              <div className='absolute right-1/2 bottom-[2px] h-[4px] w-[65%] translate-x-1/2 bg-[#000] dark:bg-[#fff]' />
+              <div className='absolute right-1/2 bottom-0.5 h-1 w-[65%] translate-x-1/2 bg-black dark:bg-white' />
             </div>
           </Link>
         </div>

@@ -36,9 +36,9 @@ export const Squeze = ({
     <div>
       <BackDrop>
         <div ref={boxRef}>
-          <Box className='w-[300px] bg-[#fff] dark:bg-[#000]'>
+          <Box className='w-[300px] bg-white dark:bg-black'>
             {!hideTitle && (
-              <div className='flex h-[40px] w-full items-center justify-between border-b-[1px] border-[#00000028] px-[10px] dark:border-[#65656563]'>
+              <div className='flex h-10 w-full items-center justify-between border-b border-[#00000028] px-2.5 dark:border-[#65656563]'>
                 <Textz text={title} bold />
                 <button onClick={close} className='cursor-pointer'>
                   <CloseIcon />
@@ -46,17 +46,17 @@ export const Squeze = ({
               </div>
             )}
 
-            <div className='px-[10px] py-[20px]'>
+            <div className='px-2.5 py-5'>
               <Textz text={content} delay={500} />
-              <div className='mt-[10px] flex justify-between gap-[10px]'>
+              <div className='mt-2.5 flex justify-between gap-2.5'>
                 <Box
-                  className='flex h-[40px] w-[100px] items-center justify-center'
+                  className='flex h-10 w-[100px] items-center justify-center'
                   onClick={clickYes}
                 >
                   Yes
                 </Box>
                 <Box
-                  className='flex h-[40px] w-[100px] items-center justify-center'
+                  className='flex h-10 w-[100px] items-center justify-center'
                   onClick={close}
                 >
                   Cancel

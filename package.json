@@ -10,6 +10,8 @@
     "prettier": "prettier --write \"./**/*.{ts,tsx}\" \"**/*.md\""
   },
   "dependencies": {
+    "@fingerprintjs/fingerprintjs-pro-react": "^2.7.1",
+    "@fingerprintjs/fingerprintjs-pro-server-api": "^6.10.0",
     "@google/genai": "^1.27.0",
     "@gsap/react": "^2.1.2",
     "@neondatabase/serverless": "^1.0.2",

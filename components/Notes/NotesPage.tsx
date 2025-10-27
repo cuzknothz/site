@@ -45,9 +45,9 @@ export const NotesPage = ({ data }: Props) => {
   return (
     <div>
       <div className='flex w-full justify-between'>
-        <Textz text={'2025'} bold className='selection:!bg-[#710bf7]' />
+        <Textz text={'2025'} bold className='selection:bg-[#710bf7]!' />
       </div>
-      <div className='mt-[10px] flex flex-col gap-[10px]'>
+      <div className='mt-2.5 flex flex-col gap-2.5'>
         {data.map((i, idx) => (
           <Article key={idx} {...i} modify={modify} idx={idx} />
         ))}

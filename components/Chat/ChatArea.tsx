@@ -79,8 +79,8 @@ export const ChatArea = () => {
   };
 
   return (
-    <div ref={containerRef} className='w-full px-[10px] sm:px-[30px]'>
-      <Box className='relative !w-full flex-1 overflow-hidden bg-[#fff] dark:bg-[black]'>
+    <div ref={containerRef} className='w-full px-2.5 sm:px-[30px]'>
+      <Box className='relative w-full! flex-1 overflow-hidden bg-white dark:bg-[black]'>
         <SimpleBar style={{ maxHeight: 300 }} autoHide={false}>
           <textarea
             value={chatInput}
@@ -89,13 +89,13 @@ export const ChatArea = () => {
             onCompositionStart={onCompositionStart}
             onCompositionEnd={onCompositionEnd}
             rows={1}
-            className='field-sizing-content w-full resize-none p-[10px] px-[15px] focus:outline-0'
+            className='field-sizing-content w-full resize-none p-2.5 px-[15px] focus:outline-0'
             placeholder='Ask anything'
           />
         </SimpleBar>
 
         <div className='flex w-full justify-between p-[0px_10px_10px_10px]'>
-          <Box className='right-[10px] bottom-[10px] flex h-[40px] items-center justify-center gap-[10px] px-[10px]'>
+          <Box className='right-2.5 bottom-2.5 flex h-10 items-center justify-center gap-2.5 px-2.5'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               width='20'
@@ -124,7 +124,7 @@ export const ChatArea = () => {
             <Box
               shadow
               className={clsx(
-                'bottom-[10px] left-[10px] flex h-[40px] w-[40px] cursor-pointer items-center justify-center duration-500',
+                'bottom-2.5 left-2.5 flex h-10 w-10 cursor-pointer items-center justify-center duration-500',
                 chatInput ? 'bg-[#3333335d]' : 'cursor-not-allowed opacity-50',
               )}
             >

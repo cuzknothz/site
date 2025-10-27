@@ -11,7 +11,7 @@ export const ArticleDetail = () => {
       <Textz
         bold
         text={'Articles > ' + 'A slightly belated 2024 retrospective'}
-        className='mb-[10px]'
+        className='mb-2.5'
       />
       <Code code={code} />
     </div>

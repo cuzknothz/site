@@ -32,7 +32,7 @@ export const Chat = () => {
   return (
     <div
       className={clsx(
-        'fixed top-0 right-1/2 h-[100dvh] w-full translate-x-1/2 sm:w-[500px]',
+        'fixed top-0 right-1/2 h-dvh w-full translate-x-1/2 sm:w-[500px]',
       )}
     >
       <div className={clsx('absolute top-[100px] w-full')}>

@@ -30,7 +30,7 @@ export const Economic = () => {
       <Textz
         bold
         text={`Important Economic Event Today ${format(new Date(), 'dd-MM-yyyy')}`}
-        className='mb-[10px]'
+        className='mb-2.5'
       />
       <table className='w-full border-collapse border border-gray-400'>
         <thead>
@@ -64,7 +64,7 @@ export const Economic = () => {
                 </div>
               </td>
 
-              <td className='border border-gray-300 px-[10px]'>
+              <td className='border border-gray-300 px-2.5'>
                 <div className='line-clamp-1' title={i.comment}>
                   <Textz text={i.indicator} />
                 </div>

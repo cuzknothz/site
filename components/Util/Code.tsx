@@ -119,7 +119,7 @@ export const Code = ({ code = '' }: Props) => {
         {/* <Scrollbar scrollbarWidth={2} style={{ height: 200 }}> */}
         <div
           ref={codeBlockRef}
-          className='dsalkjf kljkl duration-500 [&>pre]:rounded-b-[16px] [&>pre]:!border-[1px] [&>pre]:!border-[#00000000] [&>pre]:!p-[16px] [&>pre]:whitespace-break-spaces [&>pre]:dark:!border-[#07cdff]'
+          className='dsalkjf kljkl duration-500 [&>pre]:rounded-b-2xl [&>pre]:border! [&>pre]:border-[#00000000]! [&>pre]:p-4! [&>pre]:whitespace-break-spaces [&>pre]:dark:border-[#07cdff]!'
           dangerouslySetInnerHTML={{ __html: codeHTML }}
         />
         {/* </Scrollbar> */}

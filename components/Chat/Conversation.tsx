@@ -19,7 +19,7 @@ export const Conversation = () => {
     <div
       ref={containerRef}
       className={clsx(
-        'flex w-full flex-col overflow-y-scroll px-[10px] duration-500',
+        'flex w-full flex-col overflow-y-scroll px-2.5 duration-500',
         showFullMenu ? 'h-[calc(100dvh-308px)]' : 'h-[calc(100dvh-237px)]',
       )}
     >
@@ -29,7 +29,7 @@ export const Conversation = () => {
           <div>
             {i.user && (
               <div className='flex w-full justify-end'>
-                <Box className='inline justify-end !border-0 bg-[#e4e4e4] px-[20px] py-[10px] break-all dark:bg-[#616161]'>
+                <Box className='inline justify-end border-0! bg-[#e4e4e4] px-5 py-2.5 break-all dark:bg-[#616161]'>
                   {i.user}
                 </Box>
               </div>
@@ -38,7 +38,7 @@ export const Conversation = () => {
           <div>
             {i.bot && (
               <div className='flex w-full justify-start'>
-                <Box className='inline justify-end !border-0 bg-transparent py-[10px]'>
+                <Box className='inline justify-end border-0! bg-transparent py-2.5'>
                   <Textz text={i.bot} chars=' ' />
                 </Box>
               </div>

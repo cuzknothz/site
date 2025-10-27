@@ -44,8 +44,8 @@ export default function WorksPage({ data }: Props) {
 
   return (
     <div>
-      <Textz text={'2k25'} bold className='selection:!bg-[#710bf7]' />
-      <div className='mt-[10px] flex flex-col gap-[10px]'>
+      <Textz text={'2k25'} bold className='selection:bg-[#710bf7]!' />
+      <div className='mt-2.5 flex flex-col gap-2.5'>
         {data.map((i, idx) => (
           <Work key={idx} {...i} />
         ))}

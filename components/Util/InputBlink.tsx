@@ -21,10 +21,10 @@ export const InputBlink = () => {
         ref={inputRef}
         type='text'
         placeholder='************'
-        className='h-full w-full rounded-[5px] bg-[#92e3fecc] px-[10px] pt-[5px] focus:outline-0'
+        className='h-full w-full rounded-[5px] bg-[#92e3fecc] px-2.5 pt-[5px] focus:outline-0'
       />
       <div
-        className='absolute top-[-100%] left-[-50%] h-[100px] w-[50px] rotate-[25deg] bg-[#fff]'
+        className='absolute -top-full left-[-50%] h-[100px] w-[50px] rotate-25 bg-white'
         ref={slashRef}
       ></div>
     </div>

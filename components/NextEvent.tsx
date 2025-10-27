@@ -50,11 +50,11 @@ export const NextEvent = () => {
 
   return (
     <div
-      className='fixed top-[5px] right-1/2 z-[200] h-[20px] w-full translate-x-1/2 overflow-hidden sm:w-[500px]'
+      className='fixed top-[5px] right-1/2 z-200 h-5 w-full translate-x-1/2 overflow-hidden sm:w-[500px]'
       ref={eventParentRef}
     >
       <div
-        className='absolute top-0 right-0 flex w-max translate-x-[100%] gap-[5px]'
+        className='absolute top-0 right-0 flex w-max translate-x-full gap-[5px]'
         ref={eventRef}
       >
         <svg
