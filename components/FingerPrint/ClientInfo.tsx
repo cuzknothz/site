@@ -31,11 +31,11 @@ export const ClientInfo = () => {
     <div>
       <div>
         <p> {`IP Device: ${data?.ip}`}</p>
-        <p> {`Browser: ${data?.browserName} ${data?.browserVersion}`}</p>
-        <p>{`Incognito Tab: ${smartSignal?.incognito?.data?.result}`}</p>
+        <p> {`Trình Duyệt: ${data?.browserName} ${data?.browserVersion}`}</p>
+        <p>{`Tab Ẩn Danh: ${smartSignal?.incognito?.data?.result}`}</p>
         <p> {`Hệ điều hành: ${data?.os} ${data?.osVersion}`}</p>
         <p>
-          {`VPN: ${smartSignal?.vpn?.data?.result}, Origin Country: ${smartSignal?.vpn?.data?.originCountry},Origin TimeZone: ${smartSignal?.vpn?.data?.originTimezone}`}
+          {`VPN: ${smartSignal?.vpn?.data?.result ? 'Có dùng' : 'Không dùng'}, Quốc gia gốc VPN: ${smartSignal?.vpn?.data?.originCountry}, Quốc gia gốc VPN TimeZone: ${smartSignal?.vpn?.data?.originTimezone}`}
         </p>
       </div>
     </div>
