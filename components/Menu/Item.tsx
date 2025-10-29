@@ -87,16 +87,16 @@ export const MenuItem = ({
   useGSAP(() => {
     const labelState = Flip.getState(labelRef.current);
     labelRef.current!.style.width = isSelected ? 'auto' : '0px';
-    gsap.to(labelText.current, {
-      duration: 1,
-      scrambleText: {
-        text: label,
-        chars: ' ',
-        revealDelay: 0,
-        speed: 1,
-      },
-    });
-    Flip.from(labelState, { duration: 0.6 });
+    // gsap.to(labelText.current, {
+    //   duration: 0.5,
+    //   scrambleText: {
+    //     text: label,
+    //     chars: ' ',
+    //     revealDelay: 0,
+    //     speed: 1,
+    //   },
+    // });
+    Flip.from(labelState, { duration: 0.3 });
   }, [isSelected, label]);
 
   return (
