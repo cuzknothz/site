@@ -36,7 +36,7 @@ export const Menu = () => {
     const to = {
       '/': SECTION.HOME,
       '/works': SECTION.WORK,
-      '/articles': SECTION.ARTICLE,
+      '/notes': SECTION.NOTE,
       '/app': SECTION.APP,
     }[pathname];
 
@@ -44,7 +44,7 @@ export const Menu = () => {
       setSelect(to);
     }
     if (pathname.split('/').includes('app')) {
-      setSelect(SECTION.TOOL);
+      setSelect(SECTION.APP);
     }
   }, [pathname]);
 
@@ -122,11 +122,11 @@ export const Menu = () => {
           </MenuItem>
         </Link>
 
-        <Link href={'/articles'}>
+        <Link href={'/notes'}>
           <MenuItem
-            isSelected={isSelect(SECTION.ARTICLE)}
-            label={SECTION.ARTICLE}
-            onClick={changeTo(SECTION.ARTICLE)}
+            isSelected={isSelect(SECTION.NOTE)}
+            label={SECTION.NOTE}
+            onClick={changeTo(SECTION.NOTE)}
           >
             <Article />
           </MenuItem>
@@ -134,9 +134,9 @@ export const Menu = () => {
 
         <Link href={'/app'}>
           <MenuItem
-            isSelected={isSelect(SECTION.TOOL)}
-            label={SECTION.TOOL}
-            onClick={changeTo(SECTION.TOOL)}
+            isSelected={isSelect(SECTION.APP)}
+            label={SECTION.APP}
+            onClick={changeTo(SECTION.APP)}
           >
             <Tools />
           </MenuItem>

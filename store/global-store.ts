@@ -5,7 +5,7 @@ export enum SECTION {
   HOME = 'Home',
   CRAFT = 'Craft',
   WORK = 'Work',
-  ARTICLE = 'Note',
+  NOTE = 'Note',
   CHAT = 'Chat',
   APP = 'App',
 }
