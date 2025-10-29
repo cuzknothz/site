@@ -43,7 +43,7 @@ export const Menu = () => {
     if (to) {
       setSelect(to);
     }
-    if (pathname.split('/').includes('tools')) {
+    if (pathname.split('/').includes('app')) {
       setSelect(SECTION.TOOL);
     }
   }, [pathname]);
