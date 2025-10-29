@@ -1,3 +1,9 @@
+import { SpotifyApp } from '@/components/Spotify/App/SpotifyApp';
+
 export default function Spotify() {
-  return <div>kjdsafk</div>;
+  return (
+    <div>
+      <SpotifyApp />
+    </div>
+  );
 }
