@@ -33,7 +33,8 @@ export async function POST(req: NextRequest) {
       ipLocation: smart?.ipLocation ?? null, // country, city, etc.
     };
 
-    console.log('signals', signals);
+    console.log('signals', signals); 
+    
 
     return NextResponse.json({ ok: true, signals });
   } catch (e: any) {
