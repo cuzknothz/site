@@ -37,7 +37,7 @@ export const Menu = () => {
       '/': SECTION.HOME,
       '/works': SECTION.WORK,
       '/articles': SECTION.ARTICLE,
-      '/tools': SECTION.TOOL,
+      '/app': SECTION.APP,
     }[pathname];
 
     if (to) {

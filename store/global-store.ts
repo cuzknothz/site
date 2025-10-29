@@ -7,7 +7,7 @@ export enum SECTION {
   WORK = 'Work',
   ARTICLE = 'Note',
   CHAT = 'Chat',
-  TOOL = 'App',
+  APP = 'App',
 }
 
 interface GlobalState {
