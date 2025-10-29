@@ -1,0 +1,18 @@
+'use client';
+import { Map, Marker } from 'pigeon-maps';
+import { Box } from './ui/Box';
+
+interface Props {
+  lat: number;
+  lon: number;
+}
+
+export const MapPigeon = ({ lat, lon }: Props) => {
+  return (
+    <Box className='h-[150px] overflow-hidden'>
+      <Map height={170} center={[lat, lon]} defaultZoom={11}>
+        <Marker width={50} anchor={[lat, lon]} />
+      </Map>
+    </Box>
+  );
+};

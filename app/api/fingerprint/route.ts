@@ -17,9 +17,11 @@ export async function POST(req: NextRequest) {
     }
 
     const event = await fp.getEvent(requestId);
-    console.log("event.products",event.products);
+    console.log('event.products', event.products);
 
     const smart = event.products;
+
+    console.log('smart', smart);
 
     const signals = {
       vpn: smart?.vpn ?? null,
@@ -40,4 +42,15 @@ export async function POST(req: NextRequest) {
       { status: 500 },
     );
   }
+}
+
+export async function GET(req: Request) {
+  const ip = new URL(req.url).searchParams.get("ip") ;
+  const apiKey = process.env.IPGEO_KEY;
+
+  const res = await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}&ip=${ip}`);
+  if (!res.ok) return new Response("{}", { status: 502 });
+
+  const data = await res.json();
+  return Response.json({ lat: Number(data.latitude), lon: Number(data.longitude) });
 }
