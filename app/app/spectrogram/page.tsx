@@ -1,9 +1,9 @@
 import { UnderDevelopment } from '@/components/Util/UnderDevelopmentPage';
 
-export const SpotifyApp = () => {
+export default function Spectrogram() {
   return (
     <div>
       <UnderDevelopment />
     </div>
   );
-};
+}

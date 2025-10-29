@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import WaveIcon from '@/assets/svg/wave.svg';
 
 export default async function WPage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -71,6 +72,16 @@ export default async function WPage() {
               <FingerPrint />
             </Box>
             <p className='text-[13px]'>FP</p>
+          </Link>
+          <Link
+            href={'/app/spectrogram'}
+            title='Spectrogram'
+            className='flex flex-col items-center'
+          >
+            <Box className='flex h-[55px] w-[55px] items-center justify-center'>
+              <WaveIcon />
+            </Box>
+            <p className='text-[13px]'>Spek</p>
           </Link>
         </Box>
       </div>
