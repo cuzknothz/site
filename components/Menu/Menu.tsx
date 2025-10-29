@@ -12,6 +12,7 @@ import { MenuItem } from './Item';
 import { ShowMenu } from './ShowMenu';
 import { SECTION, useGlobalStore } from '@/store/global-store';
 import { useEffectNext } from '@/hooks/useEffectNext';
+import Link from 'next/link';
 
 export const Menu = () => {
   const selected = useGlobalStore((s) => s.select);
@@ -21,10 +22,9 @@ export const Menu = () => {
   const router = useRouter();
   const pathname = usePathname();
 
-  function changeTo(to: SECTION, path: string) {
+  function changeTo(to: SECTION) {
     return () => {
       setSelect(to);
-      router.push(path);
     };
   }
 
@@ -86,7 +86,7 @@ export const Menu = () => {
   useEffect(() => {}, [showFullMenu]);
 
   useEffectNext(() => {
-    console.log('sdafsdf','jkDSLKFJDLKJ');
+    console.log('sdafsdf', 'jkDSLKFJDLKJ');
     gsap.to(clusterBtn.current!.childNodes, {
       translateY: showFullMenu ? -40 : 80,
       stagger: {
@@ -102,35 +102,45 @@ export const Menu = () => {
         className='fixed right-1/2 bottom-0 z-[10] flex w-full translate-x-1/2 justify-center gap-[12px] sm:w-[500px] sm:gap-[8px] [&__svg]:scale-[1.2]'
         ref={clusterBtn}
       >
-        <MenuItem
-          isSelected={isSelect(SECTION.HOME)}
-          label={SECTION.HOME}
-          onClick={changeTo(SECTION.HOME, '/')}
-        >
-          <Toilet />
-        </MenuItem>
+        <Link href={'/'}>
+          <MenuItem
+            isSelected={isSelect(SECTION.HOME)}
+            label={SECTION.HOME}
+            onClick={changeTo(SECTION.HOME)}
+          >
+            <Toilet />
+          </MenuItem>
+        </Link>
 
-        <MenuItem
-          isSelected={isSelect(SECTION.WORK)}
-          label={SECTION.WORK}
-          onClick={changeTo(SECTION.WORK, '/works')}
-        >
-          <Work />
-        </MenuItem>
-        <MenuItem
-          isSelected={isSelect(SECTION.ARTICLE)}
-          label={SECTION.ARTICLE}
-          onClick={changeTo(SECTION.ARTICLE, '/articles')}
-        >
-          <Article />
-        </MenuItem>
-        <MenuItem
-          isSelected={isSelect(SECTION.TOOL)}
-          label={SECTION.TOOL}
-          onClick={changeTo(SECTION.TOOL, '/tools')}
-        >
-          <Tools />
-        </MenuItem>
+        <Link href={'/works'}>
+          <MenuItem
+            isSelected={isSelect(SECTION.WORK)}
+            label={SECTION.WORK}
+            onClick={changeTo(SECTION.WORK)}
+          >
+            <Work />
+          </MenuItem>
+        </Link>
+
+        <Link href={'/articles'}>
+          <MenuItem
+            isSelected={isSelect(SECTION.ARTICLE)}
+            label={SECTION.ARTICLE}
+            onClick={changeTo(SECTION.ARTICLE)}
+          >
+            <Article />
+          </MenuItem>
+        </Link>
+
+        <Link href={'/app'}>
+          <MenuItem
+            isSelected={isSelect(SECTION.TOOL)}
+            label={SECTION.TOOL}
+            onClick={changeTo(SECTION.TOOL)}
+          >
+            <Tools />
+          </MenuItem>
+        </Link>
       </div>
       <ShowMenu />
     </>
