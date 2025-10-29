@@ -3,9 +3,9 @@
 @import 'simplebar-react/dist/simplebar.min.css';
 
  
-body {
+/* body {
   font-family: monospace, sans-serif;
-}
+} */
 /* Custom ScrollBar Chrome Opera */
 ::-webkit-scrollbar {
   width: 6px;

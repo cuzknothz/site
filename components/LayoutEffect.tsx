@@ -48,22 +48,20 @@ export default function LayoutEffect({ children }: Props) {
   const onYesSqueze = useSquezeStore((s) => s.onYes);
 
   return (
-    <html lang='en' className='duration-0 dark:bg-black dark:text-white'>
-      <body className='antialiased'>
-        <SimpleBar className='h-dvh'>
-          <div className='mx-auto mt-[100px] mb-[100px] w-full px-[30px] *:text-[13px] selection:bg-[black] selection:text-[white] sm:w-[500px] [&__button]:cursor-pointer'>
-            {fontReady && children}
+    <body className='antialiased'>
+      <SimpleBar className='h-dvh'>
+        <div className='mx-auto mt-[100px] mb-[100px] w-full px-[30px] *:text-[13px] selection:bg-[black] selection:text-[white] sm:w-[500px] [&__button]:cursor-pointer'>
+          {fontReady && children}
 
-            {showSqueze && (
-              <Squeze
-                title={titleSqueze}
-                content={contentSqueze}
-                onYes={onYesSqueze}
-              />
-            )}
-          </div>
-        </SimpleBar>
-      </body>
-    </html>
+          {showSqueze && (
+            <Squeze
+              title={titleSqueze}
+              content={contentSqueze}
+              onYes={onYesSqueze}
+            />
+          )}
+        </div>
+      </SimpleBar>
+    </body>
   );
 }

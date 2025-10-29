@@ -7,6 +7,10 @@ import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Metadata, Viewport } from 'next';
 import './globals.css';
+// import { Intel_One_Mono  as AppFont } from 'next/font/google';
+import { Cascadia_Mono  as AppFont } from 'next/font/google';
+
+import clsx from 'clsx';
 
 export const metadata: Metadata = {
   title: 'illuzion',
@@ -20,6 +24,11 @@ export const viewport: Viewport = {
   userScalable: false,
   viewportFit: 'cover',
 };
+
+const appFont = AppFont({
+  subsets: ['latin'],
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -27,15 +36,23 @@ export default function RootLayout({
 }>) {
   return (
     <>
-      <LayoutEffect>
-        <NextEvent />
-        <Header />
-        {children}
-        <SpeedInsights />
-        <Analytics />
-        <Menu />
-        <EnterSecret />
-      </LayoutEffect>
+      <html
+        lang='en'
+        className={clsx(
+          'duration-0 dark:bg-black dark:text-white',
+          appFont.className,
+        )}
+      >
+        <LayoutEffect>
+          <NextEvent />
+          {/* <Header /> */}
+          {children}
+          <SpeedInsights />
+          <Analytics />
+          <Menu />
+          <EnterSecret />
+        </LayoutEffect>
+      </html>
     </>
   );
 }
