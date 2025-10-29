@@ -1,5 +1,3 @@
-'use server';
-
 import { sqlNeon } from '@/lib/db';
 
 export async function getAllNote() {
