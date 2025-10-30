@@ -2,7 +2,15 @@
 import React, { useEffect, useRef, memo } from 'react';
 import { Box } from '../ui/Box';
 
-function TradingViewWidget() {
+interface Props {
+  interval?: string;
+  symbol?: string;
+}
+
+export function TradingViewWidget({
+  interval = '5',
+  symbol = 'BINANCE:ETHUSDT',
+}: Props) {
   const container = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -13,35 +21,35 @@ function TradingViewWidget() {
     script.async = true;
     script.innerHTML = `
         {
-          "allow_symbol_change": true,
-          "calendar": false,
-          "details": false,
-          "hide_side_toolbar": true,
-          "hide_top_toolbar": false,
-          "hide_legend": false,
-          "hide_volume": false,
-          "hotlist": false,
-          "interval": "5",
-          "locale": "en",
-          "save_image": true,
-          "style": "1",
-          "symbol": "BINANCE:ETHUSDT",
-          "theme": "light",
-          "timezone": "Asia/Bangkok",
-          "backgroundColor": "#ffffff",
-          "gridColor": "rgba(46, 46, 46, 0.06)",
-          "watchlist": [],
-          "withdateranges": false,
-          "compareSymbols": [],
-          "studies": [],
-          "autosize": true
+         "allow_symbol_change": true,
+  "calendar": false,
+  "details": false,
+  "hide_side_toolbar": true,
+  "hide_top_toolbar": false,
+  "hide_legend": true,
+  "hide_volume": false,
+  "hotlist": false,
+  "interval": "${interval}",
+  "locale": "en",
+  "save_image": false,
+  "style": "1",
+  "symbol": "${symbol}",
+  "theme": "light",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "backgroundColor": "#ffffff",
+  "gridColor": "rgba(255, 255, 255, 0)",
+  "watchlist": [],
+  "withdateranges": false,
+  "compareSymbols": [],
+  "studies": [],
+  "autosize": true
         }`;
     container.current!.appendChild(script);
   }, []);
 
   return (
     <div className='invert dark:invert-0'>
-      <Box className='relative h-[400px] overflow-hidden filter-[grayscale(1)_invert(1)_brightness(1.5)] **:text-[12px]! sm:h-[500px]'>
+      <Box className='relative h-[200px] overflow-hidden filter-[grayscale(1)_invert(1)_brightness(1.5)] **:text-[12px]! sm:h-[300px]'>
         <div
           className='tradingview-widget-container h-full w-full overflow-hidden'
           ref={container}
@@ -56,5 +64,3 @@ function TradingViewWidget() {
     </div>
   );
 }
-
-export default memo(TradingViewWidget);
