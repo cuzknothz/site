@@ -37,8 +37,7 @@ export const Note = ({ setShowNote }: NoteProps) => {
           {'.'}
         </p>
         <p>
-          - Tài khoản login mặc định là tài khoản của người phát triển website.
-          Bạn có thể login bằng tài khoản của bạn. Lưu ý: Để có thể Playback yêu
+          - Bạn có thể login bằng tài khoản của bạn. Lưu ý: Để có thể Playback yêu
           cầu là tài khoản login phải là tài khoản Spotify Premium.
         </p>
 
@@ -51,7 +50,7 @@ export const Note = ({ setShowNote }: NoteProps) => {
           >
             {'illuzion'}
           </Link>
-          {'. Tôi kó thu thập bất cứ thông tin gì từ bạn. Have fun :).'}
+          {'. Tôi không thu thập bất cứ thông tin gì từ bạn. Have fun :).'}
         </p>
         <Box
           onClick={() => setShowNote(false)}

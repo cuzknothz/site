@@ -4,6 +4,7 @@ import { useVisitorData } from '@fingerprintjs/fingerprintjs-pro-react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { MapPigeon } from '../Map';
+import { isBoolean } from 'lodash';
 
 export const ClientInfo = () => {
   const [location, setLocation] = useState({ lat: 0, lon: 0 });
@@ -45,16 +46,56 @@ export const ClientInfo = () => {
     getSmartSignal();
   }, [data?.requestId, data?.visitorId]);
   // console.log('data', smartSignal);
+
+  function isDetected(val: boolean) {
+    if (!isBoolean(val)) {
+      return '';
+    }
+    return val ? 'Detected' : 'Not Detected';
+  }
+  function yesNo(val: boolean) {
+    if (!isBoolean(val)) {
+      return '';
+    }
+    return val ? 'Yes' : 'No';
+  }
+
   return (
     <div>
       <MapPigeon lat={location.lat} lon={location.lon} />
 
-      <div className='mt-[10px]'>
-        <p> {`IP Device: ${data?.ip}`}</p>
-        <p> {`Trình Duyệt: ${data?.browserName} ${data?.browserVersion}`}</p>
-        <p>{`Tab Ẩn Danh: ${smartSignal?.incognito?.data?.result}`}</p>
-        <p> {`Hệ điều hành: ${data?.os} ${data?.osVersion}`}</p>
-        <p>{`VPN: ${smartSignal?.vpn?.data?.result ? 'Detect' : 'None'}`}</p>
+      <div className='mt-[20px]'>
+        <div className='flex gap-[5px]'>
+          <p> IP Device:</p>
+          <p className='text-[#a206fc]'>{data?.ip || ''}</p>
+        </div>
+
+        <div className='flex gap-[5px]'>
+          <p> Trình Duyệt:</p>
+          <p className='text-[#a206fc]'>
+            {`${data?.browserName || ''} ${data?.browserVersion || ''} `}
+          </p>
+        </div>
+
+        <div className='flex gap-[5px]'>
+          <p> Tab Ẩn Danh:</p>
+          <p className='text-[#a206fc]'>
+            {yesNo(smartSignal?.incognito?.data?.result)}
+          </p>
+        </div>
+        <div className='flex gap-[5px]'>
+          <p> Hệ điều hành:</p>
+          <p className='text-[#a206fc]'>
+            {`${data?.os || ''} ${data?.osVersion || ''}`}
+          </p>
+        </div>
+
+        <div className='flex gap-[5px]'>
+          <p> VPN:</p>
+          <p className='text-[#a206fc]'>
+            {isDetected(smartSignal?.vpn?.data?.result)}
+          </p>
+        </div>
       </div>
       <div></div>
     </div>
