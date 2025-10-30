@@ -1,11 +1,7 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @custom-variant dark (&:where(.dark, .dark *));
 @import 'simplebar-react/dist/simplebar.min.css';
 
- 
-/* body {
-  font-family: monospace, sans-serif;
-} */
 /* Custom ScrollBar Chrome Opera */
 ::-webkit-scrollbar {
   width: 6px;
@@ -20,6 +16,7 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #ff0088;
 }
+
 /* Custom ScrollBar FireFox */
 :root {
   scrollbar-color: #00b3ff #ffffff;

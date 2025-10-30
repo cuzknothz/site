@@ -1,10 +1,12 @@
 'use client';
 import { Box } from '@/components/ui/Box';
 import { BackDrop } from '@/components/Util/BackDrop';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Avatar } from './Avatar';
 import { Note } from './Note';
 import { Textz } from '@/components/Util/Tezt';
+import { SearchInput } from './Search';
+import { spotifyApi } from '../action';
 
 const LoginWith = () => {
   return (
@@ -29,6 +31,19 @@ export const SpotifyApp = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [showNote, setShowNote] = useState(true);
 
+  useEffect(() => {
+    spotifyApi.setAccessToken(
+      'BQAwzxZGTcOrLqpKkSQht0oyezMyunpKCeciWdtaHzDrhyJa87Tz_h7zdcjTUb-PYFRYgaU6JyNYYvIJ7pIky8Vu_50ExJPkcIZmR0uPYxJKagdB5Z5nBl80ha-bxfi6o5rxiaj0S6U',
+    );
+    spotifyApi.searchTracks('artist:Love').then(
+      function (data) {
+        console.log(data.body);
+      },
+      function (err) {
+        console.log('Something went wrong!', err);
+      },
+    );
+  }, []);
   return (
     <div ref={containerRef}>
       {showNote && (
@@ -40,9 +55,8 @@ export const SpotifyApp = () => {
       {/* <LoginWith /> */}
       <div className='fixed top-0 left-0 h-dvh w-dvw px-[20px] pt-[30px]'>
         <div className='relative'>
-          <Textz text='Unavailable right now'/>
+          <SearchInput />
         </div>
-
         {/* <UnderDevelopment /> */}
       </div>
     </div>
