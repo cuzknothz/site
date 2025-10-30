@@ -38,7 +38,6 @@ export const Chat = () => {
       <div className={clsx('absolute top-[100px] w-full')}>
         <Conversation />
       </div>
-
       <div ref={chatAreaRef} className={clsx('absolute w-full')}>
         <ChatArea />
       </div>

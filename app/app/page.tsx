@@ -22,7 +22,7 @@ export default async function WPage() {
         },
         {
           scale: 1,
-          duration: 0.3,
+          duration: 0.5,
           ease: 'bounce.out',
         },
       );
@@ -32,7 +32,7 @@ export default async function WPage() {
   return (
     <BackDrop>
       <div ref={containerRef}>
-        <Box className='grid w-auto grid-cols-4 gap-4 rounded-[30px] p-[15px] [&__svg]:h-6! [&__svg]:w-6!'>
+        <Box className='grid w-auto grid-cols-4 gap-4 rounded-[30px] p-[12px] [&__svg]:h-6! [&__svg]:w-6!'>
           <Link
             href={'/app/spotify'}
             title='Spotify'

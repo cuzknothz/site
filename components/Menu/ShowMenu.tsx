@@ -26,18 +26,17 @@ export const ShowMenu = () => {
   useGSAP(() => {
     gsap.from(showMenuRef.current, {
       translateY: 50,
-      delay: 1.2,
+      delay: 0.8,
     });
   });
 
   return (
     <button
-      className='fixed right-1/2 bottom-2 flex translate-x-1/2 cursor-pointer items-center gap-[5px] [&__svg]:text-[#0000007d] dark:[&__svg]:text-[#656565] z-20'
+      className='fixed right-1/2 bottom-2 z-20 flex translate-x-1/2 cursor-pointer items-center gap-[5px] [&__svg]:text-[#0000007d] dark:[&__svg]:text-[#656565]'
       onClick={onToggle}
       ref={showMenuRef}
     >
       <BrightToFront />
-      {/* <div> {showFullMenu ? 'Hide' : 'Menu'}</div> */}
     </button>
   );
 };

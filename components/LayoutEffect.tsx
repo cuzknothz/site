@@ -50,7 +50,7 @@ export default function LayoutEffect({ children }: Props) {
   return (
     <body className='antialiased'>
       <SimpleBar className='h-dvh'>
-        <div className='mx-auto mt-[100px] mb-[100px] w-full px-[30px] *:text-[13px] selection:bg-[black] selection:text-[white] sm:w-[500px] [&__button]:cursor-pointer'>
+        <div className='mx-auto mt-[70px] mb-[100px] w-full px-[30px] *:text-[13px] selection:bg-[black] selection:text-[white] sm:w-[500px] [&__button]:cursor-pointer'>
           {fontReady && children}
 
           {showSqueze && (

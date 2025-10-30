@@ -1,4 +1,3 @@
-
 import { FpjsProvider } from '@fingerprintjs/fingerprintjs-pro-react';
 import { ReactNode } from 'react';
 

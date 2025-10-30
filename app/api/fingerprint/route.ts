@@ -33,8 +33,7 @@ export async function POST(req: NextRequest) {
       ipLocation: smart?.ipLocation ?? null, // country, city, etc.
     };
 
-    console.log('signals', signals); 
-    
+    console.log('signals', signals);
 
     return NextResponse.json({ ok: true, signals });
   } catch (e: any) {
@@ -46,12 +45,17 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET(req: Request) {
-  const ip = new URL(req.url).searchParams.get("ip") ;
+  const ip = new URL(req.url).searchParams.get('ip');
   const apiKey = process.env.IPGEO_KEY;
 
-  const res = await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}&ip=${ip}`);
-  if (!res.ok) return new Response("{}", { status: 502 });
+  const res = await fetch(
+    `https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}&ip=${ip}`,
+  );
+  if (!res.ok) return new Response('{}', { status: 502 });
 
   const data = await res.json();
-  return Response.json({ lat: Number(data.latitude), lon: Number(data.longitude) });
+  return Response.json({
+    lat: Number(data.latitude),
+    lon: Number(data.longitude),
+  });
 }

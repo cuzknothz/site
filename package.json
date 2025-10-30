@@ -33,6 +33,7 @@
     "react-dom": "19.2.0",
     "react-use": "^17.6.0",
     "simplebar-react": "^3.3.2",
+    "wavesurfer.js": "^7.11.1",
     "zustand": "^5.0.8"
   },
   "devDependencies": {
