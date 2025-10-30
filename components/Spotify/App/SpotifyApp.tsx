@@ -4,6 +4,7 @@ import { BackDrop } from '@/components/Util/BackDrop';
 import { useRef, useState } from 'react';
 import { Avatar } from './Avatar';
 import { Note } from './Note';
+import { Textz } from '@/components/Util/Tezt';
 
 const LoginWith = () => {
   return (
@@ -39,9 +40,7 @@ export const SpotifyApp = () => {
       {/* <LoginWith /> */}
       <div className='fixed top-0 left-0 h-dvh w-dvw px-[20px] pt-[30px]'>
         <div className='relative'>
-          <button className='line-clamp-3 w-[100px]'>
-            Đăng nhập bằng tài khoản của bạn
-          </button>
+          <Textz text='Unavailable right now'/>
         </div>
 
         {/* <UnderDevelopment /> */}

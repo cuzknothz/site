@@ -16,7 +16,6 @@ export const ClientInfo = () => {
   async function getLatLonFromIP(ip: string) {
     try {
       const res = await axios.get(`/api/fingerprint?ip=${ip}`);
-      debugger;
       setLocation(res.data);
     } catch (e) {
       console.error('ERROR', e);
@@ -55,9 +54,7 @@ export const ClientInfo = () => {
         <p> {`Trình Duyệt: ${data?.browserName} ${data?.browserVersion}`}</p>
         <p>{`Tab Ẩn Danh: ${smartSignal?.incognito?.data?.result}`}</p>
         <p> {`Hệ điều hành: ${data?.os} ${data?.osVersion}`}</p>
-        <p>
-          {`VPN: ${smartSignal?.vpn?.data?.result ? 'Có dùng' : 'Không dùng'}, Quốc gia gốc VPN: ${smartSignal?.vpn?.data?.originCountry}, Quốc gia gốc VPN TimeZone: ${smartSignal?.vpn?.data?.originTimezone}`}
-        </p>
+        <p>{`VPN: ${smartSignal?.vpn?.data?.result ? 'Detect' : 'None'}`}</p>
       </div>
       <div></div>
     </div>

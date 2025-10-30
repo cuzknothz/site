@@ -10,7 +10,7 @@ interface Props {
 export const MapPigeon = ({ lat, lon }: Props) => {
   return (
     <Box className='h-[150px] overflow-hidden'>
-      <Map height={170} center={[lat, lon]} defaultZoom={11}>
+      <Map height={170} center={[lat, lon]} defaultZoom={10}>
         <Marker width={50} anchor={[lat, lon]} />
       </Map>
     </Box>
