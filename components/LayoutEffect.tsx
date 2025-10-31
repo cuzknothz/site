@@ -14,6 +14,7 @@ import { ReactNode, useCallback, useEffect } from 'react';
 import { Squeze } from './Util/Confirm';
 import { useSquezeStore } from '@/store/squeze';
 import SimpleBar from 'simplebar-react';
+import { Scrollbar } from './ScrollBar';
 
 interface Props {
   children: ReactNode;
@@ -49,7 +50,7 @@ export default function LayoutEffect({ children }: Props) {
 
   return (
     <body className='antialiased'>
-      <SimpleBar className='h-dvh'>
+      <Scrollbar className='h-dvh'>
         <div className='mx-auto mt-[70px] mb-[100px] w-full px-[30px] *:text-[13px] selection:bg-[black] selection:text-[white] sm:w-[500px] [&__button]:cursor-pointer'>
           {fontReady && children}
 
@@ -61,7 +62,7 @@ export default function LayoutEffect({ children }: Props) {
             />
           )}
         </div>
-      </SimpleBar>
+      </Scrollbar>
     </body>
   );
 }

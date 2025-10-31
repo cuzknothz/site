@@ -10,6 +10,7 @@ import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import WaveIcon from '@/assets/svg/wave.svg';
+import { AppIcon } from '@/components/App/AppIcon';
 
 export default async function WPage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -33,56 +34,25 @@ export default async function WPage() {
     <BackDrop>
       <div ref={containerRef}>
         <Box className='grid w-auto grid-cols-4 gap-4 rounded-[30px] p-[12px] [&__svg]:h-6! [&__svg]:w-6!'>
-          <Link
-            href={'/app/spotify'}
-            title='Spotify'
-            className='flex flex-col items-center'
-          >
-            <Box className='flex h-[55px] w-[55px] items-center justify-center'>
-              <Spotify />
-            </Box>
-            <p className='text-[13px]'>Spotify</p>
-          </Link>
-          <Link
-            href={'/app/crafts'}
-            title='Market'
-            className='flex flex-col items-center'
-          >
-            <Box className='flex h-[55px] w-[55px] items-center justify-center gap-[5px]'>
-              <Market />
-            </Box>
-            <p className='text-[13px]'>Market</p>
-          </Link>
-          <Link
-            href={'/app/chat'}
-            title='Chat AI'
-            className='flex flex-col items-center'
-          >
-            <Box className='flex h-[55px] w-[55px] items-center justify-center'>
-              <AI />
-            </Box>
-            <p className='text-[13px]'>Chat AI</p>
-          </Link>
-          <Link
-            href={'/app/client-info'}
-            title='FP'
-            className='flex flex-col items-center'
-          >
-            <Box className='flex h-[55px] w-[55px] items-center justify-center'>
-              <FingerPrint />
-            </Box>
-            <p className='text-[13px]'>FP</p>
-          </Link>
-          <Link
-            href={'/app/spectrogram'}
-            title='Spectrogram'
-            className='flex flex-col items-center'
-          >
-            <Box className='flex h-[55px] w-[55px] items-center justify-center'>
-              <WaveIcon />
-            </Box>
-            <p className='text-[13px]'>Spek</p>
-          </Link>
+          <AppIcon href={'/app/spotify'} name='Spotify'>
+            <Spotify />
+          </AppIcon>
+
+          <AppIcon href={'/app/crafts'} name='Market'>
+            <Market />
+          </AppIcon>
+
+          <AppIcon href={'/app/chat'} name='Chat AI'>
+            <AI />
+          </AppIcon>
+
+          <AppIcon href={'/app/client-info'} name='FP'>
+            <FingerPrint />
+          </AppIcon>
+
+          <AppIcon href={'/app/spectrogram'} name='Spek'>
+            <WaveIcon />
+          </AppIcon>
         </Box>
       </div>
     </BackDrop>

@@ -1,0 +1,13 @@
+@import 'simplebar-react/dist/simplebar.min.css';
+
+/* Custom color simplebar */
+.simplebar-scrollbar:before {
+ background: rgb(202, 202, 202); /* blue scrollbar */
+ opacity: 1 !important;
+ cursor: pointer !important;
+}
+
+.simplebar-scrollbar:hover:before {
+ background: black !important; /* darker blue on hover */
+ cursor: pointer !important;
+}

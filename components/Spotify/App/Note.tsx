@@ -37,8 +37,8 @@ export const Note = ({ setShowNote }: NoteProps) => {
           {'.'}
         </p>
         <p>
-          - Bạn có thể login bằng tài khoản của bạn. Lưu ý: Để có thể Playback yêu
-          cầu là tài khoản login phải là tài khoản Spotify Premium.
+          - Bạn có thể login bằng tài khoản của bạn. Để có thể Playback
+          yêu cầu là tài khoản login phải là tài khoản Spotify Premium.
         </p>
 
         <p>
