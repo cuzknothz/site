@@ -32,28 +32,31 @@ export default async function WPage() {
   );
   return (
     <BackDrop>
-      <div ref={containerRef}>
-        <Box className='grid w-auto grid-cols-4 gap-4 rounded-[30px] p-[12px] [&__svg]:h-6! [&__svg]:w-6!'>
-          <AppIcon href={'/app/spotify'} name='Spotify'>
-            <Spotify />
-          </AppIcon>
+      <div className='flex flex-col'>
+        <div ref={containerRef}>
+          <Box className='grid w-auto grid-cols-4 gap-4 rounded-[30px] p-[12px] [&__svg]:h-6! [&__svg]:w-6!'>
+            <AppIcon href={'/app/spotify'} name='Spotify'>
+              <Spotify />
+            </AppIcon>
 
-          <AppIcon href={'/app/crafts'} name='Market'>
-            <Market />
-          </AppIcon>
+            <AppIcon href={'/app/crafts'} name='Market'>
+              <Market />
+            </AppIcon>
 
-          <AppIcon href={'/app/chat'} name='Chat AI'>
-            <AI />
-          </AppIcon>
+            <AppIcon href={'/app/chat'} name='Chat AI'>
+              <AI />
+            </AppIcon>
 
-          <AppIcon href={'/app/client-info'} name='FP'>
-            <FingerPrint />
-          </AppIcon>
+            <AppIcon href={'/app/client-info'} name='FP'>
+              <FingerPrint />
+            </AppIcon>
 
-          <AppIcon href={'/app/spectrogram'} name='Spek'>
-            <WaveIcon />
-          </AppIcon>
-        </Box>
+            <AppIcon href={'/app/spectrogram'} name='Spek'>
+              <WaveIcon />
+            </AppIcon>
+          </Box>
+        </div>
+        {/* <p className='text-[12px] mt-[10px]'> C: Complete, D: Under Development, M: Maintaince</p> */}
       </div>
     </BackDrop>
   );

@@ -159,7 +159,7 @@ export const ChatArea = () => {
         rightToLeft: false,
       },
       repeat: -1,
-      repeatDelay: 10,
+      repeatDelay: 5,
       onUpdate: () => {
         textAreaInputRef.current!.placeholder =
           fakeSpanRef.current!.textContent || '';
