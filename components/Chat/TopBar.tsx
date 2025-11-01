@@ -1,6 +1,11 @@
+'use client';
+
 import clsx from 'clsx';
 import { Box } from '../ui/Box';
 import { Textz } from '../Util/Tezt';
+import { Scrollbar } from '../ScrollBar';
+import { useRef } from 'react';
+import { useClickAway } from 'react-use';
 
 interface Props {
   setShowSideBar: (val: boolean) => void;
@@ -31,54 +36,77 @@ export const TopBar = ({
     { id: 7, title: 'Cuộc trò chuyện 7', select: false },
     { id: 8, title: 'Cuộc trò chuyện 8', select: false },
     { id: 9, title: 'Cuộc trò chuyện 9', select: false },
+    { id: 9, title: 'Cuộc trò chuyện 9', select: false },
+    { id: 9, title: 'Cuộc trò chuyện 9', select: false },
+    {
+      id: 9,
+      title: 'Cuộc trò chuyện 9 alkdsjfkl jdsalkfj klsadjfkl sjklf jsdfkl',
+      select: false,
+    },
+
+    { id: 9, title: 'Cuộc trò chuyện 9', select: false },
+    { id: 9, title: 'Cuộc trò chuyện 9', select: false },
+    { id: 9, title: 'Cuộc trò chuyện 9', select: false },
+    { id: 9, title: 'Cuộc trò chuyện 9', select: false },
+    { id: 9, title: 'Cuộc trò chuyện 9', select: false },
+    { id: 9, title: 'Cuộc trò chuyện 9', select: false },
   ];
+
+  const chatsRef = useRef<HTMLDivElement>(null);
+
+  useClickAway(chatsRef, () => setShowSideBar(false));
   return (
     <div className='absolute z-10 h-[60px] w-full bg-[#ffffff00]'>
       <div className='mt-[25px]'>
         <div className='flex w-full justify-between px-[10px]'>
-          <Box
-            className={clsx(
-              'flex w-[full] cursor-pointer justify-items-start bg-[#ffffff62] px-[10px] py-[5px] backdrop-blur-[2px]',
-              showSideBar && 'max-w-[250px] flex-col items-start    ',
-            )}
-            onClick={onClickSideBar}
-          >
-            <div className='flex items-center justify-center gap-[5px]'>
-              <button className='cursor-pointer'>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  width='20'
-                  height='20'
-                  viewBox='0 0 24 24'
-                  fill='none'
-                  stroke='currentColor'
-                  stroke-width='2'
-                  stroke-linecap='round'
-                  stroke-linejoin='round'
-                >
-                  <rect width='18' height='18' x='3' y='3' rx='2' />
-                  <path d='M12 3v18' />
-                </svg>
-              </button>
-              <p>List Chat</p>
-            </div>
+          <div ref={chatsRef}>
+            <Box
+              className={clsx(
+                'flex w-[full] cursor-pointer flex-col items-start justify-items-start bg-[#ffffff62] p-[10px] backdrop-blur-[2px]',
+                showSideBar && 'bg-[#fff]!',
+              )}
+              onClick={onClickSideBar}
+            >
+              <div className='flex items-center justify-center gap-[5px]'>
+                <button className='cursor-pointer'>
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    width='20'
+                    height='20'
+                    viewBox='0 0 24 24'
+                    fill='none'
+                    stroke='currentColor'
+                    stroke-width='2'
+                    stroke-linecap='round'
+                    stroke-linejoin='round'
+                  >
+                    <rect width='18' height='18' x='3' y='3' rx='2' />
+                    <path d='M12 3v18' />
+                  </svg>
+                </button>
+                <p>List Chat</p>
+              </div>
 
-            {showSideBar && (
-              <div className='mt-[10px] flex flex-col'>
+              <Scrollbar
+                className={clsx(
+                  'mt-[15px] flex max-h-[500px] w-[200px] sm:w-[300px] flex-col gap-[5px]',
+                  !showSideBar && 'hidden',
+                )}
+              >
                 {conversation.map((i) => (
                   <div
                     className={clsx(
-                      'w-full rounded-[10px] p-[5px] hover:bg-[#ebebeb3b] h-[40px] flex items-center',
-                      i.select && 'bg-[#dedede]',
+                      'flex h-[40px] w-full items-center rounded-[10px] px-[10px] py-[5px] hover:bg-[#bdbdbde4]',
+                      i.select && 'bg-[#bcbcbc]',
                     )}
                   >
-                    {/* <Textz text={i.title} /> */}
-                    <p>{i.title}</p>    
+                    <p className='line-clamp-1'>{i.title}</p>
                   </div>
                 ))}
-              </div>
-            )}
-          </Box>
+              </Scrollbar>
+            </Box>
+          </div>
+
           <div></div>
           <Box className='flex h-[40px] items-center justify-center gap-[5px] bg-[#ffffff62] px-[10px] backdrop-blur-[2px]'>
             <button>

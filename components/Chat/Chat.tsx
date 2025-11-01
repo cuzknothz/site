@@ -38,7 +38,7 @@ export const Chat = () => {
     <div>
       <div
         className={clsx(
-          'fixed top-0 right-1/2 flex h-dvh w-full max-w-[800px] translate-x-1/2 sm:w-[80vw]',
+          'fixed top-0 right-1/2 flex h-dvh w-full translate-x-1/2 sm:w-[80vw] max-w-[800px]',
         )}
       >
         <TopBar
@@ -50,7 +50,7 @@ export const Chat = () => {
           {/* <div className='z-999 h-[50px] w-full bg-white backdrop-blur-[5px]'>
           dsahkjflsdjf
         </div> */}
-          <div className={clsx('absolute top-0 w-full pt-5')}>
+          <div className={clsx('absolute top-0 w-full')}>
             <Conversation />
           </div>
 
