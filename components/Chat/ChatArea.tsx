@@ -251,7 +251,7 @@ export const ChatArea = () => {
 
         <div className='flex w-full justify-between p-[0px_10px_10px_10px]'>
           <Box
-            className='right-2.5 bottom-2.5 flex h-[40px] items-center justify-center gap-2.5 px-2.5'
+            className='right-2.5 bottom-2.5 flex h-[40px] items-center justify-center gap-2.5 px-2.5 cursor-pointer'
             onClick={handleButtonClick}
           >
             <svg
