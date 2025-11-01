@@ -24,29 +24,24 @@ export const TextFromMe = ({ text }: Props) => {
           opacity: 1,
           duration: 0.1,
           ease: 'bounce.out',
-          repeat: 5,
+          repeat: 6,
           delay: 0,
         },
       );
 
       let split = SplitText.create('.z-text', {
-        type: 'chars, words',
+        type: 'words',
       });
 
       gsap.from(split.words, {
-        // y: 'random([100vh])',
-        // rotate: 'random(90, 180)',
-        // translateX: 'random(-200,200)',
-        // scale: 0.1,
-        repeat: 1,
-        yoyo: false,
-        // filter: 'blur(1px)',
         filter: 'blur(5px)',
         opacity: 0,
         stagger: {
           amount: 0.5,
           from: 'random',
         },
+        repeat: 1,
+        yoyo: false,
         onComplete: () => {
           split.revert();
         },
@@ -61,11 +56,10 @@ export const TextFromMe = ({ text }: Props) => {
       <Box
         className={clsx(
           'z-text',
-          'inline min-h-10 justify-end border-0! bg-[#bbff0073] px-5 py-2.5 [word-break:break-word] dark:bg-[#616161]',
+          'inline min-h-10 justify-end border-0! bg-[#bbff00ba] px-5 py-2.5 [word-break:break-word] dark:bg-[#616161]',
         )}
       >
-        {/* <Textz text={text} className='leading-[20px]' /> */}
-        <p className=''>{text}</p>
+        <p>{text}</p>
       </Box>
     </div>
   );
