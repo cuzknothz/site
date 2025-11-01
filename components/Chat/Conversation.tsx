@@ -23,7 +23,10 @@ export const Conversation = () => {
   });
 
   return (
-    <Scrollbar className='h-dvh max-h-screen pb-[250px] pt-[80px]' autoHide={true}>
+    <Scrollbar
+      className='h-dvh max-h-screen pt-[80px] pb-[250px]'
+      autoHide={true}
+    >
       <div
         ref={containerRef}
         className={clsx('flex w-full flex-col px-[15px] duration-500')}

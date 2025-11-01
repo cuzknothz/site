@@ -8,7 +8,6 @@ export default function CarftPage() {
   const setShowFullMenu = useGlobalStore((s) => s.setShowFullMenu);
   const { isMobile } = useIsMobile();
 
-
   useEffect(() => {
     if (isMobile) {
       setShowFullMenu(false);

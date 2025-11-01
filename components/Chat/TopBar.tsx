@@ -89,7 +89,7 @@ export const TopBar = ({
 
               <Scrollbar
                 className={clsx(
-                  'mt-[15px] flex max-h-[500px] w-[200px] sm:w-[300px] flex-col gap-[5px]',
+                  'mt-[15px] flex max-h-[500px] w-[200px] flex-col gap-[5px] sm:w-[300px]',
                   !showSideBar && 'hidden',
                 )}
               >

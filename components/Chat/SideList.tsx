@@ -4,7 +4,7 @@ import { BackDrop } from '../Util/BackDrop';
 export const SideList = () => {
   return (
     <BackDrop>
-      <Box className='w-full min-h-[300px] p-[20px]'>
+      <Box className='min-h-[300px] w-full p-[20px]'>
         <p>Chats</p>
         <div className='mt-[20px] flex flex-col gap-[10px]'>
           <Box className='rounded-[10px]! px-[10px] py-[5px]'>

@@ -38,7 +38,7 @@ export const Chat = () => {
     <div>
       <div
         className={clsx(
-          'fixed top-0 right-1/2 flex h-dvh w-full translate-x-1/2 sm:w-[80vw] max-w-[800px]',
+          'fixed top-0 right-1/2 flex h-dvh w-full max-w-[800px] translate-x-1/2 sm:w-[80vw]',
         )}
       >
         <TopBar
