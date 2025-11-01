@@ -22,21 +22,24 @@ export const Textz = ({
   chars = '!@#$%^&*()_+',
 }: Props) => {
   const textRef = useRef<HTMLDivElement>(null);
-  useGSAP(async () => {
-    await sleep(delay);
-    gsap.to(textRef.current, {
-      duration: 1,
-      scrambleText: {
-        text,
-        chars,
-        // chars: "  _ _ _",
-        revealDelay: 0.5,
-        speed: 0.3,
-        delimiter: '',
-        rightToLeft: false,
-      },
-    });
-  });
+  useGSAP(
+    async () => {
+      await sleep(delay);
+      gsap.to(textRef.current, {
+        duration: 1,
+        scrambleText: {
+          text,
+          chars,
+          // chars: "  _ _ _",
+          revealDelay: 0.5,
+          speed: 0.3,
+          delimiter: '',
+          rightToLeft: false,
+        },
+      });
+    },
+    { dependencies: [text] },
+  );
   return (
     <Fragment>
       <div className={clsx(className, { 'font-bold': bold })} ref={textRef} />

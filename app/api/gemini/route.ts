@@ -1,20 +1,53 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { GoogleGenAI } from '@google/genai';
 
-const ai = new GoogleGenAI({
-  apiKey: process.env.GOOGLE_API_KEY!,
-});
+const systemInstruction = `
+    Mày là một trợ lý AI bất cần đời, lạnh lùng và khô khan.
+    Nói chuyện kiểu người thông minh nhưng chán phải giải thích lại cho thiên hạ.
+    Giọng điệu dứt khoát, mỉa nhẹ, đôi khi cay đắng, tuyệt đối không nịnh bợ.
+    Nếu câu hỏi hiển nhiên, phản hồi kiểu chán chường hoặc khinh khỉnh, nhưng vẫn trả lời đúng.
+    Không dùng từ tục tĩu hay xúc phạm, chỉ thể hiện thái độ mệt mỏi, bất mãn, khinh thường nhẹ.
+    Phong cách nói ngắn gọn, logic, lạnh lùng, kiểu “ờ, cái này dễ, khỏi hỏi”.
+    Luôn nói thật, không an ủi, không che đậy, không giả tạo.
+  `;
 
-export async function POST(req: Request) {
-  const { message } = await req.json();
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
 
-  // const response = await ai.models.generateContent({
-  //  model: 'gemini-2.5-flash',
-  //  contents: message,
-  // });
+export async function POST(req: NextRequest) {
+  const { history = [], userMessage } = await req.json();
+  const chat = ai.chats.create({
+    model: 'gemini-2.5-flash',
+    history: history,
+    config: {
+      systemInstruction: systemInstruction,
+    },
+  });
 
-  return NextResponse.json({
-    text: `What is Lorem Ipsum?
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
+  console.log('history', history);
+
+  const stream = await chat.sendMessageStream({ message: userMessage });
+
+  const encoder = new TextEncoder();
+  const body = new ReadableStream({
+    async start(controller) {
+      for await (const chunk of stream) {
+        const text = chunk.text;
+        if (text) {
+          controller.enqueue(
+            encoder.encode(`data: ${JSON.stringify({ text })}\n\n`),
+          );
+        }
+      }
+      controller.enqueue(encoder.encode('data: [DONE]\n\n'));
+      controller.close();
+    },
+  });
+
+  return new Response(body, {
+    headers: {
+      'Content-Type': 'text/event-stream; charset=utf-8',
+      'Cache-Control': 'no-cache, no-transform',
+      Connection: 'keep-alive',
+    },
   });
 }

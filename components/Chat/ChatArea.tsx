@@ -11,6 +11,7 @@ import SimpleBar from 'simplebar-react';
 import { Scrollbar } from '../ScrollBar';
 import SendIcon from '@/assets/svg/send.svg';
 import { useIsMobile } from '@/hooks/useDeviceType';
+import { toGeminiHistory } from '@/helper/app';
 
 interface PreviewImage {
   file: File;
@@ -29,11 +30,9 @@ export const ChatArea = () => {
   }, []);
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const pushMess = useChatStore((s) => s.push);
   const sendBtnRef = useRef<HTMLButtonElement>(null);
 
   const [chatInput, setChatInput] = useState<string>('');
-  const showFullMenu = useGlobalStore((s) => s.showFullMenu);
 
   const onChangeInput = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setChatInput(e.target.value);
@@ -56,26 +55,85 @@ export const ChatArea = () => {
     );
   });
 
+  const conversations = useChatStore((_) => _.conversations);
+  const ensureCurrent = useChatStore((_) => _.ensureCurrent);
+
+  const appendMessage = useChatStore((_) => _.appendMessage);
+
+  const updateMessage = useChatStore((_) => _.updateMessage);
+
+  const justSentId = useChatStore((_) => _.justSentId);
+  const setJustSentId = useChatStore((_) => _.setJustSentId);
+
   const handleSend = async () => {
     const text = chatInput.trim();
     if (!text) return;
     soundSend.current?.play();
-
-    pushMess({ user: text });
-
     setChatInput('');
     animationBtnSendAndDivision();
 
-    const res = await fetch('/api/gemini', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: text }),
-    });
-    const data = await res.json();
+    const convId = ensureCurrent();
 
-    pushMess({
-      bot: data.text,
-    });
+    const prevMessages = conversations[convId]?.messages ?? [];
+    const historyPayload = toGeminiHistory(prevMessages);
+
+    const userMsgId = crypto.randomUUID();
+
+    appendMessage(convId, { id: userMsgId, role: 'user', content: text });
+    setJustSentId(userMsgId);
+
+    const modelMsgId = crypto.randomUUID();
+    appendMessage(convId, { id: modelMsgId, role: 'model', content: '' });
+
+    setPending(true);
+    try {
+      const res = await fetch('/api/gemini', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ history: historyPayload, userMessage: text }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      if (!res.body) throw new Error('No response body');
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+
+      let modelReply = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        const chunk = decoder.decode(value, { stream: true });
+        const lines = chunk
+          .split('\n')
+          .map((line) => line.trim())
+          .filter((line) => line.startsWith('data:'));
+
+        for (const line of lines) {
+          const data = line.replace(/^data:\s*/, '');
+          if (data === '[DONE]') {
+            setPending(false);
+            setTimeout(() => setJustSentId(null), 200);
+            return;
+          }
+
+          try {
+            const json = JSON.parse(data) as { text?: string };
+            if (json.text) {
+              modelReply += json.text;
+              updateMessage(convId, modelMsgId, { content: modelReply });
+            }
+          } catch (err) {
+            console.error('Stream JSON parse error:', err);
+          }
+        }
+      }
+    } catch (err) {
+      console.error('Chat stream error:', err);
+    } finally {
+      setPending(false);
+    }
   };
 
   const isComposing = useRef(false);
@@ -131,7 +189,7 @@ export const ChatArea = () => {
     setIsDragging(true);
   };
 
-  console.log({ isDragging });
+  // console.log({ isDragging });
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();

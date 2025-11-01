@@ -9,12 +9,16 @@ import { Box } from '../ui/Box';
 
 interface Props {
   text: string;
+  animation?: boolean;
 }
-export const TextFromMe = ({ text }: Props) => {
+export const TextFromMe = ({ text, animation = false }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
+      if (!animation) {
+        return;
+      }
       gsap.fromTo(
         '.z-text',
         { opacity: 0 },
@@ -47,6 +51,7 @@ export const TextFromMe = ({ text }: Props) => {
     },
     {
       scope: containerRef,
+      dependencies: [text],
     },
   );
   return (

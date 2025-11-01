@@ -23,8 +23,8 @@ export const Note = ({ setShowNote }: NoteProps) => {
   });
   return (
     <div ref={containerRef}>
-      <Box className='w-[300px] p-[15px] pt-[20px]!'>
-        <p className='mb-[10px] text-center text-[13px]'>Note</p>
+      <Box className='w-[300px] p-[15px] pt-5!'>
+        <p className='mb-2.5 text-center text-[13px]'>Note</p>
         <p>
           {'- Ứng dụng được xây dựng bằng Web API của Spotify '}
           <Link
@@ -54,7 +54,7 @@ export const Note = ({ setShowNote }: NoteProps) => {
         </p>
         <Box
           onClick={() => setShowNote(false)}
-          className='mt-[15px] flex h-[40px] cursor-pointer items-center justify-center rounded-[10px]! bg-[#b9f4fc] text-center hover:bg-[#66ff00] active:bg-[#abf888]'
+          className='mt-[15px] flex h-10 cursor-pointer items-center justify-center rounded-[10px]! bg-[#b9f4fc] text-center hover:bg-[#66ff00] active:bg-[#abf888]'
         >
           OKey
         </Box>
