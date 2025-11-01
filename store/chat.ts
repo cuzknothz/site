@@ -15,11 +15,7 @@ export interface ChatConversation {
 interface ChatStore {
   conversations: Record<string, ChatConversation>;
   currentId: string | null;
-
-  // animation flag cho message user mới gửi
   justSentId: string | null;
-
-  // actions cơ bản
   setCurrent: (id: string | null) => void;
   setJustSentId: (id: string | null) => void;
 
@@ -28,9 +24,15 @@ interface ChatStore {
   renameConversation: (id: string, newTitle: string) => void;
 
   appendMessage: (convId: string, msg: ChatMessage) => void;
-  updateMessage: (convId: string, msgId: string, patch: Partial<ChatMessage>) => void;
+  updateMessage: (
+    convId: string,
+    msgId: string,
+    patch: Partial<ChatMessage>,
+  ) => void;
 
-  ensureCurrent: () => string; // tạo conv mới nếu chưa có current
+  ensureCurrent: () => string;
+  thinking: boolean;
+  setThinking: (val: boolean) => void;
 }
 
 export const useChatStore = create<ChatStore>((set, get) => ({
@@ -48,7 +50,11 @@ export const useChatStore = create<ChatStore>((set, get) => ({
       title: 'Chat Conversation 2',
       messages: [
         { id: '123sdafsdf', role: 'user', content: 'Đây là conversation nào' },
-        { id: 'sdafsdfsdf', role: 'model', content: 'Chat Conversation 2 thằng đần ạ !' },
+        {
+          id: 'sdafsdfsdf',
+          role: 'model',
+          content: 'Chat Conversation 2 thằng đần ạ !',
+        },
       ],
     },
   },
@@ -125,4 +131,6 @@ export const useChatStore = create<ChatStore>((set, get) => ({
     if (currentId) return currentId;
     return addConversation('New conversation');
   },
+  thinking: false,
+  setThinking: (val) => set({ thinking: val }),
 }));

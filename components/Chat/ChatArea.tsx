@@ -64,6 +64,7 @@ export const ChatArea = () => {
 
   const justSentId = useChatStore((_) => _.justSentId);
   const setJustSentId = useChatStore((_) => _.setJustSentId);
+  const setThinking = useChatStore((_) => _.setThinking);
 
   const handleSend = async () => {
     const text = chatInput.trim();
@@ -86,6 +87,7 @@ export const ChatArea = () => {
     appendMessage(convId, { id: modelMsgId, role: 'model', content: '' });
 
     setPending(true);
+    setThinking(true);
     try {
       const res = await fetch('/api/gemini', {
         method: 'POST',
@@ -121,6 +123,7 @@ export const ChatArea = () => {
           try {
             const json = JSON.parse(data) as { text?: string };
             if (json.text) {
+              setThinking(false);
               modelReply += json.text;
               updateMessage(convId, modelMsgId, { content: modelReply });
             }
@@ -133,6 +136,7 @@ export const ChatArea = () => {
       console.error('Chat stream error:', err);
     } finally {
       setPending(false);
+      setThinking(false);
     }
   };
 

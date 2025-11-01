@@ -12,6 +12,7 @@ interface Props {
   bold?: boolean;
   delay?: number;
   chars?: string;
+  loop?: boolean;
 }
 
 export const Textz = ({
@@ -20,6 +21,7 @@ export const Textz = ({
   bold = false,
   delay = 0,
   chars = '!@#$%^&*()_+',
+  loop = false,
 }: Props) => {
   const textRef = useRef<HTMLDivElement>(null);
   useGSAP(
@@ -36,6 +38,8 @@ export const Textz = ({
           delimiter: '',
           rightToLeft: false,
         },
+        repeat: loop ? -1 : 0,
+        repeatDelay: loop ? 1 : 0,
       });
     },
     { dependencies: [text] },
