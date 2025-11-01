@@ -1,13 +1,11 @@
 'use client';
 
 import { useGSAP } from '@gsap/react';
-import { Box } from '../ui/Box';
-import { useRef } from 'react';
-import gsap from 'gsap';
 import clsx from 'clsx';
-import { Textz } from '../Util/Tezt';
+import gsap from 'gsap';
 import { SplitText } from 'gsap/all';
-import { random } from 'lodash';
+import { useRef } from 'react';
+import { Box } from '../ui/Box';
 
 interface Props {
   text: string;

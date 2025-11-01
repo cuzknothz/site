@@ -9,11 +9,15 @@ import { useEffectNext } from '@/hooks/useEffectNext';
 import gsap from 'gsap';
 import { ChatArea } from './ChatArea';
 import { Conversation } from './Conversation';
-import { SideBar } from './SideBar';
+import { SideBar } from './Sidebar';
+import { TopBar } from './TopBar';
+import { SideList } from './SideList';
 
 export const Chat = () => {
   const [chatInput, setChatInput] = useState<string>('');
   const showFullMenu = useGlobalStore((s) => s.showFullMenu);
+
+  const [showSideBar, setShowSideBar] = useState(false);
 
   const chatAreaRef = useRef<HTMLDivElement>(null);
 
@@ -31,24 +35,31 @@ export const Chat = () => {
   }, [chatInput]);
 
   return (
-    <div
-      className={clsx(
-        'fixed top-0 right-1/2 flex h-dvh w-full translate-x-1/2 sm:w-[500px]',
-      )}
-    >
-      {/* <SideBar /> */}
-      <div>
-        {/* <div className='z-999 h-[50px] w-full bg-white backdrop-blur-[5px]'>
+    <div>
+      <div
+        className={clsx(
+          'fixed top-0 right-1/2 flex h-dvh w-full max-w-[800px] translate-x-1/2 sm:w-[80vw]',
+        )}
+      >
+        <TopBar
+          setShowSideBar={setShowSideBar}
+          toogleSideBar={() => setShowSideBar((prev) => !prev)}
+          showSideBar={showSideBar}
+        />
+        <div>
+          {/* <div className='z-999 h-[50px] w-full bg-white backdrop-blur-[5px]'>
           dsahkjflsdjf
         </div> */}
-        <div className={clsx('absolute top-0 w-full pt-5')}>
-          <Conversation />
-        </div>
+          <div className={clsx('absolute top-0 w-full pt-5')}>
+            <Conversation />
+          </div>
 
-        <div ref={chatAreaRef} className={clsx('absolute w-full')}>
-          <ChatArea />
+          <div ref={chatAreaRef} className={clsx('absolute w-full')}>
+            <ChatArea />
+          </div>
         </div>
       </div>
+      {/* {showSideBar && <SideList />} */}
     </div>
   );
 };

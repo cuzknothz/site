@@ -1,5 +1,7 @@
 import { Box } from '../ui/Box';
 
 export const SideBar = () => {
-  return <Box className='w-[200px] p-[20px]'>{'App > Chat AI'}</Box>;
+  return (
+    <Box className='fixed top-0 left-0 z-[3000] h-dvh w-[300px] bg-[#fff]'></Box>
+  );
 };
