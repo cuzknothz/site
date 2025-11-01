@@ -20,6 +20,14 @@ export const ChatArea = () => {
   const { isMobile } = useIsMobile();
   const [pending, setPending] = useState(false);
 
+  const soundSend = useRef<Howl>(null);
+
+  useEffect(() => {
+    soundSend.current = new Howl({
+      src: ['/message-send.mp3'],
+    });
+  }, []);
+
   const containerRef = useRef<HTMLDivElement>(null);
   const pushMess = useChatStore((s) => s.push);
   const sendBtnRef = useRef<HTMLButtonElement>(null);
@@ -51,9 +59,7 @@ export const ChatArea = () => {
   const handleSend = async () => {
     const text = chatInput.trim();
     if (!text) return;
-    new Howl({
-      src: ['/message-send.mp3'],
-    }).play();
+    soundSend.current?.play();
 
     pushMess({ user: text });
 
@@ -251,7 +257,7 @@ export const ChatArea = () => {
 
         <div className='flex w-full justify-between p-[0px_10px_10px_10px]'>
           <Box
-            className='right-2.5 bottom-2.5 flex h-[40px] items-center justify-center gap-2.5 px-2.5 cursor-pointer'
+            className='right-2.5 bottom-2.5 flex h-[40px] cursor-pointer items-center justify-center gap-2.5 px-2.5'
             onClick={handleButtonClick}
           >
             <svg
