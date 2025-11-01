@@ -149,7 +149,7 @@ export const ChatArea = () => {
   const textAreaInputRef = useRef<HTMLTextAreaElement>(null);
 
   const animationPlaceHolder = contextSafe(() => {
-    const textTarget = 'Ask Anything';
+    const textTarget = 'Ask Anything :)';
     gsap.to(fakeSpanRef.current, {
       duration: 1,
       scrambleText: {
