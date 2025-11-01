@@ -38,9 +38,9 @@ export const Chat = () => {
     >
       {/* <SideBar /> */}
       <div>
-        <div className='z-999 h-[50px] w-full bg-white backdrop-blur-[5px]'>
+        {/* <div className='z-999 h-[50px] w-full bg-white backdrop-blur-[5px]'>
           dsahkjflsdjf
-        </div>
+        </div> */}
         <div className={clsx('absolute top-0 w-full pt-5')}>
           <Conversation />
         </div>
