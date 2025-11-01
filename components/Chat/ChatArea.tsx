@@ -10,12 +10,14 @@ import { Howl, Howler } from 'howler';
 import SimpleBar from 'simplebar-react';
 import { Scrollbar } from '../ScrollBar';
 import SendIcon from '@/assets/svg/send.svg';
+import { useIsMobile } from '@/hooks/useDeviceType';
 
 interface PreviewImage {
   file: File;
   url: string;
 }
 export const ChatArea = () => {
+  const { isMobile } = useIsMobile();
   const [pending, setPending] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -35,7 +37,7 @@ export const ChatArea = () => {
     gsap.fromTo(
       containerRef.current,
       {
-        scale: 0.9,
+        scale: isMobile ? 0.7 : 0.9,
       },
       { scale: 1, duration: 0.3, ease: 'bounce.out' },
     );
@@ -241,7 +243,7 @@ export const ChatArea = () => {
             onCompositionStart={onCompositionStart}
             onCompositionEnd={onCompositionEnd}
             rows={1}
-            className='field-sizing-content w-full resize-none p-2.5 px-[15px] focus:outline-0'
+            className='field-sizing-content w-full resize-none p-2.5 px-[15px] caret-violet-500 focus:outline-0'
             placeholder='Ask anything'
           />
           <span ref={fakeSpanRef} className='hidden' />
