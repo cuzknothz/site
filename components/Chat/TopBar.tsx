@@ -70,6 +70,8 @@ export const TopBar = ({
       {
         height: 'auto',
         width: '100%',
+        duration: 0.3,
+        // ease: 'bounce.out',
       },
     );
   });
