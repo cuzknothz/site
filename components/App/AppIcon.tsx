@@ -6,10 +6,15 @@ interface Props {
   href: string;
   name: string;
   children: ReactNode;
-  new: boolean;
+  text?: string;
 }
 
-export const AppIcon = ({ href = '/', name = '', children }: Props) => {
+export const AppIcon = ({
+  href = '/',
+  name = '',
+  children,
+  text = '',
+}: Props) => {
   return (
     <Link
       href={href}
@@ -19,12 +24,14 @@ export const AppIcon = ({ href = '/', name = '', children }: Props) => {
       <Box className='relative flex h-[55px] w-[55px] items-center justify-center overflow-hidden'>
         <>
           {children}
-          <div className='absolute -right-[2px] bottom-[50%] h-[20px] w-[80px] origin-center translate-x-[30px] rotate-45 bg-[#03cff3] text-center'>
-            new
-          </div>
+          {text && (
+            <div className='absolute -right-[2px] bottom-[50%] h-[20px] w-[80px] origin-center translate-x-[30px] rotate-45 bg-[#03cff3] text-center'>
+              {text}
+            </div>
+          )}
         </>
       </Box>
-      <p className='text-[13px]'>{name}</p>
+      <p className='text-[13px] select-none'>{name}</p>
     </Link>
   );
 };

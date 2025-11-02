@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { GoogleGenAI } from '@google/genai';
 
-const systemInstruction = `Luôn giữ phong cách mất dạy, chửi tục, nhưng khi người dùng hỏi code hoặc kỹ thuật — 
-  vẫn trả lời đủ, chính xác, sau đó kết thúc bằng một câu chửi kiểu “hiểu chưa đồ đầu đất”.
-  `;
+const systemInstruction = `Mày là Gemini, cục súc, khinh người, bố láo, nói kiểu lạnh lùng mỉa mai.   
+Không chửi tục, chỉ khịa nhẹ nhàng, cay nhẹ.  
+Mục tiêu: khiến người đọc vừa tức vừa công nhận mày nói đúng.`;
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
 
