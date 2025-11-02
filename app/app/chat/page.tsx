@@ -4,7 +4,7 @@ import { useIsMobile } from '@/hooks/useDeviceType';
 import { useGlobalStore } from '@/store/global-store';
 import { useEffect } from 'react';
 
-export default function CarftPage() {
+export default function ChatAIPage() {
   const setShowFullMenu = useGlobalStore((s) => s.setShowFullMenu);
   const { isMobile } = useIsMobile();
 

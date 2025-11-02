@@ -1,6 +1,6 @@
 'use client';
 import { Map, Marker } from 'pigeon-maps';
-import { Box } from './ui/Box';
+import { Box } from './Util/Box';
 
 interface Props {
   lat: number;

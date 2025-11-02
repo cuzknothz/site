@@ -1,7 +1,7 @@
 'use client';
 
-import { Article } from '@/components/article/Article';
-import { Textz } from '@/components/Util/Tezt';
+import { NoteList } from '@/components/Note/NoteList';
+import { TextScramble } from '@/components/Util/TextScramble';
 import { useArticleListStore } from '@/store/article-list';
 import { sleep } from '@/utils/app';
 import { List } from 'lodash';
@@ -45,11 +45,11 @@ export const NotesPage = ({ data }: Props) => {
   return (
     <div>
       <div className='flex w-full justify-between'>
-        <Textz text={'2025'} bold className='selection:bg-[#710bf7]!' />
+        <TextScramble text={'2025'} bold className='selection:bg-[#710bf7]!' />
       </div>
       <div className='mt-2.5 flex flex-col gap-2.5'>
         {data.map((i, idx) => (
-          <Article key={idx} {...i} modify={modify} idx={idx} />
+          <NoteList key={idx} {...i} modify={modify} idx={idx} />
         ))}
       </div>
     </div>

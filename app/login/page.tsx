@@ -1,16 +1,13 @@
 'use client';
-import { Box } from '@/components/ui/Box';
+import { Box } from '@/components/Util/Box';
 import { BackDrop } from '@/components/Util/BackDrop';
-import Link from 'next/link';
 import { useState } from 'react';
 
 export default function LoginPage() {
   const [userName, setUserName] = useState('');
   const [pw, setPw] = useState('');
 
-  const onLogin = () => {
-    clg;
-  };
+  const onLogin = () => {};
   return (
     <BackDrop>
       <Box className='w-[300px] p-[15px] pt-[20px]!'>

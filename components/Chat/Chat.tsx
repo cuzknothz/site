@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { Box } from '../ui/Box';
-import { Textz } from '../Util/Tezt';
+import { Box } from '../Util/Box';
+import { TextScramble } from '../Util/TextScramble';
 import { useChatStore } from '@/store/chat';
 import clsx from 'clsx';
 import { useGlobalStore } from '@/store/global-store';

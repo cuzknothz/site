@@ -15,7 +15,7 @@ interface Props {
   loop?: boolean;
 }
 
-export const Textz = ({
+export const TextScramble = ({
   text,
   className = '',
   bold = false,

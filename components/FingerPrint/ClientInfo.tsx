@@ -5,8 +5,8 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { MapPigeon } from '../Map';
 import { isBoolean } from 'lodash';
-import { Box } from '../ui/Box';
-import { Textz } from '../Util/Tezt';
+import { Box } from '../Util/Box';
+import { TextScramble } from '../Util/TextScramble';
 
 export const ClientInfo = () => {
   const [location, setLocation] = useState({ lat: 0, lon: 0 });
@@ -60,33 +60,33 @@ export const ClientInfo = () => {
     <div>
       <Box className='mb-[10px] px-[15px] py-[10px] sm:p-[15px]'>
         <div>
-          <Textz text='Your ID' />
+          <TextScramble text='Your ID' />
           <p className='text-[20px] font-bold text-[#ff8c00]'>
             {data?.visitorId || ''}
           </p>
         </div>
         <div className='mt-[10px] flex flex-wrap gap-x-[20px] gap-y-[10px]'>
           <div>
-            <Textz text='IP' />
+            <TextScramble text='IP' />
             <p className='font-bold'>{data?.ip || ''}</p>
           </div>
 
           <div>
-            <Textz text='Browser' />
+            <TextScramble text='Browser' />
             <p className='font-bold'>
               {`${data?.browserName || ''} on  ${data?.os || ''} `}
             </p>
           </div>
 
           <div>
-            <Textz text='Incognito' />
+            <TextScramble text='Incognito' />
             <p className='font-bold'>
               {yesNo(smartSignal?.incognito?.data?.result)}
             </p>
           </div>
 
           <div>
-            <Textz text='VPN' />
+            <TextScramble text='VPN' />
             <p className='font-bold'>{yesNo(smartSignal?.vpn?.data?.result)}</p>
           </div>
         </div>

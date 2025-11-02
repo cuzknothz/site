@@ -1,10 +1,10 @@
 'use client';
-import { Box } from '@/components/ui/Box';
+import { Box } from '@/components/Util/Box';
 import { BackDrop } from '@/components/Util/BackDrop';
 import { useEffect, useRef, useState } from 'react';
 import { Avatar } from './Avatar';
 import { Note } from './Note';
-import { Textz } from '@/components/Util/Tezt';
+import { TextScramble } from '@/components/Util/TextScramble';
 import { SearchInput } from './Search';
 import { spotifyApi } from '../action';
 

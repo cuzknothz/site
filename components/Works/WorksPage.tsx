@@ -1,7 +1,7 @@
 'use client';
 
-import { Article } from '@/components/article/Article';
-import { Textz } from '@/components/Util/Tezt';
+import { Article } from '@/components/Note/NoteList';
+import { TextScramble } from '@/components/Util/TextScramble';
 import { Work } from '@/components/work/Work';
 import { sleep } from '@/utils/app';
 import { useEffect, useState } from 'react';
@@ -44,7 +44,7 @@ export default function WorksPage({ data }: Props) {
 
   return (
     <div>
-      <Textz text={'2k25'} bold className='selection:bg-[#710bf7]!' />
+      <TextScramble text={'2k25'} bold className='selection:bg-[#710bf7]!' />
       <div className='mt-2.5 flex flex-col gap-2.5'>
         {data.map((i, idx) => (
           <Work key={idx} {...i} />

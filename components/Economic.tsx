@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { Textz } from './Util/Tezt';
+import { TextScramble } from './Util/TextScramble';
 import { vnTime } from '@/utils/app';
 import Image from 'next/image';
 import { format, addDays } from 'date-fns';
@@ -26,7 +26,7 @@ export const Economic = () => {
 
   return (
     <div>
-      <Textz
+      <TextScramble
         bold
         text={`Economic Calender ${format(new Date(), 'dd-MM-yyyy')}`}
         className='mb-2.5'
@@ -35,13 +35,13 @@ export const Economic = () => {
         <thead>
           <tr className='h-[30px]'>
             <th className='w-[50px] border border-gray-300'>
-              <Textz text='Time' />
+              <TextScramble text='Time' />
             </th>
             <th className='w-[55px] border border-gray-300'>
-              <Textz text='Country' />
+              <TextScramble text='Country' />
             </th>
             <th className='w-[200px] border border-gray-300'>
-              <Textz text='Event' />
+              <TextScramble text='Event' />
             </th>
             {/* <th className='border border-gray-300'>Pre | Fcast | Actual</th> */}
           </tr>
@@ -65,7 +65,7 @@ export const Economic = () => {
 
               <td className='border border-gray-300 px-2.5'>
                 <div className='line-clamp-1' title={i.comment}>
-                  <Textz text={i.indicator} />
+                  <TextScramble text={i.indicator} />
                 </div>
               </td>
             </tr>

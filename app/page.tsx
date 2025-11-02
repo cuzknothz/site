@@ -1,6 +1,6 @@
 'use client';
 import ArrowUpRightIcon from '@/assets/svg/arrow-up-right.svg';
-import { Textz } from '@/components/Util/Tezt';
+import { TextScramble } from '@/components/Util/TextScramble';
 import Spline from '@splinetool/react-spline';
 import Link from 'next/link';
 
@@ -19,11 +19,11 @@ export default function HomePage() {
         <div className='absolute right-0 bottom-2.5 h-[50px] w-[200px] bg-white dark:bg-black'></div>
       </div>
       <div>
-        <Textz text='Today' bold className='selection:bg-[#710bf7]!' />
-        <Textz text='Working as Web developer.' delay={100} />
+        <TextScramble text='Today' bold className='selection:bg-[#710bf7]!' />
+        <TextScramble text='Working as Web developer.' delay={100} />
       </div>
       <div>
-        <Textz
+        <TextScramble
           text='Link'
           bold
           className='selection:bg-[#710bf7]!'
@@ -37,7 +37,11 @@ export default function HomePage() {
               className='flex items-center'
               target='_blank'
             >
-              <Textz text={i.platform} className='underline' delay={500} />
+              <TextScramble
+                text={i.platform}
+                className='underline'
+                delay={500}
+              />
               <ArrowUpRightIcon />
             </Link>
           ))}

@@ -1,5 +1,5 @@
 'use client';
-import { Box } from '@/components/ui/Box';
+import { Box } from '@/components/Util/Box';
 import SpotifyIcon from '@/assets/svg/spotify.svg';
 import Link from 'next/link';
 

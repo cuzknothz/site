@@ -1,5 +1,5 @@
 'use client';
-import { Box } from '@/components/ui/Box';
+import { Box } from '@/components/Util/Box';
 import { SECTION } from '@/store/global-store';
 import { useGSAP } from '@gsap/react';
 import clsx from 'clsx';

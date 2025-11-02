@@ -1,6 +1,6 @@
 'use client';
 
-import { Box } from '@/components/ui/Box';
+import { Box } from '@/components/Util/Box';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import Link from 'next/link';

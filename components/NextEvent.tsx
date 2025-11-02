@@ -5,8 +5,6 @@ import { useGSAP } from '@gsap/react';
 import { addDays, format } from 'date-fns';
 import gsap from 'gsap';
 import { useEffect, useRef, useState } from 'react';
-// import useSWR from 'swr';
-// const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 export const NextEvent = () => {
   const [state, setState] = useState<EconomicEvent | null>();

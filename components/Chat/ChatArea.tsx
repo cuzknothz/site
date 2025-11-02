@@ -9,7 +9,7 @@ import gsap from 'gsap';
 import { Howl } from 'howler';
 import { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from 'react';
 import { Scrollbar } from '../ScrollBar';
-import { Box } from '../ui/Box';
+import { Box } from '../Util/Box';
 
 interface PreviewImage {
   file: File;

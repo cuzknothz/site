@@ -1,5 +1,5 @@
 import { useGSAP } from '@gsap/react';
-import { Textz } from '../Util/Tezt';
+import { TextScramble } from '../Util/TextScramble';
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { useRouter } from 'next/navigation';
@@ -32,8 +32,12 @@ export const Work = ({ title, content, link }: Props) => {
             className='rounded-[10px]'
           />
           <div>
-            <Textz text={title} bold className='selection:bg-[#3bafd9]!' />
-            <Textz
+            <TextScramble
+              text={title}
+              bold
+              className='selection:bg-[#3bafd9]!'
+            />
+            <TextScramble
               text={content}
               className='line-clamp-2 dark:selection:bg-[#3bafd9]'
               delay={200}

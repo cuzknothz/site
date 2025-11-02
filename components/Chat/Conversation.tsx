@@ -4,8 +4,8 @@ import { useChatStore } from '@/store/chat';
 import clsx from 'clsx';
 import { Fragment, useRef } from 'react';
 import { Scrollbar } from '../ScrollBar';
-import { Box } from '../ui/Box';
-import { Textz } from '../Util/Tezt';
+import { Box } from '../Util/Box';
+import { TextScramble } from '../Util/TextScramble';
 import { TextFromMe } from './TextFromMe';
 
 export const Conversation = () => {
@@ -40,7 +40,7 @@ export const Conversation = () => {
                 ) : (
                   <div className='flex w-full justify-start'>
                     <Box className='inline justify-end border-0! bg-transparent py-2.5'>
-                      {/* <Textz text={i.content} chars=' ' /> */}
+                      {/* <TextScramble text={i.content} chars=' ' /> */}
                       <p>{i.content}</p>
                     </Box>
                   </div>
@@ -76,7 +76,7 @@ export const Conversation = () => {
                   strokeLinejoin='round'
                 ></path>
               </svg>
-              <Textz text='Thinking...' loop />
+              <TextScramble text='Thinking...' loop />
             </Box>
           </div>
         )}

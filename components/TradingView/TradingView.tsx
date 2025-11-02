@@ -1,16 +1,12 @@
-// TradingViewWidget.jsx
-import React, { useEffect, useRef, memo } from 'react';
-import { Box } from '../ui/Box';
+import { useEffect, useRef } from 'react';
+import { Box } from '../Util/Box';
 
 interface Props {
   interval?: string;
   symbol?: string;
 }
 
-export function TradingViewWidget({
-  interval = '5',
-  symbol = 'BINANCE:ETHUSDT',
-}: Props) {
+export function Chart({ interval = '5', symbol = 'BINANCE:ETHUSDT' }: Props) {
   const container = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

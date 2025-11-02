@@ -3,7 +3,7 @@
 import WorksPage from '@/components/Works/WorksPage';
 import { getAllWork } from '../actions';
 
-export default async function WPage() {
+export default async function WorkPage() {
   const { ok, data } = await getAllWork();
   return (
     <div>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useGlobalStore } from '@/store/global-store';
+import { useSquezeStore } from '@/store/squeze';
 import devfools from 'devfools';
 import gsap from 'gsap';
 import {
@@ -11,10 +12,8 @@ import {
   SplitText,
 } from 'gsap/all';
 import { ReactNode, useCallback, useEffect } from 'react';
-import { Squeze } from './Util/Confirm';
-import { useSquezeStore } from '@/store/squeze';
-import SimpleBar from 'simplebar-react';
 import { Scrollbar } from './ScrollBar';
+import { Squeze } from './Util/Confirm';
 
 interface Props {
   children: ReactNode;

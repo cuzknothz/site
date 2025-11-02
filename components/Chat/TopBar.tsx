@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { useRef } from 'react';
 import { useClickAway } from 'react-use';
 import { Scrollbar } from '../ScrollBar';
-import { Box } from '../ui/Box';
+import { Box } from '../Util/Box';
 
 interface Props {
   setShowSideBar: (val: boolean) => void;

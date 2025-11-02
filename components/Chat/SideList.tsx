@@ -1,4 +1,4 @@
-import { Box } from '../ui/Box';
+import { Box } from '../Util/Box';
 import { BackDrop } from '../Util/BackDrop';
 
 export const SideList = () => {

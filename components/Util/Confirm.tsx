@@ -1,9 +1,9 @@
 'use client';
 
 import { useSquezeStore } from '@/store/squeze';
-import { Box } from '../ui/Box';
+import { Box } from './Box';
 import { BackDrop } from './BackDrop';
-import { Textz } from './Tezt';
+import { TextScramble } from './TextScramble';
 import CloseIcon from '@/assets/svg/close.svg';
 import { useRef } from 'react';
 import { useClickAway } from 'react-use';
@@ -39,7 +39,7 @@ export const Squeze = ({
           <Box className='w-[300px] bg-white dark:bg-black'>
             {!hideTitle && (
               <div className='flex h-10 w-full items-center justify-between border-b border-[#00000028] px-2.5 dark:border-[#65656563]'>
-                <Textz text={title} bold />
+                <TextScramble text={title} bold />
                 <button onClick={close} className='cursor-pointer'>
                   <CloseIcon />
                 </button>
@@ -47,7 +47,7 @@ export const Squeze = ({
             )}
 
             <div className='px-2.5 py-5'>
-              <Textz text={content} delay={500} />
+              <TextScramble text={content} delay={500} />
               <div className='mt-2.5 flex justify-between gap-2.5'>
                 <Box
                   className='flex h-10 w-[100px] items-center justify-center'

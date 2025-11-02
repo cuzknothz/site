@@ -1,7 +1,7 @@
 'use client';
 
 import { Code } from '../Util/Code';
-import { Textz } from '../Util/Tezt';
+import { TextScramble } from '../Util/TextScramble';
 
 export const ArticleDetail = () => {
   const code = `
@@ -20,7 +20,7 @@ export default function RootLayout({
 
   return (
     <div>
-      <Textz bold text={'Note > ' + ''} className='mb-2.5' />
+      <TextScramble bold text={'Note > ' + ''} className='mb-2.5' />
       <Code code={code} />
     </div>
   );

@@ -3,10 +3,10 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import { Textz } from '../Util/Tezt';
+import { TextScramble } from '../Util/TextScramble';
 import CloseIcon from '@/assets/svg/close.svg';
 import { useSquezeStore } from '@/store/squeze';
-import { Box } from '../ui/Box';
+import { Box } from '../Util/Box';
 import clsx from 'clsx';
 
 interface Props {
@@ -16,7 +16,7 @@ interface Props {
   idx: number;
 }
 
-export const Article = ({ title, content, modify, idx }: Props) => {
+export const NoteList = ({ title, content, modify, idx }: Props) => {
   const articleRef = useRef<HTMLDivElement>(null);
   const setModifyMode = useArticleListStore((state) => state.setModifyMode);
   const modifyContainerRef = useRef<HTMLDivElement>(null);
@@ -63,9 +63,13 @@ export const Article = ({ title, content, modify, idx }: Props) => {
         )}
       >
         <Link href={`${'/notes/' + 1}`}>
-          <Textz text={title} bold className='inline selection:bg-[#3bafd9]!' />
+          <TextScramble
+            text={title}
+            bold
+            className='inline selection:bg-[#3bafd9]!'
+          />
 
-          <Textz
+          <TextScramble
             text={content}
             className='line-clamp-3 dark:selection:bg-[#3bafd9]'
             delay={200}
