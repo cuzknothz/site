@@ -19,7 +19,7 @@ export default function CarftPage() {
           <div className='col-span-1 h-[250px] sm:col-span-2 sm:h-[600px]'>
             <TradingViewWidget symbol='BINANCE:ETHUSDT' interval='5' />
           </div>
-          <Economic />
+          {/* <Economic /> */}
         </div>
       </div>
     </Scrollbar>

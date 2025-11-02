@@ -4,13 +4,25 @@ import { Code } from '../Util/Code';
 import { Textz } from '../Util/Tezt';
 
 export const ArticleDetail = () => {
-  const code = `🐤`;
+  const code = `
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  )
+}
+  `;
 
   return (
     <div>
       <Textz
         bold
-        text={'Articles > ' + 'A slightly belated 2024 retrospective'}
+        text={'Note > ' + ''}
         className='mb-2.5'
       />
       <Code code={code} />

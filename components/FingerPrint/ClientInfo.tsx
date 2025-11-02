@@ -5,6 +5,8 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { MapPigeon } from '../Map';
 import { isBoolean } from 'lodash';
+import { Box } from '../ui/Box';
+import { Textz } from '../Util/Tezt';
 
 export const ClientInfo = () => {
   const [location, setLocation] = useState({ lat: 0, lon: 0 });
@@ -59,12 +61,46 @@ export const ClientInfo = () => {
     }
     return val ? 'Yes' : 'No';
   }
+  console.log('g', data);
 
   return (
     <div>
+      <Box className='mb-[10px] px-[15px] py-[20px]'>
+        <div>
+          <Textz text='YOUR ID' />
+          <p className='text-[20px] font-bold text-[#ff8c00]'>
+            {data?.visitorId || ''}
+          </p>
+        </div>
+        <div className='mt-[10px] flex flex-wrap gap-x-[20px] gap-y-[10px]'>
+          <div>
+            <Textz text='IP' />
+            <p className='font-bold'>{data?.ip || ''}</p>
+          </div>
+
+          <div>
+            <Textz text='Browser' />
+            <p className='font-bold'>
+              {`${data?.browserName || ''} on  ${data?.os || ''} `}
+            </p>
+          </div>
+
+          <div>
+            <Textz text='Incognito' />
+            <p className='font-bold'>
+              {yesNo(smartSignal?.incognito?.data?.result)}
+            </p>
+          </div>
+
+          <div>
+            <Textz text='VPN' />
+            <p className='font-bold'>{yesNo(smartSignal?.vpn?.data?.result)}</p>
+          </div>
+        </div>
+      </Box>
       <MapPigeon lat={location.lat} lon={location.lon} />
 
-      <div className='mt-[20px]'>
+      {/* <div className='mt-[20px]'>
         <div className='flex gap-[5px]'>
           <p> IP Device:</p>
           <p className='text-[#a206fc]'>{data?.ip || ''}</p>
@@ -96,7 +132,7 @@ export const ClientInfo = () => {
             {isDetected(smartSignal?.vpn?.data?.result)}
           </p>
         </div>
-      </div>
+      </div> */}
       <div></div>
     </div>
   );

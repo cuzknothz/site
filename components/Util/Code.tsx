@@ -1,5 +1,8 @@
 'use client';
 
+import TerminalIcon from '@/assets/svg/terminal.svg';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
 import { Fragment, useEffect, useRef, useState } from 'react';
 import {
   BundledLanguage,
@@ -7,10 +10,6 @@ import {
   createHighlighter,
   HighlighterGeneric,
 } from 'shiki';
-import { Scrollbar } from 'react-scrollbars-custom';
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
-import TerminalIcon from '@/assets/svg/terminal.svg';
 
 interface Props {
   code: string;

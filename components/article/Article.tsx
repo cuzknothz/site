@@ -62,7 +62,7 @@ export const Article = ({ title, content, modify, idx }: Props) => {
           modify === modifyMode.modify ? 'pb-2.5!' : 'pb-[15px]',
         )}
       >
-        <Link href={`${'/articles/' + 1}`}>
+        <Link href={`${'/notes/' + 1}`}>
           <Textz text={title} bold className='inline selection:bg-[#3bafd9]!' />
 
           <Textz
