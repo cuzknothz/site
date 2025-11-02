@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-export const useInitApp = (cb: Function = () => {}) => {
+export const useInitApp = (cb: Function = () => {}, time = 2000) => {
   const timer = useRef<NodeJS.Timeout>(null);
   const [initPending, setInitPending] = useState(true);
 
@@ -8,7 +8,7 @@ export const useInitApp = (cb: Function = () => {}) => {
     timer.current = setTimeout(() => {
       setInitPending(false);
       cb();
-    }, 1000);
+    }, time);
 
     return () => {
       if (timer.current) {

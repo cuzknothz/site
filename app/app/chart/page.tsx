@@ -7,7 +7,7 @@ import { useInitApp } from '@/hooks/useInitApp';
 import ThreeChartIcon from '@/assets/svg/3chart.svg';
 
 export default function ChartPage() {
-  const { initPending } = useInitApp();
+  const { initPending } = useInitApp(() => {}, 3000);
 
   return (
     <>
