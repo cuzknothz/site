@@ -52,7 +52,7 @@ export const SpotifyApp = () => {
   return (
     <div ref={containerRef}>
       <BackDrop>
-        {initPending && <SpotifyIcon className='h-[150px] w-[150px]' />}
+        {initPending && <SpotifyIcon className='h-[200px] w-[200px]' />}
         {showNote && <Note setShowNote={setShowNote} />}
       </BackDrop>
 
