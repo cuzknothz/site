@@ -1,5 +1,4 @@
 'use client';
-
 import ThreeChartIcon from '@/assets/svg/3chart.svg';
 import AiIcon from '@/assets/svg/ai.svg';
 import FingerPrintIcon from '@/assets/svg/finger-print.svg';

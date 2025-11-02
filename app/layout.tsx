@@ -4,14 +4,17 @@ import { Menu } from '@/components/Menu/Menu';
 import { NextEvent } from '@/components/NextEvent';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import clsx from 'clsx';
 import { Metadata, Viewport } from 'next';
 import { Cascadia_Mono as AppFont } from 'next/font/google';
-import clsx from 'clsx';
 import './globals.css';
 
 export const metadata: Metadata = {
   title: 'illuzion',
   description: 'illuzion',
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export const viewport: Viewport = {
@@ -24,7 +27,11 @@ export const viewport: Viewport = {
 };
 
 const appFont = AppFont({
-  subsets: ['latin'],
+  subsets: ['latin', 'vietnamese'],
+  adjustFontFallback: false,
+  weight: ['400', '700'],
+  display: 'swap',
+  fallback: ['ui-monospace'],
 });
 
 export default function RootLayout({
