@@ -62,7 +62,7 @@ export const ClientInfo = () => {
     <>
       {isLoading ? (
         <BackDrop>
-          <FingerPrintIcon className='h-[180px] w-[180px]' />
+          <FingerPrintIcon className='h-[180px] w-[180px] -translate-y-[50px]' />
         </BackDrop>
       ) : (
         <div>
