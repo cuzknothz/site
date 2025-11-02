@@ -9,9 +9,11 @@ import { MapPigeon } from '../Map';
 import { BackDrop } from '../Util/BackDrop';
 import { Box } from '../Util/Box';
 import { TextScramble } from '../Util/TextScramble';
+import { useInitApp } from '@/hooks/useInitApp';
 
 export const ClientInfo = () => {
   const [location, setLocation] = useState({ lat: 0, lon: 0 });
+  const { initPending } = useInitApp();
 
   const { isLoading, error, data, getData } = useVisitorData(
     { extendedResult: true },
@@ -60,48 +62,48 @@ export const ClientInfo = () => {
 
   return (
     <>
-      {isLoading ? (
+      {initPending && (
         <BackDrop>
           <FingerPrintIcon className='h-[180px] w-[180px] -translate-y-[50px]' />
         </BackDrop>
-      ) : (
-        <div>
-          <Box className='mb-[10px] px-[15px] py-[10px] sm:p-[15px]'>
+      )}
+
+      <div>
+        <Box className='mb-[10px] px-[15px] py-[10px] sm:p-[15px]'>
+          <div>
+            <TextScramble text='Your ID' />
+            <p className='text-[20px] font-bold text-[#ff8c00]'>
+              {onlyText(data?.visitorId)}
+            </p>
+          </div>
+          <div className='mt-[10px] flex flex-wrap gap-x-[20px] gap-y-[10px]'>
             <div>
-              <TextScramble text='Your ID' />
-              <p className='text-[20px] font-bold text-[#ff8c00]'>
-                {onlyText(data?.visitorId)}
+              <TextScramble text='IP' />
+              <p className='font-bold'>{onlyText(data?.ip)}</p>
+            </div>
+
+            <div>
+              <TextScramble text='Browser' />
+              <p className='font-bold'>
+                {`${onlyText(data?.browserName)} on  ${onlyText(data?.os)} `}
               </p>
             </div>
-            <div className='mt-[10px] flex flex-wrap gap-x-[20px] gap-y-[10px]'>
-              <div>
-                <TextScramble text='IP' />
-                <p className='font-bold'>{onlyText(data?.ip)}</p>
-              </div>
 
-              <div>
-                <TextScramble text='Browser' />
-                <p className='font-bold'>
-                  {`${onlyText(data?.browserName)} on  ${onlyText(data?.os)} `}
-                </p>
-              </div>
-
-              <div>
-                <TextScramble text='Incognito' />
-                <p className='font-bold'>{yesNo(data?.incognito)}</p>
-              </div>
-
-              <div>
-                <TextScramble text='VPN' />
-                <p className='font-bold'>
-                  {yesNo(get(smartSignal, 'vpn.data.result', undefined))}
-                </p>
-              </div>
+            <div>
+              <TextScramble text='Incognito' />
+              <p className='font-bold'>{yesNo(data?.incognito)}</p>
             </div>
-          </Box>
-          <MapPigeon lat={location.lat} lon={location.lon} />
-        </div>
-      )}
+
+            <div>
+              <TextScramble text='VPN' />
+              <p className='font-bold'>
+                {yesNo(get(smartSignal, 'vpn.data.result', undefined))}
+              </p>
+            </div>
+          </div>
+        </Box>
+        <MapPigeon lat={location.lat} lon={location.lon} />
+      </div>
     </>
   );
 };
