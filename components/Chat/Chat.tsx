@@ -1,17 +1,12 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
-import { Box } from '../Util/Box';
-import { TextScramble } from '../Util/TextScramble';
-import { useChatStore } from '@/store/chat';
-import clsx from 'clsx';
-import { useGlobalStore } from '@/store/global-store';
 import { useEffectNext } from '@/hooks/useEffectNext';
+import { useGlobalStore } from '@/store/global-store';
+import clsx from 'clsx';
 import gsap from 'gsap';
+import { useEffect, useRef, useState } from 'react';
 import { ChatArea } from './ChatArea';
 import { Conversation } from './Conversation';
-import { SideBar } from './Sidebar';
 import { TopBar } from './TopBar';
-import { SideList } from './SideList';
 
 export const Chat = () => {
   const [chatInput, setChatInput] = useState<string>('');
@@ -47,9 +42,6 @@ export const Chat = () => {
           showSideBar={showSideBar}
         />
         <div>
-          {/* <div className='z-999 h-[50px] w-full bg-white backdrop-blur-[5px]'>
-          dsahkjflsdjf
-        </div> */}
           <div className={clsx('absolute top-0 w-full')}>
             <Conversation />
           </div>
@@ -59,7 +51,6 @@ export const Chat = () => {
           </div>
         </div>
       </div>
-      {/* {showSideBar && <SideList />} */}
     </div>
   );
 };
