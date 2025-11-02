@@ -65,7 +65,7 @@ export const ClientInfo = () => {
 
   return (
     <div>
-      <Box className='mb-[10px] px-[15px] py-[20px]'>
+      <Box className='mb-[10px] p-[15px]'>
         <div>
           <Textz text='YOUR ID' />
           <p className='text-[20px] font-bold text-[#ff8c00]'>
@@ -99,41 +99,6 @@ export const ClientInfo = () => {
         </div>
       </Box>
       <MapPigeon lat={location.lat} lon={location.lon} />
-
-      {/* <div className='mt-[20px]'>
-        <div className='flex gap-[5px]'>
-          <p> IP Device:</p>
-          <p className='text-[#a206fc]'>{data?.ip || ''}</p>
-        </div>
-
-        <div className='flex gap-[5px]'>
-          <p> Trình Duyệt:</p>
-          <p className='text-[#a206fc]'>
-            {`${data?.browserName || ''} ${data?.browserVersion || ''} `}
-          </p>
-        </div>
-
-        <div className='flex gap-[5px]'>
-          <p> Tab Ẩn Danh:</p>
-          <p className='text-[#a206fc]'>
-            {yesNo(smartSignal?.incognito?.data?.result)}
-          </p>
-        </div>
-        <div className='flex gap-[5px]'>
-          <p> Hệ điều hành:</p>
-          <p className='text-[#a206fc]'>
-            {`${data?.os || ''} ${data?.osVersion || ''}`}
-          </p>
-        </div>
-
-        <div className='flex gap-[5px]'>
-          <p> VPN:</p>
-          <p className='text-[#a206fc]'>
-            {isDetected(smartSignal?.vpn?.data?.result)}
-          </p>
-        </div>
-      </div> */}
-      <div></div>
     </div>
   );
 };
