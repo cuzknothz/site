@@ -1,76 +1,97 @@
 'use client';
-import { EconomicEvent } from '@/types/app';
-import { vnTime } from '@/utils/app';
+import { eventMitt } from '@/helper/event';
 import { useGSAP } from '@gsap/react';
-import { addDays, format } from 'date-fns';
 import gsap from 'gsap';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+
+const SPEED_PX_PER_SEC = 120;
+const HIDE_DELAY_MS = 200; 
 
 export const NextEvent = () => {
-  const [state, setState] = useState<EconomicEvent | null>();
+  const [message, setMessage] = useState<string>('');
   const eventRef = useRef<HTMLDivElement>(null);
-  const eventParentRef = useRef<HTMLDivElement>(null);
+  const parentRef = useRef<HTMLDivElement>(null);
+  const tlRef = useRef<gsap.core.Timeline | null>(null);
 
-  useEffect(() => {
-    const handler = async () => {
-      const today = format(new Date(), 'yyyy-MM-dd');
-      const nextDay = format(addDays(new Date(), 1), 'yyyy-MM-dd');
-      const res = await fetch(
-        `https://chartevents-reuters.tradingview.com/events?minImportance=1&from=${today}T00:00:00.000Z&to=${nextDay}T00:00:00.000Z`,
-      );
+  const reducedMotion = useMemo(
+    () =>
+      typeof window !== 'undefined' &&
+      window.matchMedia?.('(prefers-reduced-motion: reduce)').matches,
+    [],
+  );
 
-      const data = await res.json();
+  const playOnce = () => {
+    if (!message) return;
+    const parentW = parentRef.current?.offsetWidth ?? 0;
+    const eventW = eventRef.current?.offsetWidth ?? 0;
 
-      if (data.result[0]) {
-        setState(data.result[0]);
-      } else {
-        setState(null);
-      }
-    };
-    handler();
-  }, []);
+    const distance = parentW + eventW;
+
+    const duration = Math.min(
+      Math.max(distance / SPEED_PX_PER_SEC, 2), 
+      30, 
+    );
+
+    tlRef.current?.kill();
+
+    if (reducedMotion) {
+      gsap.set(eventRef.current, { right: 0 });
+      window.setTimeout(() => setMessage(''), 2000);
+      return;
+    }
+
+    gsap.set(eventRef.current, { right: -eventW });
+
+    const tl = gsap.timeline({
+      onComplete: () => {
+        window.setTimeout(() => setMessage(''), HIDE_DELAY_MS);
+      },
+    });
+
+    tl.to(eventRef.current, {
+      right: distance,
+      duration,
+      ease: 'none',
+    });
+
+    tlRef.current = tl;
+  };
 
   useGSAP(() => {
-    const wParent = eventParentRef.current!.getBoundingClientRect().width ?? 0;
-    const wEvent = eventRef.current!.getBoundingClientRect().width ?? 0;
-    gsap.to(eventRef.current, {
-      right: wParent + wEvent,
-      duration: 10,
-      ease: 'none',
-      repeat: -1,
+    if (message) playOnce();
+    return () => tlRef.current?.kill();
+  }, [message]);
+
+  useEffect(() => {
+    const handler = () => {
+      setMessage(`🟢 New Chat created`);
+    };
+    eventMitt.on('newChat', handler);
+    return () => eventMitt.off('newChat', handler);
+  }, []);
+
+  useEffect(() => {
+    const ro = new ResizeObserver(() => {
+      if (message) playOnce();
     });
-  }, [state]);
+    if (parentRef.current) ro.observe(parentRef.current);
+    if (eventRef.current) ro.observe(eventRef.current);
+    return () => ro.disconnect();
+  }, [message]);
 
   return (
     <div
-      className='fixed top-[5px] right-1/2 z-200 h-5 w-full translate-x-1/2 overflow-hidden sm:w-[500px]'
-      ref={eventParentRef}
+      ref={parentRef}
+      className='pointer-events-none fixed top-[5px] right-1/2 z-[200] h-5 w-full translate-x-1/2 overflow-hidden'
     >
-      <div
-        className='absolute top-0 right-0 flex w-max translate-x-full gap-[5px]'
-        ref={eventRef}
-      >
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          width='18'
-          height='18'
-          viewBox='0 0 24 24'
-          fill='none'
-          stroke='currentColor'
-          strokeWidth='1'
-          strokeLinecap='round'
-          strokeLinejoin='round'
+      {message && (
+        <div
+          ref={eventRef}
+          className='absolute top-0 right-0 flex w-max gap-[8px] whitespace-nowrap'
         >
-          <path d='M16 7h6v6' />
-          <path d='m22 7-8.5 8.5-5-5L2 17' />
-        </svg>
-        <span> Next Economic Event:</span>
-        {state ? (
-          <span>{`${vnTime(state.date)} ${state.country} ${state.indicator}`}</span>
-        ) : (
-          <span> None </span>
-        )}
-      </div>
+          <span>{message}</span>
+        </div>
+      )}
     </div>
   );
 };

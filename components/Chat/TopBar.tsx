@@ -10,6 +10,7 @@ import { useClickAway } from 'react-use';
 import { Scrollbar } from '../ScrollBar';
 import { Box } from '../Util/Box';
 import NewChatIcon from '@/assets/svg/ai-new-chat.svg';
+import { eventMitt } from '@/helper/event';
 
 interface Props {
   setShowSideBar: (val: boolean) => void;
@@ -35,6 +36,7 @@ export const TopBar = ({
       'Cuộc trò chuyện mới ' + crypto.randomUUID(),
     );
     setCurrent(newChatId);
+    eventMitt.emit('newChat', '');
   };
 
   const onClickSideBar = () => {
@@ -77,7 +79,7 @@ export const TopBar = ({
       ref={containerRef}
       className='absolute z-10 h-[60px] w-full bg-[#ffffff00]'
     >
-      <div className='mt-[25px]'>
+      <div className='mt-[30px]'>
         <div className='relative mx-[10px] flex justify-between'>
           <div ref={listConversationRef}>
             <Box

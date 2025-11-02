@@ -7,9 +7,9 @@ import { useEffect, useRef, useState } from 'react';
 import { ChatArea } from './ChatArea';
 import { Conversation } from './Conversation';
 import { TopBar } from './TopBar';
+import { NewChatAppend } from './NewChatAppend';
 
 export const Chat = () => {
-  const [chatInput, setChatInput] = useState<string>('');
   const showFullMenu = useGlobalStore((s) => s.showFullMenu);
 
   const [showSideBar, setShowSideBar] = useState(false);
@@ -22,12 +22,6 @@ export const Chat = () => {
       delay: showFullMenu ? 0 : 0.1,
     });
   }, [showFullMenu]);
-
-  useEffectNext(() => {
-    if (!chatInput) {
-      return;
-    }
-  }, [chatInput]);
 
   return (
     <div>
@@ -50,6 +44,7 @@ export const Chat = () => {
             <ChatArea />
           </div>
         </div>
+        {/* <NewChatAppend/> */}
       </div>
     </div>
   );
