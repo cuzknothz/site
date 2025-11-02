@@ -5,7 +5,7 @@ import gsap from 'gsap';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 const SPEED_PX_PER_SEC = 120;
-const HIDE_DELAY_MS = 200; 
+const HIDE_DELAY_MS = 200;
 
 export const NextEvent = () => {
   const [message, setMessage] = useState<string>('');
@@ -27,10 +27,7 @@ export const NextEvent = () => {
 
     const distance = parentW + eventW;
 
-    const duration = Math.min(
-      Math.max(distance / SPEED_PX_PER_SEC, 2), 
-      30, 
-    );
+    const duration = Math.min(Math.max(distance / SPEED_PX_PER_SEC, 2), 30);
 
     tlRef.current?.kill();
 

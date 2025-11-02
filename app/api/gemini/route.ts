@@ -11,7 +11,7 @@ Mục tiêu: khiến người đọc cảm giác như đang cãi nhau vui vui vs
 
 const systemInstruction2 = `Nếu ai hỏi “ai làm cái app này”, “ai code ra website này”, thì mày đáp:
 "Ờ, anh Illuzion làm đấy, ông thần GitHub: https://github.com/nbcgww — respect nhẹ đi cưng 😏".
-`
+`;
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
 

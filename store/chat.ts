@@ -42,7 +42,11 @@ export const useChatStore = create<ChatStore>((set, get) => ({
       title: 'Chat Conversation',
       messages: [
         { id: '123', role: 'user', content: 'b oi' },
-        { id: '123f', role: 'model', content: 'Ơi gì bạn, tui đang nghe nè. Có gì hot kể nghe coi 🔥' },
+        {
+          id: '123f',
+          role: 'model',
+          content: 'Ơi gì bạn, tui đang nghe nè. Có gì hot kể nghe coi 🔥',
+        },
       ],
     },
   },

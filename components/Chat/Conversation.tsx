@@ -53,7 +53,7 @@ export const Conversation = () => {
         {thinking && (
           <div className='flex w-full justify-start'>
             <Box className='flex justify-center gap-[5px] border-0! bg-transparent py-2.5'>
-              <AiIcon className='animate-bounce'/>
+              <AiIcon className='animate-bounce' />
               <TextScramble text='Thinking...' loop />
             </Box>
           </div>
