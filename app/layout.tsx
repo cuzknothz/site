@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: 'illuzion',
   description: 'illuzion',
   icons: {
-    icon: '/favicon.ico',
+    icon: '/favicon/home.svg',
   },
 };
 
