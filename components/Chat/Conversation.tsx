@@ -42,7 +42,7 @@ export const Conversation = () => {
                   <div className='flex w-full justify-start'>
                     <Box className='inline justify-end border-0! bg-transparent py-2.5'>
                       {/* <TextScramble text={i.content} chars=' ' /> */}
-                      <p>{i.content}</p>
+                      <p className='whitespace-pre-line'>{i.content}</p>
                     </Box>
                   </div>
                 )}
