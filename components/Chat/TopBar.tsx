@@ -98,7 +98,7 @@ export const TopBar = ({
           <div></div>
           <Box
             onClick={onNewChat}
-            className='flex h-[40px] items-center justify-center gap-[5px] bg-[#ffffff62] px-[10px] backdrop-blur-[2px]'
+            className='flex h-[40px] items-center justify-center gap-[5px] bg-[#ffffff62] px-[10px] backdrop-blur-[2px] cursor-pointer'
           >
             <button>
               <svg
