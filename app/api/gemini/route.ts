@@ -17,8 +17,6 @@ export async function POST(req: NextRequest) {
     },
   });
 
-  console.log('history', history);
-
   const stream = await chat.sendMessageStream({ message: userMessage });
 
   const encoder = new TextEncoder();

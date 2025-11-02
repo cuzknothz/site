@@ -36,12 +36,8 @@ export const SpotifyApp = () => {
       'BQAwzxZGTcOrLqpKkSQht0oyezMyunpKCeciWdtaHzDrhyJa87Tz_h7zdcjTUb-PYFRYgaU6JyNYYvIJ7pIky8Vu_50ExJPkcIZmR0uPYxJKagdB5Z5nBl80ha-bxfi6o5rxiaj0S6U',
     );
     spotifyApi.searchTracks('artist:Love').then(
-      function (data) {
-        console.log(data.body);
-      },
-      function (err) {
-        console.log('Something went wrong!', err);
-      },
+      function (data) {},
+      function (err) {},
     );
   }, []);
   return (

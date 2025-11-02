@@ -53,7 +53,6 @@ export const Code = ({ code = '' }: Props) => {
     const code = codeContainer.current!.querySelector('code')?.innerText;
     if (code) {
       navigator.clipboard.writeText(code).then(() => {
-        console.log('copied');
         setIsCopied(true);
         setTimeout(() => {
           setIsCopied(false);

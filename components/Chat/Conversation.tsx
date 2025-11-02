@@ -2,7 +2,7 @@
 import { useMutationObserver } from '@/hooks/useMutationObserver';
 import { useChatStore } from '@/store/chat';
 import clsx from 'clsx';
-import { Activity, Fragment, useRef } from 'react';
+import { Fragment, useRef } from 'react';
 import { Scrollbar } from '../ScrollBar';
 import { Box } from '../ui/Box';
 import { Textz } from '../Util/Tezt';
@@ -13,21 +13,9 @@ export const Conversation = () => {
   const currentId = useChatStore((s) => s.currentId);
   const justSentId = useChatStore((s) => s.justSentId);
   const thinking = useChatStore((s) => s.thinking);
-
-  console.log('currentId', currentId);
-
-  console.log(currentId && conversations[currentId]);
-
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // useEffect(() => {
-  //   // containerRef.current!.scrollIntoView(false);
-  //   containerRef.current!.scrollTop = containerRef.current!.scrollHeight;
-  // }, [list.length]);
-
-  useMutationObserver(containerRef.current!, () => {
-    console.log('NEED SCROLL');
-  });
+  useMutationObserver(containerRef.current!, () => {});
 
   return (
     <Scrollbar

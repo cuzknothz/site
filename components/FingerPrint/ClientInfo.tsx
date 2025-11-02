@@ -24,10 +24,6 @@ export const ClientInfo = () => {
       console.error('ERROR', e);
     }
   }
-  console.log('location', location);
-
-  console.log('data', data);
-
   const [smartSignal, setSmartSignal] = useState();
 
   useEffect(() => {
@@ -40,14 +36,12 @@ export const ClientInfo = () => {
           requestId: data.requestId,
           visitorId: data.visitorId,
         });
-        console.log('res', res.data);
         setSmartSignal(res.data.signals);
       }
     };
 
     getSmartSignal();
   }, [data?.requestId, data?.visitorId]);
-  // console.log('data', smartSignal);
 
   function isDetected(val: boolean) {
     if (!isBoolean(val)) {
@@ -61,11 +55,10 @@ export const ClientInfo = () => {
     }
     return val ? 'Yes' : 'No';
   }
-  console.log('g', data);
 
   return (
     <div>
-      <Box className='mb-[10px] sm:p-[15px] px-[15px] py-[10px]'>
+      <Box className='mb-[10px] px-[15px] py-[10px] sm:p-[15px]'>
         <div>
           <Textz text='Your ID' />
           <p className='text-[20px] font-bold text-[#ff8c00]'>

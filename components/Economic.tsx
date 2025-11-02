@@ -18,7 +18,6 @@ export const Economic = () => {
       const data = await res.json();
 
       setState(data.result);
-      console.log('data', data);
     };
     handler();
   }, []);

@@ -20,11 +20,7 @@ export default function RootLayout({
 
   return (
     <div>
-      <Textz
-        bold
-        text={'Note > ' + ''}
-        className='mb-2.5'
-      />
+      <Textz bold text={'Note > ' + ''} className='mb-2.5' />
       <Code code={code} />
     </div>
   );

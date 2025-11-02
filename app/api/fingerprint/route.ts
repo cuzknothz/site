@@ -17,11 +17,8 @@ export async function POST(req: NextRequest) {
     }
 
     const event = await fp.getEvent(requestId);
-    console.log('event.products', event.products);
 
     const smart = event.products;
-
-    console.log('smart', smart);
 
     const signals = {
       vpn: smart?.vpn ?? null,
@@ -32,8 +29,6 @@ export async function POST(req: NextRequest) {
       bot: smart?.bot ?? null,
       ipLocation: smart?.ipLocation ?? null, // country, city, etc.
     };
-
-    console.log('signals', signals);
 
     return NextResponse.json({ ok: true, signals });
   } catch (e: any) {

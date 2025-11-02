@@ -13,11 +13,6 @@ export const NextEvent = () => {
   const eventRef = useRef<HTMLDivElement>(null);
   const eventParentRef = useRef<HTMLDivElement>(null);
 
-  // const { data, error } = useSWR(
-  //   `/api/economic?minImportance=1&from=${today}T00:00:00.000Z&to=${nextDay}T00:00:00.000Z`,
-  //   fetcher,
-  // );
-  // console.log(data);
   useEffect(() => {
     const handler = async () => {
       const today = format(new Date(), 'yyyy-MM-dd');

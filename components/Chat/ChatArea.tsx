@@ -1,17 +1,15 @@
 'use client';
-import { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from 'react';
-import { Box } from '../ui/Box';
-import clsx from 'clsx';
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
-import { useGlobalStore } from '@/store/global-store';
-import { useChatStore } from '@/store/chat';
-import { Howl, Howler } from 'howler';
-import SimpleBar from 'simplebar-react';
-import { Scrollbar } from '../ScrollBar';
 import SendIcon from '@/assets/svg/send.svg';
-import { useIsMobile } from '@/hooks/useDeviceType';
 import { toGeminiHistory } from '@/helper/app';
+import { useIsMobile } from '@/hooks/useDeviceType';
+import { useChatStore } from '@/store/chat';
+import { useGSAP } from '@gsap/react';
+import clsx from 'clsx';
+import gsap from 'gsap';
+import { Howl } from 'howler';
+import { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from 'react';
+import { Scrollbar } from '../ScrollBar';
+import { Box } from '../ui/Box';
 
 interface PreviewImage {
   file: File;
@@ -151,7 +149,6 @@ export const ChatArea = () => {
   };
 
   const onKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
-    // Chặn Enter: nếu chỉ Enter (không kèm Shift)
     if (e.key === 'Enter' && !e.shiftKey && !isComposing.current) {
       e.preventDefault();
       sendBtnRef.current!.click();
@@ -161,7 +158,6 @@ export const ChatArea = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [images, setImages] = useState<PreviewImage[]>([]);
   const [isDragging, setIsDragging] = useState(false);
-  // Xử lý khi chọn/thả ảnh
   const handleImageFiles = (files: FileList | File[]) => {
     const imageFiles = Array.from(files).filter((file) =>
       file.type.startsWith('image/'),
@@ -173,27 +169,21 @@ export const ChatArea = () => {
     setImages((prev) => [...prev, ...newImages]);
   };
 
-  // Bấm nút để upload
   const handleButtonClick = () => {
     fileInputRef.current?.click();
   };
 
-  // Chọn file từ input
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       handleImageFiles(e.target.files);
-      // Reset input để có thể chọn lại cùng ảnh nếu muốn
       e.target.value = '';
     }
   };
 
-  // Drag & Drop area
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     setIsDragging(true);
   };
-
-  // console.log({ isDragging });
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -207,7 +197,6 @@ export const ChatArea = () => {
     setIsDragging(false);
   };
 
-  // Xoá ảnh preview
   const handleRemoveImage = (url: string) => {
     setImages((prev) => prev.filter((img) => img.url !== url));
     URL.revokeObjectURL(url); // Giải phóng bộ nhớ
