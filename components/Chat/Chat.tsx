@@ -44,7 +44,6 @@ export const Chat = () => {
             <ChatArea />
           </div>
         </div>
-        {/* <NewChatAppend/> */}
       </div>
     </div>
   );

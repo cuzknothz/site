@@ -9,7 +9,7 @@ import { SECTION, useGlobalStore } from '@/store/global-store';
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useRef } from 'react';
 import { MenuItem } from './Item';
 import { ShowMenu } from './ShowMenu';
@@ -19,7 +19,6 @@ export const Menu = () => {
   const setSelect = useGlobalStore((s) => s.setSelect);
 
   const clusterBtn = useRef<HTMLDivElement>(null);
-  const router = useRouter();
   const pathname = usePathname();
 
   function changeTo(to: SECTION) {
@@ -42,6 +41,9 @@ export const Menu = () => {
 
     if (to) {
       setSelect(to);
+    }
+    if (pathname.includes('/app')) {
+      setSelect(SECTION.APP);
     }
   }, [pathname]);
 
