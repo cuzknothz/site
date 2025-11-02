@@ -12,7 +12,7 @@ export const NewChatAppend = () => {
         showFullMenu ? 'bottom-[220px]' : 'bottom-[150px]',
       )}
     >
-      <Box className='flex h-[40px] items-center justify-center px-[10px]'>
+      <Box className='flex h-10 items-center justify-center px-2.5'>
         Cuộc trò chuyện mới đã được tạo
       </Box>
     </div>

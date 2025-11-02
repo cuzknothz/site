@@ -6,7 +6,7 @@ import Link from 'next/link';
 export const SpotifyWidget = () => {
   return (
     <div>
-      <Box className='relative flex h-[100px] w-full items-start justify-between gap-[10px] rounded-[25px]! p-[8px]'>
+      <Box className='relative flex h-[100px] w-full items-start justify-between gap-2.5 rounded-[25px]! p-2'>
         <Box className='aspect-square h-full'>
           <div></div>
         </Box>

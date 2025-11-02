@@ -82,12 +82,12 @@ export const TopBar = ({
       className='absolute z-10 h-[60px] w-full bg-[#ffffff00]'
     >
       <div className='mt-[30px]'>
-        <div className='relative mx-[10px] flex justify-between'>
+        <div className='relative mx-2.5 flex justify-between'>
           <div ref={listConversationRef}>
             <Box
               className={clsx(
-                'z-list-conversation absolute top-0 left-0 z-10 h-[40px] overflow-hidden',
-                'flex w-[full] cursor-pointer flex-col items-start justify-items-start bg-[#ffffff62] p-[10px] backdrop-blur-[2px]',
+                'z-list-conversation absolute top-0 left-0 z-10 h-10 overflow-hidden',
+                'flex w-[full] cursor-pointer flex-col items-start justify-items-start bg-[#ffffff62] p-2.5 backdrop-blur-[2px]',
               )}
               onClick={onClickSideBar}
             >
@@ -120,7 +120,7 @@ export const TopBar = ({
           <div></div>
           <Box
             onClick={onNewChat}
-            className='flex h-10 cursor-pointer items-center justify-center gap-[5px] bg-[#ffffff62] px-[10px] backdrop-blur-[2px]'
+            className='flex h-10 cursor-pointer items-center justify-center gap-[5px] bg-[#ffffff62] px-2.5 backdrop-blur-[2px]'
           >
             <NewChatIcon />
             <p>New Chat</p>

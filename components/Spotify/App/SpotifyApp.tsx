@@ -12,12 +12,12 @@ import { useInitApp } from '@/hooks/useInitApp';
 const LoginWith = () => {
   return (
     <BackDrop>
-      <Box className='w-[300px] p-[10px]'>
+      <Box className='w-[300px] p-2.5'>
         <div className='flex flex-col items-center'>
           <Avatar className='w-[50px]' />
           <p>nbacuong</p>
         </div>
-        <Box className='mt-[20px] bg-[#92d7f7] p-[5px] text-center'>
+        <Box className='mt-5 bg-[#92d7f7] p-[5px] text-center'>
           Login with your Spotify account instead
         </Box>
         <p className='mt-[5px] text-[11px] text-red-500'>

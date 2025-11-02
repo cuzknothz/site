@@ -1,4 +1,5 @@
 'use client';
+import AiIcon from '@/assets/svg/ai-white.svg';
 import { useMutationObserver } from '@/hooks/useMutationObserver';
 import { useChatStore } from '@/store/chat';
 import clsx from 'clsx';
@@ -7,7 +8,6 @@ import { Scrollbar } from '../ScrollBar';
 import { Box } from '../Util/Box';
 import { TextScramble } from '../Util/TextScramble';
 import { TextFromMe } from './TextFromMe';
-import AiIcon from '@/assets/svg/ai-white.svg';
 
 export const Conversation = () => {
   const conversations = useChatStore((s) => s.conversations);
@@ -19,10 +19,7 @@ export const Conversation = () => {
   useMutationObserver(containerRef.current!, () => {});
 
   return (
-    <Scrollbar
-      className='h-dvh max-h-screen pt-[80px] pb-[250px]'
-      autoHide={true}
-    >
+    <Scrollbar className='h-dvh max-h-screen pt-20 pb-[250px]' autoHide={true}>
       <div
         ref={containerRef}
         className={clsx('flex w-full flex-col px-[15px] duration-500')}
@@ -41,7 +38,6 @@ export const Conversation = () => {
                 ) : (
                   <div className='flex w-full justify-start'>
                     <Box className='inline justify-end border-0! bg-transparent py-2.5'>
-                      {/* <TextScramble text={i.content} chars=' ' /> */}
                       <p className='whitespace-pre-line'>{i.content}</p>
                     </Box>
                   </div>

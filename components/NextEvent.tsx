@@ -79,12 +79,12 @@ export const NextEvent = () => {
   return (
     <div
       ref={parentRef}
-      className='pointer-events-none fixed top-[5px] right-1/2 z-[200] h-5 w-full translate-x-1/2 overflow-hidden'
+      className='pointer-events-none fixed top-[5px] right-1/2 z-200 h-5 w-full translate-x-1/2 overflow-hidden'
     >
       {message && (
         <div
           ref={eventRef}
-          className='absolute top-0 right-0 flex w-max gap-[8px] whitespace-nowrap'
+          className='absolute top-0 right-0 flex w-max gap-2 whitespace-nowrap'
         >
           <span>{message}</span>
         </div>

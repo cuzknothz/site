@@ -1,7 +1,7 @@
-import { ChangeEvent, KeyboardEvent, useRef, useState } from 'react';
-import { Scrollbar } from '../ScrollBar';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import { KeyboardEvent, useRef } from 'react';
+import { Scrollbar } from '../ScrollBar';
 
 interface Props {
   value: string;
@@ -10,7 +10,6 @@ interface Props {
 }
 
 export const TextAreaInput = ({ value, setValue, clickSend }: Props) => {
-
   const textAreaInputRef = useRef<HTMLTextAreaElement>(null);
   const fakeSpanRef = useRef<HTMLSpanElement>(null);
 
@@ -27,7 +26,6 @@ export const TextAreaInput = ({ value, setValue, clickSend }: Props) => {
     if (e.key === 'Enter' && !e.shiftKey && !isComposing.current) {
       e.preventDefault();
       clickSend();
-      //   sendBtnRef.current!.click();
     }
   };
 

@@ -30,7 +30,7 @@ export const DivisionImagePreview = ({ images, removeImage }: Props) => {
             className='aspect-square! h-[65px]! w-[65px]! object-cover'
           />
           <button
-            className='absolute top-1 right-1 h-[24px] w-[24px] cursor-pointer rounded-[50%] border border-[#ccc] bg-white'
+            className='absolute top-1 right-1 h-6 w-6 cursor-pointer rounded-[50%] border border-[#ccc] bg-white'
             onClick={() => removeImage(img.url)}
             title='Xoá ảnh'
           >

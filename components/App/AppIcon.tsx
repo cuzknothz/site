@@ -25,7 +25,7 @@ export const AppIcon = ({
         <>
           {children}
           {text && (
-            <div className='absolute -right-[2px] bottom-[50%] h-[20px] w-[80px] origin-center translate-x-[30px] rotate-45 bg-[#03cff3] text-center'>
+            <div className='absolute -right-0.5 bottom-[50%] h-5 w-20 origin-center translate-x-[30px] rotate-45 bg-[#03cff3] text-center'>
               {text}
             </div>
           )}

@@ -1,6 +1,7 @@
 'use client';
 
 import FingerPrintIcon from '@/assets/svg/finger-print.svg';
+import { useInitApp } from '@/hooks/useInitApp';
 import { useVisitorData } from '@fingerprintjs/fingerprintjs-pro-react';
 import axios from 'axios';
 import { get, isBoolean, isNil } from 'lodash';
@@ -9,7 +10,6 @@ import { MapPigeon } from '../Map';
 import { BackDrop } from '../Util/BackDrop';
 import { Box } from '../Util/Box';
 import { TextScramble } from '../Util/TextScramble';
-import { useInitApp } from '@/hooks/useInitApp';
 
 export const ClientInfo = () => {
   const [location, setLocation] = useState({ lat: 0, lon: 0 });
@@ -19,9 +19,7 @@ export const ClientInfo = () => {
     { extendedResult: true },
     { immediate: true },
   );
-
-  console.log('data', data);
-
+  
   async function getLatLonFromIP(ip: string) {
     try {
       const res = await axios.get(`/api/fingerprint?ip=${ip}`);
@@ -69,14 +67,14 @@ export const ClientInfo = () => {
       )}
 
       <div>
-        <Box className='mb-[10px] px-[15px] py-[10px] sm:p-[15px]'>
+        <Box className='mb-2.5 px-[15px] py-2.5 sm:p-[15px]'>
           <div>
             <TextScramble text='Your ID' />
             <p className='text-[20px] font-bold text-[#ff8c00]'>
               {onlyText(data?.visitorId)}
             </p>
           </div>
-          <div className='mt-[10px] flex flex-wrap gap-x-[20px] gap-y-[10px]'>
+          <div className='mt-2.5 flex flex-wrap gap-x-5 gap-y-2.5'>
             <div>
               <TextScramble text='IP' />
               <p className='font-bold'>{onlyText(data?.ip)}</p>
