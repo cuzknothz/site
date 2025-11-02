@@ -19,7 +19,7 @@ export const ClientInfo = () => {
     { extendedResult: true },
     { immediate: true },
   );
-  
+
   async function getLatLonFromIP(ip: string) {
     try {
       const res = await axios.get(`/api/fingerprint?ip=${ip}`);

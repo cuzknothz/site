@@ -11,9 +11,7 @@ export default function LoginPage() {
   return (
     <BackDrop>
       <Box className='w-[300px] p-[15px] pt-5!'>
-        <p className='mb-2.5 text-center text-[13px]'>
-          Login quyền quản trị
-        </p>
+        <p className='mb-2.5 text-center text-[13px]'>Login quyền quản trị</p>
 
         <Box className='h-10 w-full rounded-[10px]!'>
           <input
