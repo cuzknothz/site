@@ -48,8 +48,8 @@ export function TradingViewWidget({
   }, []);
 
   return (
-    <div className='invert dark:invert-0'>
-      <Box className='relative h-[200px] overflow-hidden filter-[grayscale(1)_invert(1)_brightness(1.5)] **:text-[12px]! sm:h-[300px]'>
+    <div className='invert dark:invert-0 h-full'>
+      <Box className='relative overflow-hidden filter-[grayscale(1)_invert(1)_brightness(1.5)] **:text-[12px]! h-full'>
         <div
           className='tradingview-widget-container h-full w-full overflow-hidden'
           ref={container}

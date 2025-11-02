@@ -29,7 +29,7 @@ export const Economic = () => {
     <div>
       <Textz
         bold
-        text={`Important Economic Event Today ${format(new Date(), 'dd-MM-yyyy')}`}
+        text={`Economic Calender ${format(new Date(), 'dd-MM-yyyy')}`}
         className='mb-2.5'
       />
       <table className='w-full border-collapse border border-gray-400'>

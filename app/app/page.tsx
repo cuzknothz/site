@@ -56,7 +56,7 @@ export default async function WPage() {
               </svg>
             </AppIcon>
 
-            <AppIcon href={'/app/crafts'} name='Market'>
+            <AppIcon href={'/app/chart'} name='Market'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 width='20'
