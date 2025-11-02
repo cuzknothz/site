@@ -45,7 +45,7 @@ export function Chart({ interval = '5', symbol = 'BINANCE:ETHUSDT' }: Props) {
 
   return (
     <div className='h-full invert dark:invert-0'>
-      <Box className='relative h-full overflow-hidden filter-[grayscale(1)_invert(1)_brightness(1.5)] **:text-[12px]!'>
+      <Box className='relative h-full overflow-hidden filter-[grayscale(1)_invert(1)_brightness(1.5)] **:text-[12px]! sm:rounded-[30px]'>
         <div
           className='tradingview-widget-container h-full w-full overflow-hidden'
           ref={container}

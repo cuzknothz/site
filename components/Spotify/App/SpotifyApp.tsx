@@ -7,6 +7,7 @@ import { Note } from './Note';
 import { TextScramble } from '@/components/Util/TextScramble';
 import { SearchInput } from './Search';
 import { spotifyApi } from '../action';
+import SpotifyIcon from '@/assets/svg/spotify.svg';
 
 const LoginWith = () => {
   return (
@@ -29,7 +30,8 @@ const LoginWith = () => {
 
 export const SpotifyApp = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [showNote, setShowNote] = useState(true);
+  const [showNote, setShowNote] = useState(false);
+  const [initPending, setInitPending] = useState(true);
 
   useEffect(() => {
     spotifyApi.setAccessToken(
@@ -40,13 +42,19 @@ export const SpotifyApp = () => {
       function (err) {},
     );
   }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setInitPending(false);
+      setShowNote(true);
+    }, 2000);
+  }, []);
   return (
     <div ref={containerRef}>
-      {showNote && (
-        <BackDrop>
-          <Note setShowNote={setShowNote} />
-        </BackDrop>
-      )}
+      <BackDrop>
+        {initPending && <SpotifyIcon className='h-[150px] w-[150px]' />}
+        {showNote && <Note setShowNote={setShowNote} />}
+      </BackDrop>
 
       {/* <LoginWith /> */}
       <div className='fixed top-0 left-0 h-dvh w-dvw px-[20px] pt-[30px]'>
