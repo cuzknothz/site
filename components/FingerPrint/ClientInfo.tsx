@@ -65,9 +65,9 @@ export const ClientInfo = () => {
 
   return (
     <div>
-      <Box className='mb-[10px] p-[15px]'>
+      <Box className='mb-[10px] sm:p-[15px] px-[15px] py-[10px]'>
         <div>
-          <Textz text='YOUR ID' />
+          <Textz text='Your ID' />
           <p className='text-[20px] font-bold text-[#ff8c00]'>
             {data?.visitorId || ''}
           </p>
