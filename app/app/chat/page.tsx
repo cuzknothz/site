@@ -1,22 +1,14 @@
 'use client';
 import { Chat } from '@/components/Chat/Chat';
+import { BackDrop } from '@/components/Util/BackDrop';
 import { useIsMobile } from '@/hooks/useDeviceType';
+import { useInitApp } from '@/hooks/useInitApp';
 import { useGlobalStore } from '@/store/global-store';
-import { useEffect } from 'react';
 
 export default function ChatAIPage() {
   const setShowFullMenu = useGlobalStore((s) => s.setShowFullMenu);
   const { isMobile } = useIsMobile();
+  const { initPending } = useInitApp();
 
-  useEffect(() => {
-    if (isMobile) {
-      setShowFullMenu(false);
-    }
-  }, []);
-
-  return (
-    <div>
-      <Chat />
-    </div>
-  );
+  return <>{initPending ? <BackDrop> dsfadf</BackDrop> : <Chat />}</>;
 }

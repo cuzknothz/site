@@ -1,10 +1,12 @@
 'use client';
 
+import FingerPrintIcon from '@/assets/svg/finger-print.svg';
 import { useVisitorData } from '@fingerprintjs/fingerprintjs-pro-react';
 import axios from 'axios';
+import { get, isBoolean, isNil } from 'lodash';
 import { useEffect, useState } from 'react';
 import { MapPigeon } from '../Map';
-import { isBoolean } from 'lodash';
+import { BackDrop } from '../Util/BackDrop';
 import { Box } from '../Util/Box';
 import { TextScramble } from '../Util/TextScramble';
 
@@ -15,6 +17,8 @@ export const ClientInfo = () => {
     { extendedResult: true },
     { immediate: true },
   );
+
+  console.log('data', data);
 
   async function getLatLonFromIP(ip: string) {
     try {
@@ -43,55 +47,61 @@ export const ClientInfo = () => {
     getSmartSignal();
   }, [data?.requestId, data?.visitorId]);
 
-  function isDetected(val: boolean) {
-    if (!isBoolean(val)) {
-      return '';
-    }
-    return val ? 'Detected' : 'Not Detected';
-  }
-  function yesNo(val: boolean) {
-    if (!isBoolean(val)) {
+  function yesNo(val: boolean | undefined) {
+    if (!isBoolean(val) || isNil(val)) {
       return '';
     }
     return val ? 'Yes' : 'No';
   }
 
+  function onlyText(val: string | undefined) {
+    return val || '';
+  }
+
   return (
-    <div>
-      <Box className='mb-[10px] px-[15px] py-[10px] sm:p-[15px]'>
+    <>
+      {isLoading ? (
+        <BackDrop>
+          <FingerPrintIcon className='h-[180px] w-[180px]' />
+        </BackDrop>
+      ) : (
         <div>
-          <TextScramble text='Your ID' />
-          <p className='text-[20px] font-bold text-[#ff8c00]'>
-            {data?.visitorId || ''}
-          </p>
+          <Box className='mb-[10px] px-[15px] py-[10px] sm:p-[15px]'>
+            <div>
+              <TextScramble text='Your ID' />
+              <p className='text-[20px] font-bold text-[#ff8c00]'>
+                {onlyText(data?.visitorId)}
+              </p>
+            </div>
+            <div className='mt-[10px] flex flex-wrap gap-x-[20px] gap-y-[10px]'>
+              <div>
+                <TextScramble text='IP' />
+                <p className='font-bold'>{onlyText(data?.ip)}</p>
+              </div>
+
+              <div>
+                <TextScramble text='Browser' />
+                <p className='font-bold'>
+                  {`${onlyText(data?.browserName)} on  ${onlyText(data?.os)} `}
+                </p>
+              </div>
+
+              <div>
+                <TextScramble text='Incognito' />
+                <p className='font-bold'>{yesNo(data?.incognito)}</p>
+              </div>
+
+              <div>
+                <TextScramble text='VPN' />
+                <p className='font-bold'>
+                  {yesNo(get(smartSignal, 'vpn.data.result', undefined))}
+                </p>
+              </div>
+            </div>
+          </Box>
+          <MapPigeon lat={location.lat} lon={location.lon} />
         </div>
-        <div className='mt-[10px] flex flex-wrap gap-x-[20px] gap-y-[10px]'>
-          <div>
-            <TextScramble text='IP' />
-            <p className='font-bold'>{data?.ip || ''}</p>
-          </div>
-
-          <div>
-            <TextScramble text='Browser' />
-            <p className='font-bold'>
-              {`${data?.browserName || ''} on  ${data?.os || ''} `}
-            </p>
-          </div>
-
-          <div>
-            <TextScramble text='Incognito' />
-            <p className='font-bold'>
-              {yesNo(smartSignal?.incognito?.data?.result)}
-            </p>
-          </div>
-
-          <div>
-            <TextScramble text='VPN' />
-            <p className='font-bold'>{yesNo(smartSignal?.vpn?.data?.result)}</p>
-          </div>
-        </div>
-      </Box>
-      <MapPigeon lat={location.lat} lon={location.lon} />
-    </div>
+      )}
+    </>
   );
 };

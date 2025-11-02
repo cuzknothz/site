@@ -7,7 +7,7 @@ interface AvatarProps {
 }
 export const Avatar = ({ className }: AvatarProps) => {
   return (
-    <Box className={clsx('aspect-square w-[40px] rounded-[50%]', className)}>
+    <Box className={clsx('aspect-square w-10 rounded-[50%]', className)}>
       {''}
     </Box>
   );

@@ -1,13 +1,13 @@
 'use client';
-import { Box } from '@/components/Util/Box';
+import SpotifyIcon from '@/assets/svg/spotify.svg';
 import { BackDrop } from '@/components/Util/BackDrop';
+import { Box } from '@/components/Util/Box';
 import { useEffect, useRef, useState } from 'react';
+import { spotifyApi } from '../action';
 import { Avatar } from './Avatar';
 import { Note } from './Note';
-import { TextScramble } from '@/components/Util/TextScramble';
 import { SearchInput } from './Search';
-import { spotifyApi } from '../action';
-import SpotifyIcon from '@/assets/svg/spotify.svg';
+import { useInitApp } from '@/hooks/useInitApp';
 
 const LoginWith = () => {
   return (
@@ -31,7 +31,10 @@ const LoginWith = () => {
 export const SpotifyApp = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [showNote, setShowNote] = useState(false);
-  const [initPending, setInitPending] = useState(true);
+
+  const { initPending } = useInitApp(() => {
+    setShowNote(true);
+  });
 
   useEffect(() => {
     spotifyApi.setAccessToken(
@@ -43,21 +46,15 @@ export const SpotifyApp = () => {
     );
   }, []);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setInitPending(false);
-      setShowNote(true);
-    }, 2000);
-  }, []);
   return (
     <div ref={containerRef}>
       <BackDrop>
-        {initPending && <SpotifyIcon className='h-[200px] w-[200px]' />}
+        {initPending && <SpotifyIcon className='h-[180px] w-[180px]' />}
         {showNote && <Note setShowNote={setShowNote} />}
       </BackDrop>
 
       {/* <LoginWith /> */}
-      <div className='fixed top-0 left-0 h-dvh w-dvw px-[20px] pt-[30px]'>
+      <div className='fixed top-0 left-0 h-dvh w-dvw px-5 pt-[30px]'>
         <div className='relative'>
           <SearchInput />
         </div>
