@@ -242,7 +242,22 @@ export const ChatArea = () => {
     });
   };
 
-  const handleButtonClick = () => {
+  const animationAttachImageBtn = contextSafe(() => {
+    gsap.fromTo(
+      '.z-attach-image-btn',
+      {
+        scale: 0.8,
+      },
+      {
+        scale: 1,
+        duration: 0.3,
+        ease: 'power2.out',
+      },
+    );
+  });
+
+  const onAttachImageClick = () => {
+    animationAttachImageBtn();
     fileInputRef.current?.click();
   };
 
@@ -294,7 +309,7 @@ export const ChatArea = () => {
       <Box
         className={clsx(
           'relative w-full! flex-1 overflow-hidden bg-[#ffffff62] backdrop-blur-[2px] dark:bg-[black]',
-          isDragging && 'outline outline-2 outline-dashed outline-[#710bf7]'
+          isDragging && 'outline-2 outline-[#710bf7] border-0! outline-dashed',
         )}
       >
         <DivisionImagePreview images={images} removeImage={handleRemoveImage} />
@@ -306,8 +321,12 @@ export const ChatArea = () => {
 
         <div className='flex w-full justify-between p-[0px_10px_10px_10px]'>
           <Box
-            className='right-2.5 bottom-2.5 flex h-10 cursor-pointer items-center justify-center gap-2.5 px-2.5'
-            onClick={handleButtonClick}
+            className={clsx(
+              'z-attach-image-btn',
+              'hover:bg-[#bceefd] active:bg-[#47474746]',
+              'right-2.5 bottom-2.5 flex h-10 cursor-pointer items-center justify-center gap-2.5 px-2.5',
+            )}
+            onClick={onAttachImageClick}
           >
             <AttachImageIcon />
             <div>Attach Image</div>
