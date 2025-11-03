@@ -3,9 +3,12 @@ import SpotifyIcon from '@/assets/svg/spotify.svg';
 import { BackDrop } from '@/components/Util/BackDrop';
 import { Box } from '@/components/Util/Box';
 import { useInitApp } from '@/hooks/useInitApp';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Avatar } from './Avatar';
 import { Note } from './Note';
+import axios from 'axios';
+import { get, reverse } from 'lodash';
+import { Scrollbar } from '@/components/ScrollBar';
 
 const LoginWith = () => {
   return (
@@ -30,18 +33,103 @@ export const SpotifyApp = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [showNote, setShowNote] = useState(false);
 
+  const [newRelease, setNewRelease] = useState([]);
+
+  const [categories, setCategories] = useState([]);
+  const [hotArtistsTopTracks, setHotArtistsTopTracks] = useState({});
+
   const { initPending } = useInitApp(() => {
     setShowNote(true);
   });
 
+  const [popularArtist, setPopularArtist] = useState([]);
+
+  const [thienHaNgheGi, setThienHaNgheGi] = useState([]);
+
+  useEffect(() => {
+    const getdata = async () => {
+      let res = await axios.get('/api/spotify/home');
+      console.log('token', res);
+      // return token;
+
+      let resPopularArtist = await axios.get('/api/spotify/search', {
+        params: {
+          type: 'artist',
+          // q: 'nghệ sĩ việt nổi bật',
+          // q: 'trending nghệ sĩ việt',
+          q: 'nghệ sĩ trending ',
+          market: 'VN',
+          limit: 50,
+        },
+      });
+
+      setPopularArtist(get(resPopularArtist, 'data.artists.items', []));
+
+      let resThienHaNgheGi = await axios.get('/api/spotify/search', {
+        params: {
+          type: 'track',
+          // q: 'nghệ sĩ việt nổi bật',
+          // q: 'trending nghệ sĩ việt',
+          q: 'trending bài hát',
+          market: 'VN',
+          limit: 50,
+        },
+      });
+      setThienHaNgheGi(get(resThienHaNgheGi, 'data.tracks.items', []));
+
+      // setPopularArtist(get(resPopularArtist, 'data.artists.items', []));
+
+      console.log('resThienHaNgheGi', resThienHaNgheGi);
+    };
+
+    getdata();
+  }, []);
+
   return (
-    <div ref={containerRef}>
-      <BackDrop>
+    <div ref={containerRef} className='w-screen h-dvh fixed top-0 left-0 bg-[#2f2f2f] overflow-scroll'>
+      {/* <BackDrop>
         {initPending && (
           <SpotifyIcon className='h-[180px] w-[180px] -translate-y-[50px]' />
         )}
         {showNote && <Note setShowNote={setShowNote} />}
-      </BackDrop>
+      </BackDrop> */}
+
+      <div>
+        <div >Popular Artist</div>
+        <div>
+          <div className='flex flex-wrap gap-[5px]'>
+            {reverse(popularArtist).map((i) => (
+              <div className='flex flex-none flex-col'>
+                <img
+                  className='h-[100px] w-[100px] overflow-hidden rounded-[50%] object-cover'
+                  src={get(i, 'images[0].url', '')}
+                  alt={i.name}
+                />
+                <div className='line-clamp-1'>{i.name} </div>
+              </div>
+            ))}
+          </div>
+          <div></div>
+        </div>
+      </div>
+      <div>
+        <div className='text-[15px] font-bold'>Thiên hạ nghe gì</div>
+        <div>
+          <div className='flex flex-col gap-[5px]'>
+            {thienHaNgheGi.map((i) => (
+              <div className='flex flex-none items-center'>
+                <img
+                  className='aspect-square h-[40px] w-[40px] overflow-hidden rounded-[5px] object-cover'
+                  src={get(i, 'album.images[0].url', '')}
+                  alt={i.name}
+                />
+                <div className='line-clamp-1'>{i.name} </div>
+              </div>
+            ))}
+          </div>
+          <div></div>
+        </div>
+      </div>
     </div>
   );
 };
