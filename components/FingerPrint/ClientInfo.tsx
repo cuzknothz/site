@@ -10,6 +10,7 @@ import { MapPigeon } from '../Map';
 import { BackDrop } from '../Util/BackDrop';
 import { Box } from '../Util/Box';
 import { TextScramble } from '../Util/TextScramble';
+import clsx from 'clsx';
 
 export const ClientInfo = () => {
   const [location, setLocation] = useState({ lat: 0, lon: 0 });
@@ -89,12 +90,25 @@ export const ClientInfo = () => {
 
             <div>
               <TextScramble text='Incognito' />
-              <p className='font-bold'>{yesNo(data?.incognito)}</p>
+              <p
+                className={clsx(
+                  'font-bold',
+                  data?.incognito && 'text-[#ff8c00]',
+                )}
+              >
+                {yesNo(data?.incognito)}
+              </p>
             </div>
 
             <div>
               <TextScramble text='VPN' />
-              <p className='font-bold'>
+              <p
+                className={clsx(
+                  'font-bold',
+                  get(smartSignal, 'vpn.data.result', false) &&
+                    'text-[#ff8c00]',
+                )}
+              >
                 {yesNo(get(smartSignal, 'vpn.data.result', undefined))}
               </p>
             </div>
