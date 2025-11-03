@@ -10,13 +10,14 @@ import { Box } from '../Util/Box';
 interface Props {
   text: string;
   animation?: boolean;
+  images?: string[];
 }
-export const TextFromMe = ({ text, animation = false }: Props) => {
+export const TextFromMe = ({ text, animation = false, images = [] }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
-      if (!animation) {
+      if (!animation || !text) {
         return;
       }
       gsap.fromTo(
@@ -62,7 +63,19 @@ export const TextFromMe = ({ text, animation = false }: Props) => {
           'inline min-h-10 justify-end border-0! bg-[#bbff00ba] px-5 py-2.5 [word-break:break-word] dark:bg-[#616161]',
         )}
       >
-        <p>{text}</p>
+        {images.length > 0 && (
+          <div className='mt-2 flex flex-wrap justify-end gap-2'>
+            {images.map((src, idx) => (
+              <img
+                key={`${src}-${idx}`}
+                src={src}
+                alt={`user-attachment-${idx + 1}`}
+                className='h-20 w-20 rounded-xl object-cover'
+              />
+            ))}
+          </div>
+        )}
+        {text && <p>{text}</p>}
       </Box>
     </div>
   );

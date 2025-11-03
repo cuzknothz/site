@@ -9,6 +9,7 @@ import { useGSAP } from '@gsap/react';
 import clsx from 'clsx';
 import gsap from 'gsap';
 import { Howl } from 'howler';
+import imageCompression from 'browser-image-compression';
 import { useEffect, useRef, useState } from 'react';
 import { Box } from '../Util/Box';
 import { TextAreaInput } from './TextAreaInput';
@@ -18,7 +19,7 @@ export const ChatArea = () => {
   const { isMobile } = useIsMobile();
   const [pending, setPending] = useState(false);
 
-  const soundSend = useRef<Howl>(null);
+  const soundSend = useRef<Howl | null>(null);
 
   useEffect(() => {
     soundSend.current = new Howl({
@@ -59,12 +60,54 @@ export const ChatArea = () => {
   const setJustSentId = useChatStore((_) => _.setJustSentId);
   const setThinking = useChatStore((_) => _.setThinking);
 
+  const MAX_ATTACHMENTS = 4;
+  const COMPRESSION_OPTIONS = {
+    maxSizeMB: 0.75,
+    maxWidthOrHeight: 1280,
+    useWebWorker: true,
+  };
+
+  const fileToBase64 = (file: File) =>
+    new Promise<{ data: string; mimeType: string; preview: string }>(
+      (resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const result = reader.result as string;
+          const [, base64 = ''] = result.split(',');
+          resolve({
+            data: base64,
+            mimeType: file.type,
+            preview: `data:${file.type};base64,${base64}`,
+          });
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      },
+    );
+
   const handleSend = async () => {
+    if (pending) return;
     const text = chatInput.trim();
-    if (!text) return;
+    if (!text && images.length === 0) return;
     soundSend.current?.play();
     setChatInput('');
     animationBtnSendAndDivision();
+
+    const imagesSnapshot = images.slice();
+    let imagePayload: Awaited<ReturnType<typeof fileToBase64>>[] = [];
+    if (imagesSnapshot.length) {
+      try {
+        imagePayload = await Promise.all(
+          imagesSnapshot.map((img) => fileToBase64(img.file)),
+        );
+      } catch (err) {
+        console.error('Failed to read image:', err);
+        return;
+      }
+    }
+
+    setImages([]);
+    imagesSnapshot.forEach((img) => URL.revokeObjectURL(img.url));
 
     const convId = ensureCurrent();
 
@@ -73,7 +116,12 @@ export const ChatArea = () => {
 
     const userMsgId = crypto.randomUUID();
 
-    appendMessage(convId, { id: userMsgId, role: 'user', content: text });
+    appendMessage(convId, {
+      id: userMsgId,
+      role: 'user',
+      content: text,
+      images: imagePayload.map((img) => img.preview),
+    });
     setJustSentId(userMsgId);
 
     const modelMsgId = crypto.randomUUID();
@@ -81,11 +129,19 @@ export const ChatArea = () => {
 
     setPending(true);
     setThinking(true);
+    let clearedByStream = false;
     try {
       const res = await fetch('/api/gemini', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ history: historyPayload, userMessage: text }),
+        body: JSON.stringify({
+          history: historyPayload,
+          userMessage: text,
+          images: imagePayload.map((img) => ({
+            mimeType: img.mimeType,
+            data: img.data,
+          })),
+        }),
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       if (!res.body) throw new Error('No response body');
@@ -110,6 +166,7 @@ export const ChatArea = () => {
           if (data === '[DONE]') {
             setPending(false);
             setTimeout(() => setJustSentId(null), 200);
+            clearedByStream = true;
             return;
           }
 
@@ -127,24 +184,62 @@ export const ChatArea = () => {
       }
     } catch (err) {
       console.error('Chat stream error:', err);
+      updateMessage(convId, modelMsgId, {
+        content:
+          'Xin lỗi nha, tui đang lú nên chưa phản hồi được. Thử gửi lại coi?',
+      });
     } finally {
       setPending(false);
       setThinking(false);
+      if (!clearedByStream) {
+        setJustSentId(null);
+      }
     }
   };
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [images, setImages] = useState<PreviewImage[]>([]);
   const [isDragging, setIsDragging] = useState(false);
-  const handleImageFiles = (files: FileList | File[]) => {
+  const handleImageFiles = async (files: FileList | File[]) => {
     const imageFiles = Array.from(files).filter((file) =>
       file.type.startsWith('image/'),
     );
-    const newImages: PreviewImage[] = imageFiles.map((file) => ({
-      file,
-      url: URL.createObjectURL(file),
-    }));
-    setImages((prev) => [...prev, ...newImages]);
+    if (!imageFiles.length) return;
+
+    const availableSlots = Math.max(0, MAX_ATTACHMENTS - images.length);
+    if (availableSlots <= 0) return;
+
+    const filesToProcess = imageFiles.slice(0, availableSlots);
+
+    const compressed = await Promise.all(
+      filesToProcess.map(async (file) => {
+        try {
+          const output = await imageCompression(file, COMPRESSION_OPTIONS);
+          return {
+            file: output,
+            url: URL.createObjectURL(output),
+          };
+        } catch (err) {
+          console.error('Image compression failed:', err);
+          return {
+            file,
+            url: URL.createObjectURL(file),
+          };
+        }
+      }),
+    );
+
+    setImages((prev) => {
+      const remainingSlots = Math.max(0, MAX_ATTACHMENTS - prev.length);
+      if (remainingSlots <= 0) {
+        compressed.forEach((img) => URL.revokeObjectURL(img.url));
+        return prev;
+      }
+      const accepted = compressed.slice(0, remainingSlots);
+      const rejected = compressed.slice(remainingSlots);
+      rejected.forEach((img) => URL.revokeObjectURL(img.url));
+      return [...prev, ...accepted];
+    });
   };
 
   const handleButtonClick = () => {
@@ -153,7 +248,7 @@ export const ChatArea = () => {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      handleImageFiles(e.target.files);
+      void handleImageFiles(e.target.files);
       e.target.value = '';
     }
   };
@@ -167,7 +262,7 @@ export const ChatArea = () => {
     e.preventDefault();
     setIsDragging(false);
     if (e.dataTransfer.files) {
-      handleImageFiles(e.dataTransfer.files);
+      void handleImageFiles(e.dataTransfer.files);
     }
   };
 
@@ -192,12 +287,14 @@ export const ChatArea = () => {
         ref={fileInputRef}
         type='file'
         accept='image/*'
+        multiple
         className='hidden'
         onChange={handleFileChange}
       />
       <Box
         className={clsx(
           'relative w-full! flex-1 overflow-hidden bg-[#ffffff62] backdrop-blur-[2px] dark:bg-[black]',
+          isDragging && 'outline outline-2 outline-dashed outline-[#710bf7]'
         )}
       >
         <DivisionImagePreview images={images} removeImage={handleRemoveImage} />

@@ -25,11 +25,31 @@ CPU kêu cứu 😩. Đỉnh kout nửa mùa kiểu này đúng chuẩn “thiê
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
 
+const MAX_IMAGE_COUNT = 4;
+const MAX_BASE64_SIZE = 6 * 1024 * 1024; // ~6MB
+const MAX_HISTORY_TURNS = 12;
+
 export async function POST(req: NextRequest) {
-  const { history = [], userMessage } = await req.json();
+  const payload = await req.json();
+  const history = sanitizeHistory(payload?.history);
+  const userMessage =
+    typeof payload?.userMessage === 'string'
+      ? payload.userMessage.trim()
+      : '';
+  const images = Array.isArray(payload?.images)
+    ? sanitizeImages(payload.images)
+    : [];
+
+  if (!userMessage && images.length === 0) {
+    return NextResponse.json(
+      { ok: false, error: 'Missing message content' },
+      { status: 400 },
+    );
+  }
+
   const chat = ai.chats.create({
     model: 'gemini-2.5-flash',
-    history: history,
+    history,
     config: {
       systemInstruction: {
         parts: [
@@ -44,7 +64,14 @@ export async function POST(req: NextRequest) {
     },
   });
 
-  const stream = await chat.sendMessageStream({ message: userMessage });
+  const parts = [
+    ...(userMessage ? [{ text: userMessage }] : []),
+    ...images.map((img) => ({
+      inlineData: { mimeType: img.mimeType, data: img.data },
+    })),
+  ];
+
+  const stream = await chat.sendMessageStream({ message: parts });
 
   const encoder = new TextEncoder();
   const body = new ReadableStream({
@@ -69,6 +96,81 @@ export async function POST(req: NextRequest) {
       Connection: 'keep-alive',
     },
   });
+}
+
+type SanitizedHistory = {
+  role: 'user' | 'model';
+  parts: { text?: string; inlineData?: { mimeType: string; data: string } }[];
+}[];
+
+function sanitizeHistory(input: unknown): SanitizedHistory {
+  if (!Array.isArray(input)) return [];
+  const trimmed = input.slice(-MAX_HISTORY_TURNS);
+  const safe: SanitizedHistory = [];
+
+  for (const entry of trimmed) {
+    if (!entry || typeof entry !== 'object') continue;
+    const role =
+      (entry as any).role === 'model' || (entry as any).role === 'user'
+        ? ((entry as any).role as 'user' | 'model')
+        : 'user';
+    const parts = Array.isArray((entry as any).parts)
+      ? ((entry as any).parts as any[])
+      : [];
+    const safeParts: {
+      text?: string;
+      inlineData?: { mimeType: string; data: string };
+    }[] = [];
+
+    for (const part of parts) {
+      if (!part || typeof part !== 'object') continue;
+      const maybeText = (part as any).text;
+      if (typeof maybeText === 'string') {
+        const trimmedText = maybeText.trim();
+        if (trimmedText) {
+          safeParts.push({ text: trimmedText });
+        }
+        continue;
+      }
+      const inline = (part as any).inlineData;
+      if (
+        inline &&
+        typeof inline === 'object' &&
+        typeof inline.mimeType === 'string' &&
+        typeof inline.data === 'string' &&
+        inline.mimeType.startsWith('image/') &&
+        inline.data.length <= MAX_BASE64_SIZE
+      ) {
+        safeParts.push({
+          inlineData: {
+            mimeType: inline.mimeType,
+            data: inline.data,
+          },
+        });
+      }
+    }
+
+    if (safeParts.length > 0) {
+      safe.push({ role, parts: safeParts });
+    }
+  }
+
+  return safe;
+}
+
+function sanitizeImages(images: unknown[]) {
+  const clean: { mimeType: string; data: string }[] = [];
+  for (const img of images.slice(0, MAX_IMAGE_COUNT)) {
+    if (!img || typeof img !== 'object') continue;
+    const mimeType =
+      typeof (img as any).mimeType === 'string' ? (img as any).mimeType : '';
+    const data =
+      typeof (img as any).data === 'string' ? (img as any).data : '';
+    if (!mimeType.startsWith('image/')) continue;
+    if (!data || data.length > MAX_BASE64_SIZE) continue;
+    clean.push({ mimeType, data });
+  }
+  return clean;
 }
 
 // import { NextRequest, NextResponse } from 'next/server';

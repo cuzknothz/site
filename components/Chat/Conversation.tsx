@@ -29,16 +29,29 @@ export const Conversation = () => {
             <Fragment key={idx}>
               <div>
                 {i.role === 'user' ? (
-                  <>
-                    <TextFromMe
-                      text={i.content}
-                      animation={i.id === justSentId}
-                    />
-                  </>
+                  <TextFromMe
+                    text={i.content}
+                    images={i.images}
+                    animation={i.id === justSentId}
+                  />
                 ) : (
                   <div className='flex w-full justify-start'>
                     <Box className='inline justify-end border-0! bg-transparent py-2.5'>
-                      <p className='whitespace-pre-line'>{i.content}</p>
+                      {i.content && (
+                        <p className='whitespace-pre-line'>{i.content}</p>
+                      )}
+                      {i.images && i.images.length > 0 && (
+                        <div className='mt-2 flex flex-wrap gap-2'>
+                          {i.images.map((src, imgIdx) => (
+                            <img
+                              key={`${src}-${imgIdx}`}
+                              src={src}
+                              alt={`ai-attachment-${imgIdx + 1}`}
+                              className='h-20 w-20 rounded-xl object-cover'
+                            />
+                          ))}
+                        </div>
+                      )}
                     </Box>
                   </div>
                 )}
