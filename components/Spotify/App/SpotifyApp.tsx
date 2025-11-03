@@ -36,16 +36,6 @@ export const SpotifyApp = () => {
     setShowNote(true);
   });
 
-  useEffect(() => {
-    spotifyApi.setAccessToken(
-      'BQAwzxZGTcOrLqpKkSQht0oyezMyunpKCeciWdtaHzDrhyJa87Tz_h7zdcjTUb-PYFRYgaU6JyNYYvIJ7pIky8Vu_50ExJPkcIZmR0uPYxJKagdB5Z5nBl80ha-bxfi6o5rxiaj0S6U',
-    );
-    spotifyApi.searchTracks('artist:Love').then(
-      function (data) {},
-      function (err) {},
-    );
-  }, []);
-
   return (
     <div ref={containerRef}>
       <BackDrop>
@@ -54,14 +44,6 @@ export const SpotifyApp = () => {
         )}
         {showNote && <Note setShowNote={setShowNote} />}
       </BackDrop>
-
-      {/* <LoginWith /> */}
-      <div className='fixed top-0 left-0 h-dvh w-dvw px-5 pt-[30px]'>
-        <div className='relative'>
-          <SearchInput />
-        </div>
-        {/* <UnderDevelopment /> */}
-      </div>
     </div>
   );
 };
