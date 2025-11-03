@@ -2,12 +2,10 @@
 import SpotifyIcon from '@/assets/svg/spotify.svg';
 import { BackDrop } from '@/components/Util/BackDrop';
 import { Box } from '@/components/Util/Box';
-import { useEffect, useRef, useState } from 'react';
-import { spotifyApi } from '../action';
+import { useInitApp } from '@/hooks/useInitApp';
+import { useRef, useState } from 'react';
 import { Avatar } from './Avatar';
 import { Note } from './Note';
-import { SearchInput } from './Search';
-import { useInitApp } from '@/hooks/useInitApp';
 
 const LoginWith = () => {
   return (
