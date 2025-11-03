@@ -309,7 +309,8 @@ export const ChatArea = () => {
       <Box
         className={clsx(
           'relative w-full! flex-1 overflow-hidden bg-[#ffffff62] backdrop-blur-[2px] dark:bg-[black]',
-          isDragging && 'outline-2 outline-[#710bf7] border-0! outline-dashed',
+          isDragging &&
+            'border-transparent! outline-2 outline-[#710bf7] outline-dashed',
         )}
       >
         <DivisionImagePreview images={images} removeImage={handleRemoveImage} />
