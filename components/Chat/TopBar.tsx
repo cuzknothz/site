@@ -31,7 +31,38 @@ export const TopBar = ({
   const listConversationRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const { contextSafe } = useGSAP(() => {}, { scope: containerRef });
+
+  const animationNewChatBtn = contextSafe(() => {
+    gsap.fromTo(
+      '.z-new-chat-btn',
+      {
+        scale: 0.8,
+      },
+      {
+        scale: 1,
+        duration: 0.3,
+        ease: 'power2.out',
+      },
+    );
+  });
+
+  // const animationChatListBtn = contextSafe(() => {
+  //   gsap.fromTo(
+  //     '.z-chat-list-btn',
+  //     {
+  //       scale: 0.8,
+  //     },
+  //     {
+  //       scale: 1,
+  //       duration: 0.3,
+  //       ease: 'power2.out',
+  //     },
+  //   );
+  // });
+
   const onNewChat = () => {
+    animationNewChatBtn();
     const newChatId = addConversation(
       'Cuộc trò chuyện mới ' + crypto.randomUUID(),
     );
@@ -46,6 +77,7 @@ export const TopBar = ({
       return;
     }
     animation();
+    // animationChatListBtn();
     setShowSideBar(true);
   };
 
@@ -55,8 +87,6 @@ export const TopBar = ({
   };
 
   useClickAway(listConversationRef, onCloseSideBar);
-
-  const { contextSafe } = useGSAP(() => {}, { scope: containerRef });
 
   const animationListConversation = useRef<TweenLite>(null);
 
@@ -87,11 +117,16 @@ export const TopBar = ({
             <Box
               className={clsx(
                 'z-list-conversation absolute top-0 left-0 z-10 h-10 overflow-hidden',
-                'flex w-[full] cursor-pointer flex-col items-start justify-items-start bg-[#ffffff62] p-2.5 backdrop-blur-[2px]',
+                'flex w-[full] cursor-pointer flex-col items-start justify-items-start bg-[#ffffffbc] p-2.5 backdrop-blur-[2px]',
               )}
               onClick={onClickSideBar}
             >
-              <div className='flex items-center justify-center gap-[5px]'>
+              <div
+                className={clsx(
+                  'z-chat-list-btn',
+                  'flex items-center justify-center gap-[5px]',
+                )}
+              >
                 <ChatListIcon />
                 <p className='select-none'>Chat List</p>
               </div>
@@ -120,7 +155,10 @@ export const TopBar = ({
           <div></div>
           <Box
             onClick={onNewChat}
-            className='flex h-10 cursor-pointer items-center justify-center gap-[5px] bg-[#ffffff62] px-2.5 backdrop-blur-[2px]'
+            className={clsx(
+              'z-new-chat-btn',
+              'flex h-10 cursor-pointer items-center justify-center gap-[5px] bg-[#ffffff62] px-2.5 backdrop-blur-[2px] hover:bg-[#bceefd] active:bg-[#47474746]',
+            )}
           >
             <NewChatIcon />
             <p>New Chat</p>
