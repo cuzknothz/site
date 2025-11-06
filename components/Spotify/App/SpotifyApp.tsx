@@ -39,7 +39,7 @@ export const SpotifyApp = () => {
   const [hotArtistsTopTracks, setHotArtistsTopTracks] = useState({});
 
   const { initPending } = useInitApp(() => {
-    setShowNote(true);
+    // setShowNote(true);
   });
 
   const [popularArtist, setPopularArtist] = useState([]);
@@ -86,16 +86,18 @@ export const SpotifyApp = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className='w-screen h-dvh fixed top-0 left-0 bg-[#2f2f2f] overflow-scroll'>
-      {/* <BackDrop>
-        {initPending && (
+    <div
+      ref={containerRef}
+      className='fixed top-0 left-0 h-dvh w-screen overflow-scroll '
+    >
+      {initPending && (
+        <BackDrop>
           <SpotifyIcon className='h-[180px] w-[180px] -translate-y-[50px]' />
-        )}
-        {showNote && <Note setShowNote={setShowNote} />}
-      </BackDrop> */}
+        </BackDrop>
+      )}
 
       <div>
-        <div >Popular Artist</div>
+        <div>Popular Artist</div>
         <div>
           <div className='flex flex-wrap gap-[5px]'>
             {reverse(popularArtist).map((i) => (
