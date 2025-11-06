@@ -101,7 +101,7 @@ export const SpotifyApp = () => {
         </BackDrop>
       )}
 
-      <div>
+      {/* <div>
         <div>Popular Artist</div>
         <div>
           <div className='flex flex-wrap gap-[5px]'>
@@ -136,7 +136,7 @@ export const SpotifyApp = () => {
           </div>
           <div></div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
