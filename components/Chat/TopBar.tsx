@@ -140,8 +140,8 @@ export const TopBar = ({
                   <div
                     key={idx}
                     className={clsx(
-                      'flex h-[45px] w-full items-center rounded-[10px] px-2.5 py-[5px] hover:bg-[#bdbdbde4]',
-                      currentId === i.id && 'bg-[#bcbcbc]',
+                      'flex h-[45px] w-full items-center rounded-[10px] px-2.5 py-[5px] hover:bg-[#f0f0f0f2]',
+                      currentId === i.id && 'bg-[#bbff00ba] hover:bg-[#bbff00ba]!',
                     )}
                     onClick={() => setCurrent(i.id)}
                   >
@@ -157,7 +157,7 @@ export const TopBar = ({
             onClick={onNewChat}
             className={clsx(
               'z-new-chat-btn',
-              'flex h-10 cursor-pointer items-center justify-center gap-[5px] bg-[#ffffff62] px-2.5 backdrop-blur-[2px] hover:bg-[#bceefd] active:bg-[#47474746]',
+              'flex h-10 cursor-pointer items-center justify-center gap-[5px] px-2.5 backdrop-blur-[2px] hover:bg-[#bbff00ba] active:bg-[#ffff0046]',
             )}
           >
             <NewChatIcon />

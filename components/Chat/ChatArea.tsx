@@ -349,8 +349,8 @@ export const ChatArea = () => {
               className={clsx(
                 'bottom-2.5 left-2.5 flex h-10 w-10 items-center justify-center duration-500',
                 chatInput.trim() || images.length
-                  ? 'bg-[#00eeff5d]'
-                  : 'cursor-not-allowed opacity-100',
+                  ? 'bg-[#bbff00ba]'
+                  : 'cursor-not-allowed opacity-30',
               )}
             >
               <SendIcon />
