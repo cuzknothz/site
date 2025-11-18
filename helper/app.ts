@@ -16,8 +16,10 @@ export function toGeminiHistory(messages: ChatMessage[]) {
 }
 
 function buildParts(message: ChatMessage) {
-  const parts: { text?: string; inlineData?: { mimeType: string; data: string } }[] =
-    [];
+  const parts: {
+    text?: string;
+    inlineData?: { mimeType: string; data: string };
+  }[] = [];
   const text = message.content?.trim();
   if (text) {
     parts.push({ text });

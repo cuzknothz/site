@@ -141,7 +141,8 @@ export const TopBar = ({
                     key={idx}
                     className={clsx(
                       'flex h-[45px] w-full items-center rounded-[10px] px-2.5 py-[5px] hover:bg-[#f0f0f0f2]',
-                      currentId === i.id && 'bg-[#bbff00ba] hover:bg-[#bbff00ba]!',
+                      currentId === i.id &&
+                        'bg-[#bbff00ba] hover:bg-[#bbff00ba]!',
                     )}
                     onClick={() => setCurrent(i.id)}
                   >

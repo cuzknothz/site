@@ -4,12 +4,14 @@ import AiIcon from '@/assets/svg/ai.svg';
 import FingerPrintIcon from '@/assets/svg/finger-print.svg';
 import SpekIcon from '@/assets/svg/spek.svg';
 import SpotifyIcon from '@/assets/svg/spotify.svg';
+import QRIcon from '@/assets/svg/qr.svg';
 import { AppIcon } from '@/components/App/AppIcon';
 import { BackDrop } from '@/components/Util/BackDrop';
 import { Box } from '@/components/Util/Box';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { useRef } from 'react';
+import HTTPPieIcon from '@/assets/svg/httppie.svg';
 
 export default function AppPage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -48,6 +50,13 @@ export default function AppPage() {
             </AppIcon>
             <AppIcon href={'/app/spectrogram'} name='Spek'>
               <SpekIcon />
+            </AppIcon>
+
+            <AppIcon href={'/app/qr-generator'} name='QR'>
+              <QRIcon />
+            </AppIcon>
+            <AppIcon href={'/app/httppie'} name='HTTPPie'>
+              <HTTPPieIcon />
             </AppIcon>
           </Box>
         </div>

@@ -31,9 +31,7 @@ export async function POST(req: NextRequest) {
   const payload = await req.json();
   const history = sanitizeHistory(payload?.history);
   const userMessage =
-    typeof payload?.userMessage === 'string'
-      ? payload.userMessage.trim()
-      : '';
+    typeof payload?.userMessage === 'string' ? payload.userMessage.trim() : '';
   const images = Array.isArray(payload?.images)
     ? sanitizeImages(payload.images)
     : [];
@@ -162,8 +160,7 @@ function sanitizeImages(images: unknown[]) {
     if (!img || typeof img !== 'object') continue;
     const mimeType =
       typeof (img as any).mimeType === 'string' ? (img as any).mimeType : '';
-    const data =
-      typeof (img as any).data === 'string' ? (img as any).data : '';
+    const data = typeof (img as any).data === 'string' ? (img as any).data : '';
     if (!mimeType.startsWith('image/')) continue;
     if (!data || data.length > MAX_BASE64_SIZE) continue;
     clean.push({ mimeType, data });

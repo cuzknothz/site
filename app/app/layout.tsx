@@ -4,10 +4,6 @@ export const metadata: Metadata = {
   icons: { icon: '/favicon/app.svg' },
 };
 
-export default function AppLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function AppLayout({ children }: { children: React.ReactNode }) {
   return children as any;
 }
