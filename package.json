@@ -39,6 +39,7 @@
     "sass": "^1.93.2",
     "simplebar-react": "^3.3.2",
     "use-immer": "^0.11.0",
+    "vietnam-qr-pay": "^1.5.0",
     "wavesurfer.js": "^7.11.1",
     "zustand": "^5.0.8"
   },

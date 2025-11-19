@@ -8,7 +8,7 @@ export default function HTTPPiePage() {
   return (
     <div className='fixed left-1/2 w-[800px] -translate-x-1/2'>
       <TopBar />
-      <div className='mt-[10px] flex gap-[10px]'>
+      <div className='mt-2.5 flex gap-2.5'>
         <ParamsDivision />
         <PreviewDivision />
       </div>

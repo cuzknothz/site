@@ -95,6 +95,9 @@ importers:
       use-immer:
         specifier: ^0.11.0
         version: 0.11.0(immer@10.2.0)(react@19.2.0)
+      vietnam-qr-pay:
+        specifier: ^1.5.0
+        version: 1.5.0
       wavesurfer.js:
         specifier: ^7.11.1
         version: 7.11.1
@@ -3436,6 +3439,9 @@ packages:
 
   vfile@6.0.3:
     resolution: {integrity: sha512-KzIbH/9tXat2u30jf+smMwFCsno4wHVdNmzFyL+T/L3UGqqk6JKfVqOFOZEpZSHADH1k40ab6NUIXZq422ov3Q==}
+
+  vietnam-qr-pay@1.5.0:
+    resolution: {integrity: sha512-Mz8fs4dUvF1hINWX3IZOkg8OcF3O/FoqTTXJ6b5X1orR1vNN0l5o/BOjIexLShPXHGr3C6s8UNyFnujM+0liow==}
 
   wavesurfer.js@7.11.1:
     resolution: {integrity: sha512-8Q+wwItpjJAlhQ7crQLtKwgfbqqczm5/wx+76K4PptP+MBAjB0OA78+A9OuLnULz/8GpAQ+fKM6s81DonEO0Sg==}
@@ -7156,6 +7162,8 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
       vfile-message: 4.0.3
+
+  vietnam-qr-pay@1.5.0: {}
 
   wavesurfer.js@7.11.1: {}
 

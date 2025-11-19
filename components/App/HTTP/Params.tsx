@@ -81,14 +81,14 @@ export const ParamsDivision = () => {
             </Box>
           ))}
         </div>
-        <div className='mt-[10px] flex h-[500px] w-full flex-col px-[10px]'>
+        <div className='mt-2.5 flex h-[500px] w-full flex-col px-2.5'>
           {params.map(({ id, isActive, name, value }) => (
             <div
               className='flex h-[30px] w-full items-center gap-[5px]'
               key={id}
             >
               <div
-                className='flex h-full w-[20px]! items-center justify-center select-none'
+                className='flex h-full w-5! items-center justify-center select-none'
                 onClick={() => setOnOffParam(id)}
               >
                 {isActive ? 'x' : 'v'}
@@ -97,7 +97,7 @@ export const ParamsDivision = () => {
                 <input
                   type='text'
                   placeholder='name'
-                  className='h-full w-full rounded-[8px] border-[1px] border-transparent px-[5px] focus:border-[#979797] focus:outline-0'
+                  className='h-full w-full rounded-lg border border-transparent px-[5px] focus:border-[#979797] focus:outline-0'
                   value={name}
                   onChange={(event) =>
                     onChangeNameParam(id, event.target.value)
@@ -108,7 +108,7 @@ export const ParamsDivision = () => {
                 <input
                   type='text'
                   placeholder='value'
-                  className='h-full w-full rounded-[8px] border-[1px] border-transparent px-[5px] focus:border-[#979797] focus:outline-0'
+                  className='h-full w-full rounded-lg border border-transparent px-[5px] focus:border-[#979797] focus:outline-0'
                   value={value}
                   onChange={(event) =>
                     onChangeValueParam(id, event.target.value)

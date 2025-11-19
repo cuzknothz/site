@@ -55,6 +55,9 @@ export default function AppPage() {
             <AppIcon href={'/app/qr-generator'} name='QR'>
               <QRIcon />
             </AppIcon>
+            <AppIcon href={'/app/qr-pay'} name='QR CK'>
+              <QRIcon />
+            </AppIcon>
             <AppIcon href={'/app/httppie'} name='HTTPPie'>
               <HTTPPieIcon />
             </AppIcon>
