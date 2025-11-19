@@ -186,6 +186,7 @@ export default function QRGeneratorPage() {
             placeholder={AUTHOR_PAY.bankNumber}
             type='text'
             maxLength={MAX_STK_LENGTH}
+             inputMode='numeric'
             className='h-full w-full [appearance:textfield] px-2.5 focus:outline-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
           />
         </Box>
