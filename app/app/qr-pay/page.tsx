@@ -146,14 +146,14 @@ export default function QRGeneratorPage() {
   useClickAway(listNHRef, () => setShowListNH(false));
 
   return (
-    <div className='flex flex-col items-center gap-[10px]'>
+    <div className='flex flex-col items-center gap-2.5'>
       <div className='flex w-full flex-col gap-[5px]'>
-        <div className='flex h-[20px] gap-[5px]'>
+        <div className='flex h-5 gap-[5px]'>
           <TextScramble text='Ngân Hàng' bold />
           <p className='text-red-500'>(*)</p>
         </div>
 
-        <Box className='relative flex h-10 w-full items-center rounded-[10px]! px-[10px]'>
+        <Box className='relative flex h-10 w-full items-center rounded-[10px]! px-2.5'>
           <button
             className='flex h-full w-full cursor-pointer items-center'
             onClick={() => setShowListNH(true)}
@@ -162,7 +162,7 @@ export default function QRGeneratorPage() {
           </button>
           {showListNH && (
             <div ref={listNHRef}>
-              <Box className='absolute top-10 left-0 z-10 w-full overflow-hidden rounded-[10px]! bg-[#fff]!'>
+              <Box className='absolute top-10 left-0 z-10 w-full overflow-hidden rounded-[10px]! bg-white!'>
                 <Scrollbar className='max-h-[350px]'>
                   {Object.values(BanksObject).map((i) => (
                     <div
@@ -181,7 +181,7 @@ export default function QRGeneratorPage() {
       </div>
 
       <div className='flex w-full flex-col gap-[5px]'>
-        <div className='flex h-[20px] gap-[5px]'>
+        <div className='flex h-5 gap-[5px]'>
           <TextScramble text='STK' bold />
           <p className='text-red-500'>(*)</p>
         </div>
@@ -200,7 +200,7 @@ export default function QRGeneratorPage() {
       </div>
 
       <div className='flex w-full flex-col gap-[5px]'>
-        <TextScramble text='Số tiền' bold className='h-[20px]' />
+        <TextScramble text='Số Tiền' bold className='h-5' />
         <Box className='relative h-10 w-full overflow-hidden rounded-[10px]!'>
           <input
             value={formatAmount(soTien)}
@@ -217,13 +217,13 @@ export default function QRGeneratorPage() {
 
       {soTien && (
         <div className='flex w-full flex-col gap-[5px]'>
-          <TextScramble text='Nội Dung Chuyển Tiền' bold className='h-[20px]' />
+          <TextScramble text='Nội Dung Chuyển Tiền' bold className='h-5' />
           <Box className='relative w-full overflow-hidden rounded-[10px]!'>
             <textarea
               value={loiNhan}
               onChange={onChangeLoiNhan}
               maxLength={MAX_LOI_NHAN_LENGTH}
-              className='h-[40px] w-full [appearance:textfield] px-2.5 pr-12 focus:outline-0'
+              className='h-10 w-full [appearance:textfield] px-2.5 pr-12 focus:outline-0'
             />
           </Box>
         </div>
