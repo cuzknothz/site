@@ -12,12 +12,14 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { useRef } from 'react';
 import HTTPPieIcon from '@/assets/svg/httppie.svg';
+import clsx from 'clsx';
 
 export default function AppPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   useGSAP(
     () => {
-      gsap.fromTo(
+      let tl = gsap.timeline({});
+      tl.fromTo(
         containerRef.current,
         {
           scale: 0,
@@ -28,6 +30,18 @@ export default function AppPage() {
           ease: 'bounce.out',
         },
       );
+      tl.set('.z-app-container a', {
+        scale: 0,
+      });
+      tl.to('.z-app-container a', {
+        scale: 1,
+        stagger: {
+          from: 'start',
+          each: 0.05,
+        },
+        duration: 0.3,
+        ease: 'bounce.out',
+      });
     },
     { scope: containerRef },
   );
@@ -35,7 +49,12 @@ export default function AppPage() {
     <BackDrop>
       <div className='flex flex-col'>
         <div ref={containerRef}>
-          <Box className='grid w-auto grid-cols-4 gap-4 rounded-[30px] p-3 [&__svg]:h-6! [&__svg]:w-6!'>
+          <Box
+            className={clsx(
+              'z-app-container',
+              'grid w-auto grid-cols-4 gap-4 rounded-[30px] p-3 [&__svg]:h-6! [&__svg]:w-6!',
+            )}
+          >
             <AppIcon href={'/app/chat'} name='Chat AI'>
               <AiIcon />
             </AppIcon>
@@ -48,15 +67,14 @@ export default function AppPage() {
             <AppIcon href={'/app/spotify'} name='Spotify'>
               <SpotifyIcon />
             </AppIcon>
-            <AppIcon href={'/app/spectrogram'} name='Spek'>
-              <SpekIcon />
-            </AppIcon>
-
-            <AppIcon href={'/app/qr-generator'} name='QR'>
-              <QRIcon />
-            </AppIcon>
             <AppIcon href={'/app/qr-pay'} name='QR CK'>
               <QRIcon />
+            </AppIcon>
+            <AppIcon href={'/app/qr-generator'} name='QR Link '>
+              <QRIcon />
+            </AppIcon>
+            <AppIcon href={'/app/spectrogram'} name='Spek'>
+              <SpekIcon />
             </AppIcon>
             <AppIcon href={'/app/httppie'} name='HTTPPie'>
               <HTTPPieIcon />

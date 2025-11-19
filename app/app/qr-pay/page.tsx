@@ -1,9 +1,11 @@
 'use client';
-
+import SaveIcon from '@/assets/svg/save.svg';
 import { Scrollbar } from '@/components/ScrollBar';
 import { Box } from '@/components/Util/Box';
 import { TextScramble } from '@/components/Util/TextScramble';
+import { useIsMobile } from '@/hooks/useDeviceType';
 import { useEffectNext } from '@/hooks/useEffectNext';
+import { useGlobalStore } from '@/store/global-store';
 import clsx from 'clsx';
 import QRCodeStyling from 'qr-code-styling';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
@@ -11,8 +13,8 @@ import { useClickAway } from 'react-use';
 import { Bank, BanksObject, QRPay } from 'vietnam-qr-pay';
 
 const AUTHOR_PAY = {
-  bankBin: BanksObject.techcombank.bin,
-  bankNumber: '9399999991',
+  bankBin: BanksObject.tpbank.bin,
+  bankNumber: '98925698888',
 };
 
 const qrCode = new QRCodeStyling({
@@ -40,18 +42,17 @@ const formatAmount = (value: string) => {
   return value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
 
-// Bỏ dấu tiếng Việt
 const removeVietnameseTones = (str: string) => {
   if (!str) return '';
   return str
     .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '') // tổ hợp dấu
+    .replace(/[\u0300-\u036f]/g, '')
     .replace(/đ/g, 'd')
     .replace(/Đ/g, 'D');
 };
 
 export default function QRGeneratorPage() {
-  const [nganHang, setNganHang] = useState(BanksObject.techcombank);
+  const [nganHang, setNganHang] = useState(BanksObject.tpbank);
   const [stk, setStk] = useState('');
   const [soTien, setSoTien] = useState('');
   const [loiNhan, setLoiNhan] = useState('');
@@ -62,7 +63,15 @@ export default function QRGeneratorPage() {
 
   const qrPayRef = useRef<QRPay | null>(null);
   const refEl = useRef<HTMLDivElement>(null);
-  console.log('BanksObject', BanksObject);
+
+  const { isMobile } = useIsMobile();
+  const setShowFullMenu = useGlobalStore((s) => s.setShowFullMenu);
+
+  useEffect(() => {
+    if (isMobile) {
+      setShowFullMenu(false);
+    }
+  }, []);
 
   // init
   useEffect(() => {
@@ -97,16 +106,9 @@ export default function QRGeneratorPage() {
 
   function onChangeLoiNhan(e: ChangeEvent<HTMLTextAreaElement>) {
     let value = e.target.value;
-
-    // bỏ dấu
     value = removeVietnameseTones(value);
-
-    // loại ký tự đặc biệt (chỉ chữ + số + khoảng trắng)
     value = value.replace(/[^a-zA-Z0-9 ]/g, '');
-
-    // giới hạn 35 ký tự
     value = value.slice(0, MAX_LOI_NHAN_LENGTH);
-
     setLoiNhan(value);
   }
 
@@ -144,24 +146,29 @@ export default function QRGeneratorPage() {
   useClickAway(listNHRef, () => setShowListNH(false));
 
   return (
-    <div className='flex flex-col items-center gap-[15px]'>
+    <div className='flex flex-col items-center gap-[10px]'>
       <div className='flex w-full flex-col gap-[5px]'>
-        <div className='flex gap-[5px]'>
+        <div className='flex h-[20px] gap-[5px]'>
           <TextScramble text='Ngân Hàng' bold />
           <p className='text-red-500'>(*)</p>
         </div>
 
         <Box className='relative flex h-10 w-full items-center rounded-[10px]! px-[10px]'>
-          <p onClick={() => setShowListNH(true)}>{nganHang?.shortName ?? ''}</p>
+          <button
+            className='flex h-full w-full cursor-pointer items-center'
+            onClick={() => setShowListNH(true)}
+          >
+            {nganHang?.shortName ?? ''}
+          </button>
           {showListNH && (
             <div ref={listNHRef}>
-              <Box className='absolute top-10 left-0 z-10 w-full bg-[#fff]!'>
-                <Scrollbar className='max-h-[200px]'>
+              <Box className='absolute top-10 left-0 z-10 w-full overflow-hidden rounded-[10px]! bg-[#fff]!'>
+                <Scrollbar className='max-h-[350px]'>
                   {Object.values(BanksObject).map((i) => (
                     <div
                       key={i.bin}
                       onClick={() => onSetNganHang(i)}
-                      className='mx-5 flex h-[30px] items-center'
+                      className='flex h-[35px] cursor-pointer items-center rounded-[10px]! px-5 hover:bg-[#bbff00]'
                     >
                       {i.shortName}
                     </div>
@@ -174,7 +181,7 @@ export default function QRGeneratorPage() {
       </div>
 
       <div className='flex w-full flex-col gap-[5px]'>
-        <div className='flex gap-[5px]'>
+        <div className='flex h-[20px] gap-[5px]'>
           <TextScramble text='STK' bold />
           <p className='text-red-500'>(*)</p>
         </div>
@@ -186,14 +193,14 @@ export default function QRGeneratorPage() {
             placeholder={AUTHOR_PAY.bankNumber}
             type='text'
             maxLength={MAX_STK_LENGTH}
-             inputMode='numeric'
+            inputMode='numeric'
             className='h-full w-full [appearance:textfield] px-2.5 focus:outline-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
           />
         </Box>
       </div>
 
       <div className='flex w-full flex-col gap-[5px]'>
-        <TextScramble text='Số tiền' bold />
+        <TextScramble text='Số tiền' bold className='h-[20px]' />
         <Box className='relative h-10 w-full overflow-hidden rounded-[10px]!'>
           <input
             value={formatAmount(soTien)}
@@ -210,7 +217,7 @@ export default function QRGeneratorPage() {
 
       {soTien && (
         <div className='flex w-full flex-col gap-[5px]'>
-          <TextScramble text='Nội Dung Chuyển Tiền' bold />
+          <TextScramble text='Nội Dung Chuyển Tiền' bold className='h-[20px]' />
           <Box className='relative w-full overflow-hidden rounded-[10px]!'>
             <textarea
               value={loiNhan}
@@ -224,18 +231,21 @@ export default function QRGeneratorPage() {
 
       <div
         className={clsx(
-          'aspect-square w-full [&>canvas]:h-full! [&>canvas]:w-full!',
+          'mt-[15px] aspect-square w-full [&>canvas]:h-full! [&>canvas]:w-full!',
           initQRFirstTime && 'opacity-20',
         )}
         ref={refEl}
       />
 
-      <Box
-        onClick={onDownloadClick}
-        className='flex h-10 cursor-pointer items-center justify-center rounded-[10px]! bg-[#95ff0a] px-5'
-      >
-        Download
-      </Box>
+      {stk && (
+        <Box
+          onClick={onDownloadClick}
+          className='flex h-10 w-full cursor-pointer items-center justify-center gap-[5px] rounded-[15px]! bg-[#95ff0a] px-[50px]'
+        >
+          <SaveIcon />
+          <p>Lưu QR</p>
+        </Box>
+      )}
     </div>
   );
 }
