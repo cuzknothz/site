@@ -57,7 +57,7 @@ export default function QRGeneratorPage() {
     });
   }
 
-  const { initPending } = useInitApp();
+  const { initPending } = useInitApp(() => {}, 500);
 
   return (
     <>

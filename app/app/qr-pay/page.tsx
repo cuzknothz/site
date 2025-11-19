@@ -147,7 +147,8 @@ export default function QRGeneratorPage() {
 
   const listNHRef = useRef<HTMLDivElement>(null);
   useClickAway(listNHRef, () => setShowListNH(false));
-  const { initPending } = useInitApp();
+
+  const { initPending } = useInitApp(() => {}, 500);
 
   return (
     <>
