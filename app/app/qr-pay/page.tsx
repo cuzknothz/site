@@ -1,10 +1,13 @@
 'use client';
+import QRIcon from '@/assets/svg/qr.svg';
 import SaveIcon from '@/assets/svg/save.svg';
 import { Scrollbar } from '@/components/ScrollBar';
+import { BackDrop } from '@/components/Util/BackDrop';
 import { Box } from '@/components/Util/Box';
 import { TextScramble } from '@/components/Util/TextScramble';
 import { useIsMobile } from '@/hooks/useDeviceType';
 import { useEffectNext } from '@/hooks/useEffectNext';
+import { useInitApp } from '@/hooks/useInitApp';
 import { useGlobalStore } from '@/store/global-store';
 import clsx from 'clsx';
 import QRCodeStyling from 'qr-code-styling';
@@ -144,108 +147,116 @@ export default function QRGeneratorPage() {
 
   const listNHRef = useRef<HTMLDivElement>(null);
   useClickAway(listNHRef, () => setShowListNH(false));
+  const { initPending } = useInitApp();
 
   return (
-    <div className='flex flex-col items-center gap-2.5'>
-      <div className='flex w-full flex-col gap-[5px]'>
-        <div className='flex h-5 gap-[5px]'>
-          <TextScramble text='Ngân Hàng' bold />
-          <p className='text-red-500'>(*)</p>
-        </div>
-
-        <Box className='relative flex h-10 w-full items-center rounded-[10px]! px-2.5'>
-          <button
-            className='flex h-full w-full cursor-pointer items-center'
-            onClick={() => setShowListNH(true)}
-          >
-            {nganHang?.shortName ?? ''}
-          </button>
-          {showListNH && (
-            <div ref={listNHRef}>
-              <Box className='absolute top-10 left-0 z-10 w-full overflow-hidden rounded-[10px]! bg-white!'>
-                <Scrollbar className='max-h-[350px]'>
-                  {Object.values(BanksObject).map((i) => (
-                    <div
-                      key={i.bin}
-                      onClick={() => onSetNganHang(i)}
-                      className='flex h-[35px] cursor-pointer items-center rounded-[10px]! px-5 hover:bg-[#bbff00]'
-                    >
-                      {i.shortName}
-                    </div>
-                  ))}
-                </Scrollbar>
-              </Box>
-            </div>
-          )}
-        </Box>
-      </div>
-
-      <div className='flex w-full flex-col gap-[5px]'>
-        <div className='flex h-5 gap-[5px]'>
-          <TextScramble text='STK' bold />
-          <p className='text-red-500'>(*)</p>
-        </div>
-
-        <Box className='h-10 w-full overflow-hidden rounded-[10px]!'>
-          <input
-            value={stk}
-            onChange={onChangeStk}
-            placeholder={AUTHOR_PAY.bankNumber}
-            type='text'
-            maxLength={MAX_STK_LENGTH}
-            inputMode='numeric'
-            className='h-full w-full [appearance:textfield] px-2.5 focus:outline-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
-          />
-        </Box>
-      </div>
-
-      <div className='flex w-full flex-col gap-[5px]'>
-        <TextScramble text='Số Tiền' bold className='h-5' />
-        <Box className='relative h-10 w-full overflow-hidden rounded-[10px]!'>
-          <input
-            value={formatAmount(soTien)}
-            onChange={onChangeSoTien}
-            className='h-full w-full [appearance:textfield] px-2.5 pr-12 focus:outline-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
-            type='text'
-            inputMode='numeric'
-          />
-          <span className='pointer-events-none absolute top-1/2 right-2.5 -translate-y-1/2 text-sm text-gray-500'>
-            VND
-          </span>
-        </Box>
-      </div>
-
-      {soTien && (
+    <>
+      {initPending && (
+        <BackDrop>
+          <QRIcon className='h-[180px] w-[180px] -translate-y-[50px]' />
+        </BackDrop>
+      )}
+      <div className='flex flex-col items-center gap-2.5'>
         <div className='flex w-full flex-col gap-[5px]'>
-          <TextScramble text='Nội Dung Chuyển Tiền' bold className='h-5' />
-          <Box className='relative w-full overflow-hidden rounded-[10px]!'>
-            <textarea
-              value={loiNhan}
-              onChange={onChangeLoiNhan}
-              maxLength={MAX_LOI_NHAN_LENGTH}
-              className='h-10 w-full [appearance:textfield] px-2.5 pr-12 focus:outline-0'
+          <div className='flex h-5 gap-[5px]'>
+            <TextScramble text='Ngân Hàng' bold />
+            <p className='text-red-500'>(*)</p>
+          </div>
+
+          <Box className='relative flex h-10 w-full items-center rounded-[10px]! px-2.5'>
+            <button
+              className='flex h-full w-full cursor-pointer items-center'
+              onClick={() => setShowListNH(true)}
+            >
+              {nganHang?.shortName ?? ''}
+            </button>
+            {showListNH && (
+              <div ref={listNHRef}>
+                <Box className='absolute top-10 left-0 z-10 w-full overflow-hidden rounded-[10px]! bg-white!'>
+                  <Scrollbar className='max-h-[350px]'>
+                    {Object.values(BanksObject).map((i) => (
+                      <div
+                        key={i.bin}
+                        onClick={() => onSetNganHang(i)}
+                        className='flex h-[35px] cursor-pointer items-center rounded-[10px]! px-5 hover:bg-[#bbff00]'
+                      >
+                        {i.shortName}
+                      </div>
+                    ))}
+                  </Scrollbar>
+                </Box>
+              </div>
+            )}
+          </Box>
+        </div>
+
+        <div className='flex w-full flex-col gap-[5px]'>
+          <div className='flex h-5 gap-[5px]'>
+            <TextScramble text='STK' bold />
+            <p className='text-red-500'>(*)</p>
+          </div>
+
+          <Box className='h-10 w-full overflow-hidden rounded-[10px]!'>
+            <input
+              value={stk}
+              onChange={onChangeStk}
+              placeholder={AUTHOR_PAY.bankNumber}
+              type='text'
+              maxLength={MAX_STK_LENGTH}
+              inputMode='numeric'
+              className='h-full w-full [appearance:textfield] px-2.5 focus:outline-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
             />
           </Box>
         </div>
-      )}
 
-      <div
-        className={clsx(
-          'mt-[15px] aspect-square w-full [&>canvas]:h-full! [&>canvas]:w-full!',
-          initQRFirstTime && 'opacity-20',
+        <div className='flex w-full flex-col gap-[5px]'>
+          <TextScramble text='Số Tiền' bold className='h-5' />
+          <Box className='relative h-10 w-full overflow-hidden rounded-[10px]!'>
+            <input
+              value={formatAmount(soTien)}
+              onChange={onChangeSoTien}
+              className='h-full w-full [appearance:textfield] px-2.5 pr-12 focus:outline-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
+              type='text'
+              inputMode='numeric'
+            />
+            <span className='pointer-events-none absolute top-1/2 right-2.5 -translate-y-1/2 text-sm text-gray-500'>
+              VND
+            </span>
+          </Box>
+        </div>
+
+        {soTien && (
+          <div className='flex w-full flex-col gap-[5px]'>
+            <TextScramble text='Nội Dung Chuyển Tiền' bold className='h-5' />
+            <Box className='relative w-full overflow-hidden rounded-[10px]!'>
+              <textarea
+                value={loiNhan}
+                onChange={onChangeLoiNhan}
+                maxLength={MAX_LOI_NHAN_LENGTH}
+                className='h-10 w-full [appearance:textfield] px-2.5 pr-12 focus:outline-0'
+              />
+            </Box>
+          </div>
         )}
-        ref={refEl}
-      />
 
-      {stk && (
-        <Box
-          onClick={onDownloadClick}
-          className='flex h-10 w-full cursor-pointer items-center justify-center gap-[5px] rounded-[15px]! bg-[#95ff0a] px-[50px]'
-        >
-          <SaveIcon />
-          <p>Lưu QR</p>
-        </Box>
-      )}
-    </div>
+        <div
+          className={clsx(
+            'mt-[15px] aspect-square w-full [&>canvas]:h-full! [&>canvas]:w-full!',
+            initQRFirstTime && 'opacity-20',
+          )}
+          ref={refEl}
+        />
+
+        {stk && (
+          <Box
+            onClick={onDownloadClick}
+            className='flex h-10 w-full cursor-pointer items-center justify-center gap-[5px] rounded-[15px]! bg-[#95ff0a] px-[50px]'
+          >
+            <SaveIcon />
+            <p>Lưu QR</p>
+          </Box>
+        )}
+      </div>
+    </>
   );
 }

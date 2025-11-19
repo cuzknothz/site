@@ -1,9 +1,11 @@
 'use client';
-
+import QRIcon from '@/assets/svg/qr.svg';
 import SaveIcon from '@/assets/svg/save.svg';
+import { BackDrop } from '@/components/Util/BackDrop';
 import { Box } from '@/components/Util/Box';
 import { TextScramble } from '@/components/Util/TextScramble';
 import { useEffectNext } from '@/hooks/useEffectNext';
+import { useInitApp } from '@/hooks/useInitApp';
 import clsx from 'clsx';
 import QRCodeStyling from 'qr-code-styling';
 import { useEffect, useRef, useState } from 'react';
@@ -55,36 +57,45 @@ export default function QRGeneratorPage() {
     });
   }
 
-  return (
-    <div className='flex flex-col items-center gap-[15px]'>
-      <div className='flex w-full flex-col gap-[5px]'>
-        <TextScramble text='Link to generate:' bold className='h-5' />
-        <Box className='h-10 w-full overflow-hidden rounded-[10px]!'>
-          <input
-            value={url}
-            onChange={(event) => setUrl(event.target.value)}
-            placeholder={URL_SITE}
-            className='h-full w-full px-2.5 focus:outline-0'
-          />
-        </Box>
-      </div>
+  const { initPending } = useInitApp();
 
-      <div
-        className={clsx(
-          'mt-[15px] aspect-square w-full [&>canvas]:h-full! [&>canvas]:w-full!',
-          initQRFirstTime && 'opacity-20',
-        )}
-        ref={refEl}
-      />
-      {url && (
-        <Box
-          onClick={onDownloadClick}
-          className='flex h-10 w-full cursor-pointer items-center justify-center gap-[5px] rounded-[15px]! bg-[#95ff0a] px-[50px]'
-        >
-          <SaveIcon />
-          <p>Lưu QR</p>
-        </Box>
+  return (
+    <>
+      {initPending && (
+        <BackDrop>
+          <QRIcon className='h-[180px] w-[180px] -translate-y-[50px]' />
+        </BackDrop>
       )}
-    </div>
+      <div className='flex flex-col items-center gap-[15px]'>
+        <div className='flex w-full flex-col gap-[5px]'>
+          <TextScramble text='Link to generate:' bold className='h-5' />
+          <Box className='h-10 w-full overflow-hidden rounded-[10px]!'>
+            <input
+              value={url}
+              onChange={(event) => setUrl(event.target.value)}
+              placeholder={URL_SITE}
+              className='h-full w-full px-2.5 focus:outline-0'
+            />
+          </Box>
+        </div>
+
+        <div
+          className={clsx(
+            'mt-[15px] aspect-square w-full [&>canvas]:h-full! [&>canvas]:w-full!',
+            initQRFirstTime && 'opacity-20',
+          )}
+          ref={refEl}
+        />
+        {url && (
+          <Box
+            onClick={onDownloadClick}
+            className='flex h-10 w-full cursor-pointer items-center justify-center gap-[5px] rounded-[15px]! bg-[#95ff0a] px-[50px]'
+          >
+            <SaveIcon />
+            <p>Lưu QR</p>
+          </Box>
+        )}
+      </div>
+    </>
   );
 }
