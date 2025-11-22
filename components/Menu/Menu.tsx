@@ -51,15 +51,12 @@ export const Menu = () => {
     syncSelect();
   }, [syncSelect]);
 
-  const timeLineIntro = useRef<TimelineLite>(null);
-
   const { contextSafe } = useGSAP(
     () => {
       gsap.set('svg', {
         rotate: '360deg',
       });
 
-      timeLineIntro.current = gsap.timeline({});
       gsap.to('svg', {
         rotate: 0,
         stagger: {
@@ -67,7 +64,8 @@ export const Menu = () => {
           from: 'random',
         },
       });
-      gsap.to(clusterBtn.current!.childNodes, {
+      let tl = gsap.timeline({});
+      tl.to('a', {
         transform: 'translateY(-40px)',
         scale: 1,
         rotate: 0,
@@ -76,19 +74,44 @@ export const Menu = () => {
           from: 'random',
         },
       });
+      tl.set('a', { scale: 0 });
+      tl.to('a', {
+        scale: 1,
+        stagger: {
+          each: 0.05,
+          from: 'start',
+        },
+        ease: 'bounce.out',
+        duration: 0.5,
+      });
     },
     { scope: clusterBtn },
   );
 
   const showFullMenu = useGlobalStore((s) => s.showFullMenu);
+  // const showFullMenu = useGlobalStore((s) => s.showFullMenu);
 
   useEffectNext(() => {
-    gsap.to(clusterBtn.current!.childNodes, {
+    let tl = gsap.timeline({});
+    tl.to(clusterBtn.current!.childNodes, {
       translateY: showFullMenu ? -40 : 80,
       stagger: {
         each: 0.05,
         from: 'start',
       },
+    });
+    if (!showFullMenu) {
+      return;
+    }
+    tl.set('a', { scale: 0 });
+    tl.to('a', {
+      scale: 1,
+      stagger: {
+        each: 0.05,
+        from: 'start',
+      },
+      ease: 'bounce.out',
+      duration: 0.5,
     });
   }, [showFullMenu]);
 
