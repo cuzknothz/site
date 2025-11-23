@@ -122,4 +122,5 @@ export const useHTTPieStore = create<SquezeState>()((set, get) => ({
   selectedRequestId: 298389123,
   setSelectedRequestId: (id: number | string) =>
     set((state) => ({ selectedRequestId: id })),
+  
 }));
