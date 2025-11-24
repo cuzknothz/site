@@ -118,7 +118,7 @@ export const Menu = () => {
   return (
     <>
       <div
-        className='fixed right-1/2 bottom-0 z-10 flex w-full translate-x-1/2 justify-center gap-3 sm:w-[500px] sm:gap-2 [&__svg]:scale-[1.2]'
+        className='fixed right-1/2 bottom-0 z-10 flex w-full translate-x-1/2 justify-center gap-2 sm:w-[500px] [&__svg]:scale-[1.2]'
         ref={clusterBtn}
       >
         <Link href={'/'}>

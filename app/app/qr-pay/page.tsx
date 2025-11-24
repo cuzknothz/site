@@ -5,10 +5,9 @@ import { Scrollbar } from '@/components/ScrollBar';
 import { BackDrop } from '@/components/Util/BackDrop';
 import { Box } from '@/components/Util/Box';
 import { TextScramble } from '@/components/Util/TextScramble';
-import { useIsMobile } from '@/hooks/useDeviceType';
 import { useEffectNext } from '@/hooks/useEffectNext';
+import { useHiddenMenuNext } from '@/hooks/useHiddenMenuNext';
 import { useInitApp } from '@/hooks/useInitApp';
-import { useGlobalStore } from '@/store/global-store';
 import clsx from 'clsx';
 import QRCodeStyling from 'qr-code-styling';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
@@ -67,15 +66,7 @@ export default function QRGeneratorPage() {
   const qrPayRef = useRef<QRPay | null>(null);
   const refEl = useRef<HTMLDivElement>(null);
 
-  const { isMobile } = useIsMobile();
-  const setShowFullMenu = useGlobalStore((s) => s.setShowFullMenu);
-
-  useEffect(() => {
-    if (isMobile) {
-      setShowFullMenu(false);
-    }
-  }, []);
-
+  useHiddenMenuNext();
   // init
   useEffect(() => {
     if (!refEl.current) return;

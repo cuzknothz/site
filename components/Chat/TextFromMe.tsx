@@ -64,7 +64,7 @@ export const TextFromMe = ({ text, animation = false, images = [] }: Props) => {
         )}
       >
         {images.length > 0 && (
-          <div className='mt-2 flex flex-wrap justify-end gap-2'>
+          <div className='my-[5px] flex flex-wrap justify-end gap-2'>
             {images.map((src, idx) => (
               <img
                 key={`${src}-${idx}`}

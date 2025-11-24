@@ -11,7 +11,7 @@ const link = [
 export default function HomePage() {
   return (
     <div className='flex flex-col gap-5'>
-      <div className='relative'>
+      <div className='relative aspect-3/4! w-full!'>
         <Spline
           scene='https://prod.spline.design/wGWWmsOIBBVIUAb8/scene.splinecode'
           className='[&__canvas]:aspect-3/4! [&__canvas]:w-full!'
