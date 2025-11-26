@@ -9,6 +9,11 @@ import { Note } from './Note';
 import axios from 'axios';
 import { get, reverse } from 'lodash';
 import { Scrollbar } from '@/components/ScrollBar';
+import { Header } from './Header';
+import { SideBar } from './SideBar';
+import { MainDivision } from './MainDivision';
+import { useGlobalStore } from '@/store/global-store';
+import clsx from 'clsx';
 
 const LoginWith = () => {
   return (
@@ -30,6 +35,8 @@ const LoginWith = () => {
 };
 
 export const SpotifyApp = () => {
+  const showFullMenu = useGlobalStore((s) => s.showFullMenu);
+
   const containerRef = useRef<HTMLDivElement>(null);
   const [showNote, setShowNote] = useState(false);
 
@@ -88,54 +95,27 @@ export const SpotifyApp = () => {
   return (
     <div
       ref={containerRef}
-      className='fixed top-0 left-0 h-dvh w-screen overflow-scroll'
+      className='fixed top-0 left-0 h-dvh w-screen bg-[black]'
     >
-      {initPending && (
+      {/* {initPending && (
         <BackDrop>
           <SpotifyIcon className='h-[180px] w-[180px] -translate-y-[50px]' />
         </BackDrop>
-      )}
-      {showNote && (
+      )} */}
+      {/* {showNote && (
         <BackDrop>
           <Note setShowNote={setShowNote} />
         </BackDrop>
-      )}
-
-      <div>
-        <div>Popular Artist</div>
-        <div>
-          <div className='flex flex-wrap gap-[5px]'>
-            {reverse(popularArtist).map((i) => (
-              <div className='flex flex-none flex-col'>
-                <img
-                  className='h-[100px] w-[100px] overflow-hidden rounded-[50%] object-cover'
-                  src={get(i, 'images[0].url', '')}
-                  alt={i.name}
-                />
-                <div className='line-clamp-1'>{i.name} </div>
-              </div>
-            ))}
-          </div>
-          <div></div>
-        </div>
-      </div>
-      <div>
-        <div className='text-[15px] font-bold'>Thiên hạ nghe gì</div>
-        <div>
-          <div className='flex flex-col gap-[5px]'>
-            {thienHaNgheGi.map((i) => (
-              <div className='flex flex-none items-center'>
-                <img
-                  className='aspect-square h-[40px] w-[40px] overflow-hidden rounded-[5px] object-cover'
-                  src={get(i, 'album.images[0].url', '')}
-                  alt={i.name}
-                />
-                <div className='line-clamp-1'>{i.name} </div>
-              </div>
-            ))}
-          </div>
-          <div></div>
-        </div>
+      )} */}
+      <Header />
+      <div
+        className={clsx(
+          'flex gap-[8px] duration-500',
+          showFullMenu ? 'h-[calc(100dvh-170px)]' : 'h-[calc(100dvh-100px)]',
+        )}
+      >
+        <SideBar />
+        <MainDivision />
       </div>
     </div>
   );

@@ -1,8 +1,10 @@
 'use client';
 import ArrowUpRightIcon from '@/assets/svg/arrow-up-right.svg';
 import { TextScramble } from '@/components/Util/TextScramble';
-import Spline from '@splinetool/react-spline';
+import { lazy, Suspense } from 'react';
 import Link from 'next/link';
+
+const Spline = lazy(() => import('@splinetool/react-spline'));
 
 const link = [
   { platform: 'Github', link: 'https://github.com/nbcgww' },
@@ -12,10 +14,16 @@ export default function HomePage() {
   return (
     <div className='flex flex-col gap-5'>
       <div className='relative aspect-3/4! w-full!'>
-        <Spline
-          scene='https://prod.spline.design/wGWWmsOIBBVIUAb8/scene.splinecode'
-          className='[&__canvas]:aspect-3/4! [&__canvas]:w-full!'
-        />
+        <Suspense fallback={
+          <div className='absolute right-0 bottom-2.5 h-[50px] w-[200px] bg-white dark:bg-black'>
+            Loading 3D scene...
+          </div>
+        }>
+          <Spline
+            scene='https://prod.spline.design/wGWWmsOIBBVIUAb8/scene.splinecode'
+            className='[&__canvas]:aspect-3/4! [&__canvas]:w-full!'
+          />
+        </Suspense>
         <div className='absolute right-0 bottom-2.5 h-[50px] w-[200px] bg-white dark:bg-black'></div>
       </div>
       <div>

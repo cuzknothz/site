@@ -2,7 +2,7 @@ import { SpotifyApp } from '@/components/Spotify/App/SpotifyApp';
 
 export default function SpotifyPage() {
   return (
-    <div>
+    <div className='**:text-[16px] **:text-[#B3B3B3]'>
       <SpotifyApp />
     </div>
   );

@@ -13,6 +13,7 @@ import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useRef } from 'react';
 import { MenuItem } from './Item';
 import { ShowMenu } from './ShowMenu';
+import clsx from 'clsx';
 
 export const Menu = () => {
   const selected = useGlobalStore((s) => s.select);
@@ -115,10 +116,16 @@ export const Menu = () => {
     });
   }, [showFullMenu]);
 
+  console.log('pathname', pathname);
+  const isSpotifyApp = pathname === '/app/spotify';
+
   return (
     <>
       <div
-        className='fixed right-1/2 bottom-0 z-10 flex w-full translate-x-1/2 justify-center gap-2 sm:w-[500px] [&__svg]:scale-[1.2]'
+        className={clsx(
+          'fixed right-1/2 bottom-0 z-10 flex w-full translate-x-1/2 justify-center gap-2 sm:w-[500px] [&__svg]:scale-[1.2]',
+          isSpotifyApp && 'invert',
+        )}
         ref={clusterBtn}
       >
         <Link href={'/'}>

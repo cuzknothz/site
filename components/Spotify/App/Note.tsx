@@ -1,7 +1,9 @@
 'use client';
 
 import { Box } from '@/components/Util/Box';
+import { appFont } from '@/lib/font';
 import { useGSAP } from '@gsap/react';
+import clsx from 'clsx';
 import gsap from 'gsap';
 import Link from 'next/link';
 import { useRef } from 'react';
@@ -23,7 +25,9 @@ export const Note = ({ setShowNote }: NoteProps) => {
   });
   return (
     <div ref={containerRef}>
-      <Box className='w-[300px] bg-white p-[15px] pt-5!'>
+      <Box
+        className={clsx('w-[300px] bg-white p-[15px] pt-5! **:font-[14px]!', appFont.className)}
+      >
         <p className='mb-2.5 text-center text-[13px]'>Note</p>
         <p>
           {'- Ứng dụng được xây dựng bằng Web API của Spotify '}
