@@ -1,5 +1,5 @@
-import SpotifyIcon from '@/assets/svg/spotify/icon.svg';
-import HomeIcon from '@/assets/svg/spotify/home-icon.svg';
+import SpotifyIcon from '../svg/icon.svg';
+import HomeIcon from '../svg/home-icon.svg';
 import { SearchDivision } from './SearchDivision';
 
 export const Header = () => {

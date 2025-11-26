@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Box } from '../Util/Box';
+import { Box } from './Util/Box';
 import { ReactNode } from 'react';
 
 interface Props {

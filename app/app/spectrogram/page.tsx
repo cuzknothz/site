@@ -1,4 +1,4 @@
-import { SpectrogramPlayer } from '@/components/Spek/Spek';
+import { SpectrogramPlayer } from './components/Spek';
 
 export default function SpectrogramPage() {
   return (

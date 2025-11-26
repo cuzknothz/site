@@ -4,9 +4,9 @@ import { useMutationObserver } from '@/hooks/useMutationObserver';
 import { useChatStore } from '@/store/chat';
 import clsx from 'clsx';
 import { Fragment, useRef } from 'react';
-import { Scrollbar } from '../ScrollBar';
-import { Box } from '../Util/Box';
-import { TextScramble } from '../Util/TextScramble';
+import { Scrollbar } from '@/components/ScrollBar';
+import { Box } from '@/components/Util/Box';
+import { TextScramble } from '@/components/Util/TextScramble';
 import { TextFromMe } from './TextFromMe';
 
 export const Conversation = () => {

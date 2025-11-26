@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import gsap from 'gsap';
 import { SplitText } from 'gsap/all';
 import { useRef } from 'react';
-import { Box } from '../Util/Box';
+import { Box } from '@/components/Util/Box';
 
 interface Props {
   text: string;

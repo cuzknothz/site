@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { Box } from '../Util/Box';
+import { Box } from '@/components/Util/Box';
 
 export interface PreviewImage {
   file: File;

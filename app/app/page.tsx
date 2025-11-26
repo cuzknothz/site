@@ -5,7 +5,7 @@ import FingerPrintIcon from '@/assets/svg/finger-print.svg';
 import SpekIcon from '@/assets/svg/spek.svg';
 import SpotifyIcon from '@/assets/svg/spotify.svg';
 import QRIcon from '@/assets/svg/qr.svg';
-import { AppIcon } from '@/components/App/AppIcon';
+import { AppIcon } from '@/components/AppIcon';
 import { BackDrop } from '@/components/Util/BackDrop';
 import { Box } from '@/components/Util/Box';
 import { useGSAP } from '@gsap/react';

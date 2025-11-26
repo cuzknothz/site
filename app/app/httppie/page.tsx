@@ -1,10 +1,10 @@
 'use client';
 
-import { ParamsDivision } from '@/components/App/HTTP/Block/Params';
-import { PreviewDivision } from '@/components/App/HTTP/Block/Preview';
-import { SideBar } from '@/components/App/HTTP/Block/SideBar';
-import { TabBar } from '@/components/App/HTTP/Block/TabBar';
-import { TopBar } from '@/components/App/HTTP/Block/TopBar';
+import { ParamsDivision } from './components/Block/Params';
+import { PreviewDivision } from './components/Block/Preview';
+import { SideBar } from './components/Block/SideBar';
+import { TabBar } from './components/Block/TabBar';
+import { TopBar } from './components/Block/TopBar';
 import { useGlobalStore } from '@/store/global-store';
 import clsx from 'clsx';
 

@@ -1,19 +1,14 @@
 'use client';
-import SpotifyIcon from '@/assets/svg/spotify.svg';
 import { BackDrop } from '@/components/Util/BackDrop';
 import { Box } from '@/components/Util/Box';
 import { useInitApp } from '@/hooks/useInitApp';
-import { useEffect, useRef, useState } from 'react';
-import { Avatar } from './Avatar';
-import { Note } from './Note';
-import axios from 'axios';
-import { get, reverse } from 'lodash';
-import { Scrollbar } from '@/components/ScrollBar';
-import { Header } from './Header';
-import { SideBar } from './SideBar';
-import { MainDivision } from './MainDivision';
 import { useGlobalStore } from '@/store/global-store';
 import clsx from 'clsx';
+import { useRef, useState } from 'react';
+import { Avatar } from './Avatar';
+import { Header } from './Header';
+import { MainDivision } from './MainDivision';
+import { SideBar } from './SideBar';
 
 const LoginWith = () => {
   return (

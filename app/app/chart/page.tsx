@@ -1,7 +1,7 @@
 'use client';
 import ThreeChartIcon from '@/assets/svg/3chart.svg';
 import { Scrollbar } from '@/components/ScrollBar';
-import { Chart } from '@/components/TradingView/TradingView';
+import { Chart } from './components/TradingView';
 import { BackDrop } from '@/components/Util/BackDrop';
 import { useInitApp } from '@/hooks/useInitApp';
 

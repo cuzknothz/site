@@ -1,5 +1,5 @@
-import SearchIcon from '@/assets/svg/spotify/search-icon.svg';
-import SearchExploreIcon from '@/assets/svg/spotify/search-explore-icon.svg';
+import SearchIcon from '../svg/search-icon.svg';
+import SearchExploreIcon from '../svg/search-explore-icon.svg';
 
 export const SearchDivision = () => {
   return (

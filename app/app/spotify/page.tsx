@@ -1,4 +1,4 @@
-import { SpotifyApp } from '@/components/Spotify/App/SpotifyApp';
+import { SpotifyApp } from '@/app/app/spotify/components/SpotifyApp';
 
 export default function SpotifyPage() {
   return (

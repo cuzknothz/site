@@ -11,7 +11,7 @@ import gsap from 'gsap';
 import { Howl } from 'howler';
 import imageCompression from 'browser-image-compression';
 import { useEffect, useRef, useState } from 'react';
-import { Box } from '../Util/Box';
+import { Box } from '@/components/Util/Box';
 import { TextAreaInput } from './TextAreaInput';
 import { DivisionImagePreview, PreviewImage } from './DivisionImagePreview';
 

@@ -6,10 +6,10 @@ import { useVisitorData } from '@fingerprintjs/fingerprintjs-pro-react';
 import axios from 'axios';
 import { get, isBoolean, isNil } from 'lodash';
 import { useEffect, useState } from 'react';
-import { MapPigeon } from '../Map';
-import { BackDrop } from '../Util/BackDrop';
-import { Box } from '../Util/Box';
-import { TextScramble } from '../Util/TextScramble';
+import { MapPigeon } from '../../../../components/Map';
+import { BackDrop } from '../../../../components/Util/BackDrop';
+import { Box } from '../../../../components/Util/Box';
+import { TextScramble } from '../../../../components/Util/TextScramble';
 import clsx from 'clsx';
 
 export const ClientInfo = () => {

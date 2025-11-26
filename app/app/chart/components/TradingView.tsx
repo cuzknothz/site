@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Box } from '../Util/Box';
+import { Box } from '@/components/Util/Box';
 
 interface Props {
   interval?: string;

@@ -1,4 +1,4 @@
-import LibPlusIcon from '@/assets/svg/spotify/library-plus-icon.svg';
+import LibPlusIcon from '../svg/library-plus-icon.svg';
 export const SideBar = () => {
   return (
     <div className='h-full w-[420px] rounded-[20px] bg-[#121212] overflow-hidden flex-none'>

@@ -7,8 +7,8 @@ import clsx from 'clsx';
 import gsap from 'gsap';
 import { useRef } from 'react';
 import { useClickAway } from 'react-use';
-import { Scrollbar } from '../ScrollBar';
-import { Box } from '../Util/Box';
+import { Scrollbar } from '@/components/ScrollBar';
+import { Box } from '@/components/Util/Box';
 import NewChatIcon from '@/assets/svg/ai-new-chat.svg';
 import { eventMitt } from '@/helper/event';
 

@@ -1,7 +1,7 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { KeyboardEvent, useRef } from 'react';
-import { Scrollbar } from '../ScrollBar';
+import { Scrollbar } from '@/components/ScrollBar';
 
 interface Props {
   value: string;

@@ -1,6 +1,6 @@
 'use client';
-import { ClientInfo } from '@/components/FingerPrint/ClientInfo';
-import { FingerFrintCtx } from '@/components/FingerPrint/Ctx';
+import { ClientInfo } from '@/app/app/finger-print/components/ClientInfo';
+import { FingerFrintCtx } from '@/app/app/finger-print/components/Ctx';
 
 export default function FingerFrintPage() {
   return (
