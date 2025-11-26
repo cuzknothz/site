@@ -9,7 +9,7 @@ export const FingerFrintCtx = ({ children }: Props) => {
   return (
     <FpjsProvider
       loadOptions={{
-        apiKey: 'ecSnEVF03jiHwPcXNbQL',
+        apiKey: process.env.NEXT_PUBLIC_FPJS_API_KEY,
       }}
     >
       {children}
