@@ -19,9 +19,10 @@ export const MainDivision = () => {
           type: 'artist',
           // q: 'nghệ sĩ việt nổi bật',
           // q: 'trending nghệ sĩ việt',
-          q: 'nghệ sĩ trending ',
+          q: 'nghệ sĩ nổi bật 2025',
           market: 'VN',
-          limit: 50,
+          limit: 10,
+          offset: 5,
         },
       });
 
@@ -34,7 +35,8 @@ export const MainDivision = () => {
           // q: 'trending nghệ sĩ việt',
           q: 'trending bài hát',
           market: 'VN',
-          limit: 50,
+          limit: 20,
+          offset: 5,
         },
       });
       setThienHaNgheGi(get(resThienHaNgheGi, 'data.tracks.items', []));
@@ -51,51 +53,55 @@ export const MainDivision = () => {
   return (
     <div className='h-full flex-1 rounded-[20px] bg-[#121212] pt-[4px]'>
       <div className='flex flex-col gap-[20px]'>
-        <div>
-          <div className='flex h-[48px] items-end justify-between px-[100px]'>
-            <span className='text-[24px]! font-bold text-white!'>
-              Trending songs
-            </span>
-            <span className='text-[14px]! font-bold'>Show all</span>
-          </div>
+        {thienHaNgheGi.length > 0 && (
+          <div>
+            <div className='flex h-[48px] items-end justify-between px-[100px]'>
+              <span className='text-[24px]! font-bold text-white!'>
+                Trending songs
+              </span>
+              <span className='text-[14px]! font-bold'>Show all</span>
+            </div>
 
-          <div className='mt-[15px] flex w-[50%] overflow-hidden px-[85px]'>
-            {thienHaNgheGi.map((i) => (
-              <div className='flex h-[300px] w-[200px] flex-none flex-col items-start'>
-                <img
-                  className='aspect-square h-[171px] w-[171px] overflow-hidden rounded-[5px] object-cover'
-                  src={get(i, 'album.images[0].url', '')}
-                  alt={i.name}
-                />
-                <div className='line-clamp-1 text-white!'>{i.name} </div>
-                <div>{artist(i.artists)}</div>
-              </div>
-            ))}
+            <div className='mt-[15px] flex w-[50%] overflow-hidden px-[85px]'>
+              {thienHaNgheGi.map((i) => (
+                <div className='flex h-[300px] w-[200px] flex-none flex-col items-start'>
+                  <img
+                    className='aspect-square h-[171px] w-[171px] overflow-hidden rounded-[5px] object-cover'
+                    src={get(i, 'album.images[0].url', '')}
+                    alt={i.name}
+                  />
+                  <div className='line-clamp-1 text-white!'>{i.name} </div>
+                  <div>{artist(i.artists)}</div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
-        <div>
-          <div className='flex h-[48px] items-end justify-between px-[100px]'>
-            <span className='text-[24px]! font-bold text-white!'>
-              Popular artists
-            </span>
-            <span className='text-[14px]! font-bold'>Show all</span>
-          </div>
+        {popularArtist.length > 0 && (
+          <div>
+            <div className='flex h-[48px] items-end justify-between px-[100px]'>
+              <span className='text-[24px]! font-bold text-white!'>
+                Popular artists
+              </span>
+              <span className='text-[14px]! font-bold'>Show all</span>
+            </div>
 
-          <div className='mt-[15px] flex w-[50%] overflow-hidden px-[85px]'>
-            {popularArtist.map((i) => (
-              <div className='flex h-[300px] w-[200px] flex-none flex-col items-start'>
-                <img
-                  className='aspect-square h-[171px] w-[171px] overflow-hidden rounded-[50%] object-cover'
-                  src={get(i, 'images[0].url', '')}
-                  alt={i.name}
-                />
-                <div className='line-clamp-1 text-white!'>{i.name} </div>
-                <div>Artist</div>
-              </div>
-            ))}
+            <div className='mt-[15px] flex w-[50%] overflow-hidden px-[85px]'>
+              {popularArtist.map((i) => (
+                <div className='flex h-[300px] w-[200px] flex-none flex-col items-start'>
+                  <img
+                    className='aspect-square h-[171px] w-[171px] overflow-hidden rounded-[50%] object-cover'
+                    src={get(i, 'images[0].url', '')}
+                    alt={i.name}
+                  />
+                  <div className='line-clamp-1 text-white!'>{i.name} </div>
+                  <div>Artist</div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

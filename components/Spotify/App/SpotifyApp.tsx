@@ -49,49 +49,6 @@ export const SpotifyApp = () => {
     setShowNote(true);
   });
 
-  const [popularArtist, setPopularArtist] = useState([]);
-
-  const [thienHaNgheGi, setThienHaNgheGi] = useState([]);
-
-  useEffect(() => {
-    const getdata = async () => {
-      let res = await axios.get('/api/spotify/home');
-      console.log('token', res);
-      // return token;
-
-      let resPopularArtist = await axios.get('/api/spotify/search', {
-        params: {
-          type: 'artist',
-          // q: 'nghệ sĩ việt nổi bật',
-          // q: 'trending nghệ sĩ việt',
-          q: 'nghệ sĩ trending ',
-          market: 'VN',
-          limit: 50,
-        },
-      });
-
-      setPopularArtist(get(resPopularArtist, 'data.artists.items', []));
-
-      let resThienHaNgheGi = await axios.get('/api/spotify/search', {
-        params: {
-          type: 'track',
-          // q: 'nghệ sĩ việt nổi bật',
-          // q: 'trending nghệ sĩ việt',
-          q: 'trending bài hát',
-          market: 'VN',
-          limit: 50,
-        },
-      });
-      setThienHaNgheGi(get(resThienHaNgheGi, 'data.tracks.items', []));
-
-      setPopularArtist(get(resPopularArtist, 'data.artists.items', []));
-
-      console.log('resThienHaNgheGi', resThienHaNgheGi);
-    };
-
-    getdata();
-  }, []);
-
   return (
     <div
       ref={containerRef}
