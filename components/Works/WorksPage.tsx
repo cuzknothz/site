@@ -2,7 +2,7 @@
 
 import { Article } from '@/components/Note/NoteList';
 import { TextScramble } from '@/components/Util/TextScramble';
-import { Work } from '@/components/work/Work';
+import { Work } from './Work';
 import { sleep } from '@/utils/app';
 import { useEffect, useState } from 'react';
 
