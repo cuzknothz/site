@@ -62,7 +62,7 @@ export const SpotifyApp = () => {
       <Header />
       <div
         className={clsx(
-          'flex gap-[8px] duration-500',
+          'flex gap-[8px] duration-500 mx-[5px]',
           showFullMenu ? 'h-[calc(100dvh-170px)]' : 'h-[calc(100dvh-100px)]',
         )}
       >
