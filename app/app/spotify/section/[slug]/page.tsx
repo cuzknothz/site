@@ -1,10 +1,9 @@
-export default async function BlogPostPage({
+import { SectionPage } from './SectionPage';
+export default async function SpotifySectionPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-
-  console.log('slug', slug);
-  return <div>{slug}</div>;
+  return <SectionPage slug={slug} />;
 }

@@ -1,17 +1,22 @@
 import SpotifyIcon from '../svg/icon.svg';
 import HomeIcon from '../svg/home-icon.svg';
 import { SearchDivision } from './SearchDivision';
+import Link from 'next/link';
 
 export const Header = () => {
   return (
     <div className='flex h-[64px] w-full items-center justify-between bg-[#000] px-[20px]'>
       <button>
-        <SpotifyIcon className='h-[32px]! w-[32px]! invert' />
+        <Link href={'/app/spotify'}>
+          <SpotifyIcon className='h-[32px]! w-[32px]! invert' />
+        </Link>
       </button>
 
       <div className='flex gap-[8px]'>
         <button className='flex h-[48px]! w-[48px]! items-center justify-center rounded-[50%] bg-[#282828]'>
-          <HomeIcon className='h-[24px]! w-[24px]! invert' />
+          <Link href={'/app/spotify'}>
+            <HomeIcon className='h-[24px]! w-[24px]! invert' />
+          </Link>
         </button>
         <SearchDivision />
       </div>
