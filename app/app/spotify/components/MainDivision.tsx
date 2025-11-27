@@ -17,9 +17,7 @@ export const MainDivision = () => {
       let resPopularArtist = await axios.get('/api/spotify/search', {
         params: {
           type: 'artist',
-          // q: 'nghệ sĩ việt nổi bật',
-          // q: 'trending nghệ sĩ việt',
-          q: 'nghệ sĩ nổi bật 2025',
+          q: 'trending songs việt',
           market: 'VN',
           limit: 10,
           offset: 5,
@@ -31,9 +29,7 @@ export const MainDivision = () => {
       let resThienHaNgheGi = await axios.get('/api/spotify/search', {
         params: {
           type: 'track',
-          // q: 'nghệ sĩ việt nổi bật',
-          // q: 'trending nghệ sĩ việt',
-          q: 'trending bài hát',
+          q: 'trending songs việt',
           market: 'VN',
           limit: 20,
           offset: 5,
