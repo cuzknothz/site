@@ -1,13 +1,10 @@
 'use client';
  
-import { Box } from '@/components/Util/Box';
+import { useIsMobile } from '@/hooks/useDeviceType';
 import DiceBox from '@3d-dice/dice-box';
 import { useEffect, useRef, useState } from 'react';
-import DiceIcon from '../dice.svg';
-import { Result } from './Result';
-import { flatten } from 'lodash';
 import { ReRoll } from './ReRoll';
-import { useIsMobile } from '@/hooks/useDeviceType';
+import { Result } from './Result';
  
 export const DiceApp = () => {
   const diceBox = useRef<any>(null);
@@ -55,7 +52,6 @@ export const DiceApp = () => {
     });
  
     diceBox.current.init().then(async () => {
-      // diceBox.current.
       diceBox.current.onRollComplete = (results) => {
         const allValues = results.flatMap((group) =>
           group.rolls.map((roll) => roll.value),
