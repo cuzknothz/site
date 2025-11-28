@@ -7,7 +7,7 @@ import Link from 'next/link';
 const Spline = lazy(() => import('@splinetool/react-spline'));
 
 const link = [
-  { platform: 'Github', link: 'https://github.com/nbcgww' },
+  { platform: 'Github', link: 'https://github.com/chaozt' },
   // { platform: "Youtube", link: "https://www.youtube.com/@nbcuong" },
 ];
 export default function HomePage() {
