@@ -13,6 +13,7 @@ import gsap from 'gsap';
 import { useRef } from 'react';
 import HTTPPieIcon from '@/assets/svg/httppie.svg';
 import clsx from 'clsx';
+import DiceIcon from './dice/dice.svg';
 
 export default function AppPage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -78,6 +79,9 @@ export default function AppPage() {
             </AppIcon>
             <AppIcon href={'/app/httppie'} name='HTTPPie'>
               <HTTPPieIcon />
+            </AppIcon>
+            <AppIcon href={'/app/dice'} name='Dice'>
+              <DiceIcon />
             </AppIcon>
           </Box>
         </div>

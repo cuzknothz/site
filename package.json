@@ -10,6 +10,8 @@
     "prettier": "prettier --write \"./**/*.{ts,tsx}\" \"**/*.md\""
   },
   "dependencies": {
+    "@3d-dice/dice-box": "^1.1.4",
+    "@3d-dice/dice-ui": "^0.5.2",
     "@fingerprintjs/fingerprintjs-pro-react": "^2.7.1",
     "@fingerprintjs/fingerprintjs-pro-server-api": "^6.10.0",
     "@google/genai": "^1.27.0",
