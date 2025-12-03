@@ -92,7 +92,7 @@ export const Menu = () => {
   const showFullMenu = useGlobalStore((s) => s.showFullMenu);
   // const showFullMenu = useGlobalStore((s) => s.showFullMenu);
 
-  useEffectNext(() => {
+  const animation = contextSafe(() => {
     let tl = gsap.timeline({});
     tl.to(clusterBtn.current!.childNodes, {
       translateY: showFullMenu ? -40 : 80,
@@ -114,6 +114,10 @@ export const Menu = () => {
       ease: 'bounce.out',
       duration: 0.5,
     });
+  });
+
+  useEffectNext(() => {
+    animation();
   }, [showFullMenu]);
 
   console.log('pathname', pathname);
@@ -123,7 +127,7 @@ export const Menu = () => {
     <>
       <div
         className={clsx(
-          'fixed right-1/2 bottom-0 z-10 flex w-full translate-x-1/2 justify-center gap-2 sm:w-[500px] [&__svg]:scale-[1.2]',
+          'fixed right-1/2 bottom-0 z-10 flex w-full translate-x-1/2 justify-center gap-3 sm:w-[500px] [&__svg]:scale-[1.2]',
           isSpotifyApp && 'invert',
         )}
         ref={clusterBtn}

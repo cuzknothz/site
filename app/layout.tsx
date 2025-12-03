@@ -10,8 +10,8 @@ import { Metadata, Viewport } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'illuzion',
-  description: 'illuzion',
+  title: 'cuzknothz',
+  description: 'cuzknothz',
   icons: {
     icon: '/favicon/home.svg',
   },

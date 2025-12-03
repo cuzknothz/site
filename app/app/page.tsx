@@ -20,17 +20,17 @@ export default function AppPage() {
   useGSAP(
     () => {
       let tl = gsap.timeline({});
-      tl.fromTo(
-        containerRef.current,
-        {
-          scale: 0,
-        },
-        {
-          scale: 1,
-          duration: 0.5,
-          ease: 'bounce.out',
-        },
-      );
+      // tl.fromTo(
+      //   containerRef.current,
+      //   {
+      //     scale: 0,
+      //   },
+      //   {
+      //     scale: 1,
+      //     duration: 0.5,
+      //     ease: 'bounce.out',
+      //   },
+      // );
       tl.set('.z-app-container a', {
         scale: 0,
       });
@@ -53,7 +53,7 @@ export default function AppPage() {
           <Box
             className={clsx(
               'z-app-container',
-              'grid border-none! w-auto grid-cols-4 gap-4 rounded-[30px] p-3 [&__svg]:h-6! [&__svg]:w-6!',
+              'grid w-auto grid-cols-4 gap-4 rounded-[30px] border-none! p-3 [&__svg]:h-6! [&__svg]:w-6!',
             )}
           >
             <AppIcon href={'/app/chat'} name='Chat AI'>

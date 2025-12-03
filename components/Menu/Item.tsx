@@ -59,7 +59,7 @@ export const MenuItem = ({
       <Box
         onClick={click}
         className={clsx(
-          'relative z-100 flex h-[55px] min-w-[55px] cursor-pointer items-center justify-center p-3 backdrop-blur-[5px]',
+          'relative z-100 flex h-[55px] min-w-[55px] cursor-pointer items-center justify-center p-3 backdrop-blur-[5px] scale-[1.1]',
           isSelected
             ? 'border-transparent bg-[#00000032] dark:bg-[#6e6e6e]'
             : 'bg-[#00000008] dark:border-[#65656563]',
