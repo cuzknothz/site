@@ -53,7 +53,7 @@ export default function AppPage() {
           <Box
             className={clsx(
               'z-app-container',
-              'grid w-auto grid-cols-4 gap-4 rounded-[30px] border-none! p-3 [&__svg]:h-6! [&__svg]:w-6!',
+              'grid w-auto grid-cols-4 gap-3 rounded-[30px] border-none! p-3 [&__svg]:h-6! [&__svg]:w-6!',
             )}
           >
             <AppIcon href={'/app/chat'} name='Chat AI'>
