@@ -54,7 +54,7 @@ export default function HomePage() {
           text='Link'
           bold
           className='selection:bg-[#710bf7]!'
-          delay={300}
+          delay={200}
         />
         <div className='flex gap-2'>
           {link.map((i, idx) => (
@@ -67,7 +67,7 @@ export default function HomePage() {
               <TextScramble
                 text={i.platform}
                 className='underline'
-                delay={500 + idx * 200}
+                delay={300 + idx * 100}
               />
               <ArrowUpRightIcon />
             </Link>

@@ -52,7 +52,7 @@ export const Note = ({ setShowNote }: NoteProps) => {
             target='_blank'
             className='text-[#8400ff] underline'
           >
-            {'illuzion'}
+            {' cuzknothz'}
           </Link>
           {'. Tôi không thu thập bất cứ thông tin gì từ bạn. Have fun :).'}
         </p>

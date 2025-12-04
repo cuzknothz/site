@@ -10,7 +10,7 @@ import clsx from 'clsx';
 import QRCodeStyling from 'qr-code-styling';
 import { useEffect, useRef, useState } from 'react';
 
-const URL_SITE = 'https://illuzion.site';
+const URL_SITE = 'https:// cuzknothz.site';
 
 const qrCode = new QRCodeStyling({
   width: 500,
