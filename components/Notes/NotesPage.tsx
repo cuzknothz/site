@@ -27,6 +27,7 @@ const article = {
 
 export const NotesPage = ({ data }: Props) => {
   const modify = useArticleListStore((state) => state.modify);
+
   const [articles, setArticles] = useState<(typeof article)['2025']>([]);
 
   const pushArticle = async () => {
@@ -45,7 +46,7 @@ export const NotesPage = ({ data }: Props) => {
   return (
     <div>
       <div className='flex w-full justify-between'>
-        <TextScramble text={'2025'} bold className='selection:bg-[#710bf7]!' />
+        <TextScramble text={'2k25'} bold className='selection:bg-[#710bf7]!' />
       </div>
       <div className='mt-2.5 flex flex-col gap-2.5'>
         {data.map((i, idx) => (
