@@ -7,6 +7,7 @@ import { SideBar } from './components/SideBar';
 import { MainDivision } from './components/MainDivision';
 import localFont from 'next/font/local';
 import { ReactNode, useRef } from 'react';
+import { NavBar } from './components/Small/NavBar';
 
 interface Props {
   children: ReactNode;
@@ -48,6 +49,7 @@ export const LayoutNext = ({ children }: Props) => {
           >
             <SideBar />
             <MainDivision>{children}</MainDivision>
+            <NavBar />
           </div>
         </div>
       </div>

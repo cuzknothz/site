@@ -127,7 +127,7 @@ export const Menu = () => {
     <>
       <div
         className={clsx(
-          'fixed right-1/2 bottom-0 z-10 flex w-full translate-x-1/2 justify-center gap-2 sm:w-[500px] [&__svg]:scale-[1.2]',
+          'pointer-events-none fixed right-1/2 bottom-0 z-10 flex w-full translate-x-1/2 justify-center gap-2 sm:w-[500px] [&__svg]:scale-[1.2]',
           isSpotifyApp && 'invert',
         )}
         ref={clusterBtn}
