@@ -19,6 +19,8 @@ interface GlobalState {
   setShowFullMenu: (val: boolean) => void;
   select: SECTION;
   setSelect: (val: SECTION) => void;
+  clientWidth?: number;
+  setClientWidth?: (val: number) => void;
 }
 
 export const useGlobalStore = create<GlobalState>()((set) => ({
@@ -32,4 +34,6 @@ export const useGlobalStore = create<GlobalState>()((set) => ({
   },
   select: SECTION.HOME,
   setSelect: (val) => set({ select: val }),
+  clientWidth: 0,
+  setClientWidth: (val) => set({ clientWidth: val }),
 }));

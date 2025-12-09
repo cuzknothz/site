@@ -5,7 +5,7 @@ import Toilet from '@/assets/svg/toilet.svg';
 import Tools from '@/assets/svg/tools.svg';
 import Work from '@/assets/svg/work.svg';
 import { useEffectNext } from '@/hooks/useEffectNext';
-import { SECTION, useGlobalStore } from '@/store/global-store';
+import { SECTION, useGlobalStore } from '@/store/global';
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import Link from 'next/link';

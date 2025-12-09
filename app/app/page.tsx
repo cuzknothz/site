@@ -18,31 +18,27 @@ import DiceIcon from './dice/dice.svg';
 export default function AppPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   useGSAP(
-    () => {
-      let tl = gsap.timeline({});
-      // tl.fromTo(
-      //   containerRef.current,
-      //   {
-      //     scale: 0,
-      //   },
-      //   {
-      //     scale: 1,
-      //     duration: 0.5,
-      //     ease: 'bounce.out',
-      //   },
-      // );
-      tl.set('.z-app-container a', {
-        scale: 0,
+    (context, safeContext) => {
+      const animation = safeContext(() => {
+        let tl = gsap.timeline({});
+        tl.set('.z-app-container a', {
+          scale: 0,
+        });
+        tl.to('.z-app-container a', {
+          scale: 1,
+          stagger: {
+            from: 'start',
+            each: 0.05,
+          },
+          duration: 0.3,
+          ease: 'bounce.out',
+        });
       });
-      tl.to('.z-app-container a', {
-        scale: 1,
-        stagger: {
-          from: 'start',
-          each: 0.05,
-        },
-        duration: 0.3,
-        ease: 'bounce.out',
-      });
+      animation();
+
+      setInterval(() => {
+        animation();
+      }, 10_000);
     },
     { scope: containerRef },
   );

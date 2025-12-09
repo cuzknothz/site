@@ -1,7 +1,7 @@
 'use client';
 import BrightToFront from '@/assets/svg/bright-to-front.svg';
 import { useEffectNext } from '@/hooks/useEffectNext';
-import { useGlobalStore } from '@/store/global-store';
+import { useGlobalStore } from '@/store/global';
 import gsap from 'gsap';
 import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';

@@ -1,6 +1,6 @@
 'use client';
 
-import { useGlobalStore } from '@/store/global-store';
+import { useGlobalStore } from '@/store/global';
 import { useSquezeStore } from '@/store/squeze';
 import devfools from 'devfools';
 import gsap from 'gsap';
@@ -14,6 +14,9 @@ import {
 import { ReactNode, useCallback, useEffect } from 'react';
 import { Scrollbar } from './ScrollBar';
 import { Squeze } from './Util/Confirm';
+import { Menu } from './Menu/Menu';
+import clsx from 'clsx';
+import { usePathname } from 'next/navigation';
 
 interface Props {
   children: ReactNode;
@@ -47,6 +50,20 @@ export default function LayoutEffect({ children }: Props) {
   const toogleShow = useSquezeStore((state) => state.toogleShow);
   const onYesSqueze = useSquezeStore((s) => s.onYes);
 
+  const setClientWidth = useGlobalStore((s) => s.setClientWidth);
+  const clientWidth = useGlobalStore((s) => s.clientWidth);
+  const pathname = usePathname();
+
+  const isSpotifyApp = pathname === '/app/spotify';
+
+  useEffect(() => {
+    const onResize = () => {
+      window.innerWidth && setClientWidth?.(window.innerWidth);
+    };
+    onResize();
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
   return (
     <body className='antialiased'>
       <Scrollbar className='h-dvh'>
@@ -62,6 +79,9 @@ export default function LayoutEffect({ children }: Props) {
           )}
         </div>
       </Scrollbar>
+      <div className={clsx(isSpotifyApp && clientWidth! < 1024 && 'hidden')}>
+        <Menu />
+      </div>
     </body>
   );
 }

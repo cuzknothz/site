@@ -1,5 +1,5 @@
 'use client';
-import { useSecretStore } from '@/store/secret-store';
+import { useSecretStore } from '@/store/secret';
 import { BackDrop } from './Util/BackDrop';
 import { InputBlink } from './Util/InputBlink';
 

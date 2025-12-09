@@ -8,8 +8,8 @@ interface Props {
 
 export const MainDivision = ({ children }: Props) => {
   return (
-    <div className='h-full w-[calc(100vw-350px)] rounded-[20px] bg-[#121212] pt-[4px]'>
-      <Scrollbar className='h-full w-[calc(100vw-350px)]'>{children}</Scrollbar>
+    <div className='h-full w-full rounded-[20px] bg-[#121212] pt-[4px]'>
+      <Scrollbar className='h-full w-full'>{children}</Scrollbar>
     </div>
   );
 };

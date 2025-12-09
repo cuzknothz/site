@@ -1,6 +1,6 @@
 'use client';
 
-import { useGlobalStore } from '@/store/global-store';
+import { useGlobalStore } from '@/store/global';
 import { Header } from './components/Header';
 import clsx from 'clsx';
 import { SideBar } from './components/SideBar';

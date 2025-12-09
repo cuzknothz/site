@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useIsMobile } from './useDeviceType';
 import { sleep } from '@/utils/app';
-import { useGlobalStore } from '@/store/global-store';
+import { useGlobalStore } from '@/store/global';
 export const useHiddenMenuNext = () => {
   const setShowFullMenu = useGlobalStore((s) => s.setShowFullMenu);
   const { isMobile } = useIsMobile();

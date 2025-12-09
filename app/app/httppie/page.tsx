@@ -5,7 +5,7 @@ import { PreviewDivision } from './components/Block/Preview';
 import { SideBar } from './components/Block/SideBar';
 import { TabBar } from './components/Block/TabBar';
 import { TopBar } from './components/Block/TopBar';
-import { useGlobalStore } from '@/store/global-store';
+import { useGlobalStore } from '@/store/global';
 import clsx from 'clsx';
 
 export default function HTTPPiePage() {

@@ -1,4 +1,4 @@
-import { useGlobalStore } from '@/store/global-store';
+import { useGlobalStore } from '@/store/global';
 import { Box } from '../Util/Box';
 import clsx from 'clsx';
 

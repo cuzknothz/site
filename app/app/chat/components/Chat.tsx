@@ -1,6 +1,6 @@
 'use client';
 import { useEffectNext } from '@/hooks/useEffectNext';
-import { useGlobalStore } from '@/store/global-store';
+import { useGlobalStore } from '@/store/global';
 import clsx from 'clsx';
 import gsap from 'gsap';
 import { useEffect, useRef, useState } from 'react';

@@ -26,8 +26,6 @@ export const viewport: Viewport = {
   viewportFit: 'cover',
 };
 
-
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -44,12 +42,9 @@ export default function RootLayout({
       >
         <LayoutEffect>
           <NextEvent />
-          {/* <SpotifyWidget /> */}
-          {/* <Header /> */}
           {children}
           <SpeedInsights />
           <Analytics />
-          <Menu />
           <EnterSecret />
         </LayoutEffect>
       </html>
