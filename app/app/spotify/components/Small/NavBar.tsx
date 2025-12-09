@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export const NavBar = () => {
   return (
-    <div className='fixed bottom-0 left-0 grid h-[85px] w-screen grid-cols-4 bg-[black] pt-[15px] sm:hidden [&__svg]:h-6 [&__svg]:w-6'>
+    <div className='fixed bottom-0 left-0 grid h-[95px] w-screen grid-cols-4 bg-[black] pt-[15px] sm:hidden [&__svg]:h-6 [&__svg]:w-6'>
       <div className='flex flex-col items-center gap-1'>
         <NavHomeIcon className='fill-[#b3b3b3]' />
         <span className='text-[11px]!'>Home</span>
