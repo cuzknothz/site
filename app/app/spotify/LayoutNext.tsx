@@ -33,7 +33,7 @@ export const LayoutNext = ({ children }: Props) => {
 
   return (
     <div className={spotifyFont.className}>
-      <div className='**:text-[16px] **:text-[#B3B3B3]'>
+      <div className='**:text-[13px] **:text-[#B3B3B3] lg:**:text-[15px]'>
         <div
           ref={containerRef}
           className='fixed top-0 left-0 h-dvh w-screen bg-[black]'
@@ -41,7 +41,7 @@ export const LayoutNext = ({ children }: Props) => {
           <Header />
           <div
             className={clsx(
-              'mx-[5px] flex gap-[8px] duration-500',
+              'mx-[5px] flex gap-2 duration-500',
               showFullMenu
                 ? 'h-[calc(100dvh-170px)]'
                 : 'h-[calc(100dvh-100px)]',

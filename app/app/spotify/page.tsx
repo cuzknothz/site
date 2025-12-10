@@ -65,8 +65,8 @@ export default function SpotifyPage() {
     <div className='flex flex-col gap-[20px]'>
       {trendingSongs.length > 0 && (
         <div>
-          <div className='flex h-[48px] items-end justify-between px-[100px]'>
-            <span className='text-[24px]! font-bold text-white!'>
+          <div className='flex h-[48px] items-end justify-between'>
+            <span className='text-[20px]! font-bold text-white!'>
               Trending songs
             </span>
 
@@ -75,7 +75,7 @@ export default function SpotifyPage() {
             </button>
           </div>
 
-          <div className='mt-[15px] flex w-[50%] w-full overflow-hidden px-[85px]'>
+          <div className='mt-[15px] flex w-[50%] w-full overflow-hidden'>
             <Slide>
               {trendingSongs.map((i) => (
                 <div className='embla__slide flex h-[300px] w-[200px] flex-none flex-col items-start'>
@@ -94,8 +94,8 @@ export default function SpotifyPage() {
       )}
       {popularArtists.length > 0 && (
         <div>
-          <div className='flex h-[48px] items-end justify-between px-[100px]'>
-            <span className='text-[24px]! font-bold text-white!'>
+          <div className='flex h-[48px] items-end justify-between'>
+            <span className='text-[20px]! font-bold text-white!'>
               Popular artists
             </span>
             <button className='text-[14px]! font-bold'>
@@ -105,7 +105,7 @@ export default function SpotifyPage() {
             </button>
           </div>
 
-          <div className='mt-[15px] flex w-[50%] w-full px-[85px]'>
+          <div className='mt-[15px] flex w-[50%] w-full'>
             <Slide>
               {popularArtists.map((i) => (
                 <div className='flex h-[300px] w-[200px] flex-none flex-col items-start'>
@@ -125,8 +125,8 @@ export default function SpotifyPage() {
 
       {popularAblumsAndSingles.length > 0 && (
         <div>
-          <div className='flex h-[48px] items-end justify-between px-[100px]'>
-            <span className='text-[24px]! font-bold text-white!'>
+          <div className='flex h-[48px] items-end justify-between'>
+            <span className='text-[20px]! font-bold text-white!'>
               Popular ablums and singles
             </span>
             <button className='text-[14px]! font-bold'>
@@ -136,7 +136,7 @@ export default function SpotifyPage() {
             </button>
           </div>
 
-          <div className='mt-[15px] flex w-[50%] w-full px-[85px]'>
+          <div className='mt-[15px] flex w-[50%] w-full'>
             <Slide>
               {popularAblumsAndSingles.map((i) => (
                 <div className='flex h-[300px] w-[200px] flex-none flex-col items-start'>
