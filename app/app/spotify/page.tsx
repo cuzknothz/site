@@ -62,7 +62,7 @@ export default function SpotifyPage() {
 
   const artist = (artistArr) => artistArr.map((i) => i.name).join(', ');
   return (
-    <div className='flex flex-col gap-[20px]'>
+    <div className='flex flex-col gap-[0px]'>
       {trendingSongs.length > 0 && (
         <div>
           <div className='flex h-[48px] items-end justify-between'>
@@ -78,7 +78,7 @@ export default function SpotifyPage() {
           <div className='mt-[15px] flex w-[50%] w-full overflow-hidden'>
             <Slide>
               {trendingSongs.map((i) => (
-                <div className='embla__slide flex h-[300px] w-[200px] flex-none flex-col items-start'>
+                <div className='embla__slide flex h-[250px] w-[200px] flex-none flex-col items-start'>
                   <img
                     className='aspect-square h-[171px] w-[171px] overflow-hidden rounded-[5px] object-cover select-none'
                     src={get(i, 'album.images[0].url', '')}
@@ -108,7 +108,7 @@ export default function SpotifyPage() {
           <div className='mt-[15px] flex w-[50%] w-full'>
             <Slide>
               {popularArtists.map((i) => (
-                <div className='flex h-[300px] w-[200px] flex-none flex-col items-start'>
+                <div className='flex h-[250px] w-[200px] flex-none flex-col items-start'>
                   <img
                     className='aspect-square h-[171px] w-[171px] overflow-hidden rounded-[50%] object-cover select-none'
                     src={get(i, 'images[0].url', '')}
@@ -139,7 +139,7 @@ export default function SpotifyPage() {
           <div className='mt-[15px] flex w-[50%] w-full'>
             <Slide>
               {popularAblumsAndSingles.map((i) => (
-                <div className='flex h-[300px] w-[200px] flex-none flex-col items-start'>
+                <div className='flex h-[250px] w-[200px] flex-none flex-col items-start'>
                   <img
                     className='aspect-square h-[171px] w-[171px] overflow-hidden object-cover select-none'
                     src={get(i, 'images[0].url', '')}

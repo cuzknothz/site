@@ -8,6 +8,7 @@ import { MainDivision } from './components/MainDivision';
 import localFont from 'next/font/local';
 import { ReactNode, useRef } from 'react';
 import { NavBar } from './components/Small/NavBar';
+import { Note } from './components/Note';
 
 interface Props {
   children: ReactNode;
@@ -27,12 +28,14 @@ const spotifyFont = localFont({
     },
   ],
 });
+
 export const LayoutNext = ({ children }: Props) => {
   const showFullMenu = useGlobalStore((s) => s.showFullMenu);
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
     <div className={spotifyFont.className}>
+      <Note setShowNote={() => {}} />
       <div className='**:text-[13px] **:text-[#B3B3B3] lg:**:text-[15px]'>
         <div
           ref={containerRef}

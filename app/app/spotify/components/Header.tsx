@@ -7,18 +7,17 @@ import Link from 'next/link';
 
 export const Header = () => {
   return (
-    <div className='flex h-[64px] w-full items-center justify-between bg-[#000] px-[20px]'>
+    <div className='fixed z-0 z-10 flex h-16 w-full items-center justify-between bg-linear-to-b from-black to-[#00000037] px-5'>
       <button>
         <Link href={'/app/spotify'}>
-          <SpotifyIcon className='hidden h-[32px]! w-[32px]! invert lg:block' />
-          <SpotifyIconDetail className='fill-[#fff] lg:hidden' />
+          <SpotifyIcon className='invert lg:h-[38px]!' />
         </Link>
       </button>
 
-      <div className='hidden gap-[8px] lg:flex'>
-        <button className='flex h-[48px]! w-[48px]! items-center justify-center rounded-[50%] bg-[#282828]'>
+      <div className='hidden gap-2 lg:flex'>
+        <button className='flex h-12! w-12! items-center justify-center rounded-[50%] bg-[#282828]'>
           <Link href={'/app/spotify'}>
-            <HomeIcon className='h-[24px]! w-[24px]! invert' />
+            <HomeIcon className='h-6! w-6! invert' />
           </Link>
         </button>
         <SearchDivision />
