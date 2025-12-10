@@ -29,7 +29,7 @@ export const NavBar = () => {
   };
 
   return (
-    <div className='fixed bottom-0 left-0 grid h-[90px] w-screen grid-cols-4 bg-linear-to-t from-[#000] to-[#00000037] pt-[15px] lg:hidden [&__svg]:h-6 [&__svg]:w-6'>
+    <div className='fixed bottom-0 left-0 grid h-[90px] w-screen grid-cols-4 bg-linear-to-t from-[#000] to-[#000000ba] pt-[15px] lg:hidden [&__svg]:h-6 [&__svg]:w-6'>
       <button
         className='flex flex-col items-center gap-1'
         onClick={() => onSelect(Section.home)}

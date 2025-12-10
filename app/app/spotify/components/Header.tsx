@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 export const Header = () => {
   return (
-    <div className='fixed z-0 z-10 flex h-16 w-full items-center justify-between bg-linear-to-b from-black to-[#00000037] px-5'>
+    <div className='fixed z-0 z-10 flex h-16 w-full items-center justify-between bg-linear-to-b from-black to-[#000000ba] px-5'>
       <button>
         <Link href={'/app/spotify'}>
           <SpotifyIcon className='invert lg:h-[38px]!' />
