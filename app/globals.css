@@ -1,2 +1,18 @@
 @import 'tailwindcss';
 @custom-variant dark (&:where(.dark, .dark *));
+
+
+/* Custom ScrollBar Chrome Opera */
+::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #9e62ff;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9e62ff;
+}
