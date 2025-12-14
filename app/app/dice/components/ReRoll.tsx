@@ -4,17 +4,17 @@ import clsx from 'clsx';
 import { useEffect, useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
- 
+
 interface Props {
   onClick: () => void;
   className?: string;
 }
- 
+
 export const ReRoll = ({ onClick, className }: Props) => {
   const elRef = useRef<HTMLDivElement>(null);
- 
+
   const { contextSafe } = useGSAP(() => {}, { scope: elRef });
- 
+
   const animationBtn = contextSafe(() => {
     let tl = gsap.timeline({});
     tl.fromTo(
@@ -33,7 +33,7 @@ export const ReRoll = ({ onClick, className }: Props) => {
       },
     );
   });
- 
+
   useEffect(() => {
     document.addEventListener('keydown', function (event) {
       if (event.code === 'Space' || event.key === ' ') {
@@ -41,12 +41,12 @@ export const ReRoll = ({ onClick, className }: Props) => {
       }
     });
   }, []);
- 
+
   const handleClick = () => {
     animationBtn();
     onClick();
   };
- 
+
   return (
     <div
       className={clsx(
@@ -58,7 +58,7 @@ export const ReRoll = ({ onClick, className }: Props) => {
     >
       <Box
         className={clsx(
-          'flex h-[50px] cursor-pointer items-center justify-center gap-[10px] px-[20px] duration-100 hover:bg-[#bdfd82] bg-white active:bg-[#84ff11]',
+          'flex h-[50px] cursor-pointer items-center justify-center gap-[10px] bg-white px-[15px] duration-100 hover:bg-[#bdfd82] active:bg-[#84ff11]',
         )}
       >
         <DiceIcon className='h-[24px] w-[24px] origin-center' />

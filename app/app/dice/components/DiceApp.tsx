@@ -1,19 +1,23 @@
 'use client';
- 
+
 import { useIsMobile } from '@/hooks/useDeviceType';
 import DiceBox from '@3d-dice/dice-box';
 import { useEffect, useRef, useState } from 'react';
 import { ReRoll } from './ReRoll';
 import { Result } from './Result';
- 
+import { useGlobalStore } from '@/store/global';
+import clsx from 'clsx';
+
 export const DiceApp = () => {
+  const showFullMenu = useGlobalStore((s) => s.showFullMenu);
+
   const diceBox = useRef<any>(null);
   const divisionRef = useRef<HTMLDivElement>(null);
- 
+
   const [showResult, setShowResult] = useState(false);
   const [resultSum, setResultSum] = useState([]);
   const { isMobile } = useIsMobile();
- 
+
   const rollDice = () => {
     setShowResult(false);
     if (!diceBox.current) return;
@@ -40,7 +44,7 @@ export const DiceApp = () => {
       '3d100',
     ]);
   };
- 
+
   useEffect(() => {
     diceBox.current = new DiceBox('#dice-box', {
       assetPath: '/assets/dice/',
@@ -50,7 +54,7 @@ export const DiceApp = () => {
       offscreen: true,
       startingHeight: 50,
     });
- 
+
     diceBox.current.init().then(async () => {
       diceBox.current.onRollComplete = (results) => {
         const allValues = results.flatMap((group) =>
@@ -59,7 +63,7 @@ export const DiceApp = () => {
         setResultSum(allValues);
         setShowResult(true);
       };
- 
+
       rollDice();
       setTimeout(() => {});
     });
@@ -71,10 +75,13 @@ export const DiceApp = () => {
     <div className='fixed top-0 left-0 h-dvh w-full'>
       <div
         ref={divisionRef}
-        className='h-full w-full bg-[#ffffff] [&>canvas]:h-full [&>canvas]:w-full'
+        className='h-full w-full [&>canvas]:h-full [&>canvas]:w-full'
         id='dice-box'
       ></div>
-      <ReRoll onClick={reRoll} className='absolute top-[20px] right-1/2' />
+      <ReRoll
+        onClick={reRoll}
+        className={clsx('absolute right-1/2 bottom-[120px]')}
+      />
       {showResult && (
         <Result
           result={resultSum}
