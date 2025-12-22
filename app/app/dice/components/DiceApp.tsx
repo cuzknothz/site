@@ -27,9 +27,9 @@ export const DiceApp = () => {
         //   '4d4',
         '3d6',
         // '4d8',
-        '3d10',
+        // '3d10',
         // '4d12',
-        '3d20',
+        // '3d20',
         // '4d100',
       ]);
       return;
@@ -37,11 +37,11 @@ export const DiceApp = () => {
     diceBox.current.roll([
       //   '4d4',
       '3d6',
-      '3d8',
-      '3d10',
-      '3d12',
-      '3d20',
-      '3d100',
+      // '3d8',
+      // '3d10',
+      // '3d12',
+      // '3d20',
+      // '3d100',
     ]);
   };
 
@@ -52,7 +52,7 @@ export const DiceApp = () => {
       theme: 'default',
       themeColor: '#303030',
       offscreen: true,
-      startingHeight: 50,
+      startingHeight: 10,
     });
 
     diceBox.current.init().then(async () => {
@@ -78,10 +78,14 @@ export const DiceApp = () => {
         className='h-full w-full [&>canvas]:h-full [&>canvas]:w-full'
         id='dice-box'
       ></div>
-      <ReRoll
-        onClick={reRoll}
-        className={clsx('absolute right-1/2 bottom-[120px]')}
-      />
+      <div
+        className={clsx(
+          'absolute right-1/2 bottom-[50px] translate-x-1/2 duration-500',
+          showFullMenu && 'bottom-[120px]!',
+        )}
+      >
+        <ReRoll onClick={reRoll} />
+      </div>
       {showResult && (
         <Result
           result={resultSum}

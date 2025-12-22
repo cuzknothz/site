@@ -49,10 +49,7 @@ export const ReRoll = ({ onClick, className }: Props) => {
 
   return (
     <div
-      className={clsx(
-        className,
-        'origin-center translate-x-1/2 rounded-[20px]',
-      )}
+      className={clsx(className, 'rounded-[20px]')}
       ref={elRef}
       onClick={handleClick}
     >
