@@ -38,7 +38,7 @@ const article = {
     {
       title: 'Instagram Clone',
       content: 'With Nuxt3',
-      link: 'https://instagram.cuzknothz.site/',
+      link: 'https://github.com/cuzknothz/instagram-nuxt3/',
       image: '/instagram.png',
     },
   ],

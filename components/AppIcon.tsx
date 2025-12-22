@@ -7,6 +7,7 @@ interface Props {
   name: string;
   children: ReactNode;
   text?: string;
+  underDevelopment?: boolean;
 }
 
 export const AppIcon = ({
@@ -14,6 +15,7 @@ export const AppIcon = ({
   name = '',
   children,
   text = '',
+  underDevelopment = false,
 }: Props) => {
   return (
     <Link
