@@ -27,20 +27,19 @@ interface Props {
 // };
 
 const article = {
-  ['2k21']: [
-    {
-      title: 'Instagram Clone',
-      content: 'With Nuxt3',
-      link: 'https://instagram.cuzknothz.site/',
-      image: '/instagram.png',
-    },
-  ],
+  // ['2k21']: [],
   ['2k22']: [
     {
       title: 'SC',
       content: 'Soundcloud',
       link: 'https://soundcloud.cuzknothz.site/',
       image: '/soundcloud.png',
+    },
+    {
+      title: 'Instagram Clone',
+      content: 'With Nuxt3',
+      link: 'https://instagram.cuzknothz.site/',
+      image: '/instagram.png',
     },
   ],
   ['2k25']: [
