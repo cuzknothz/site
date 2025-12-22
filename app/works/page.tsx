@@ -1,13 +1,13 @@
 'use server';
 
 import WorksPage from '@/components/Works/WorksPage';
-import { getAllWork } from '../actions';
+// import { getAllWork } from '../actions';
 
 export default async function WorkPage() {
-  const { ok, data } = await getAllWork();
+  // const { ok, data } = await getAllWork();
   return (
     <div>
-      <WorksPage data={data!} />
+      <WorksPage />
     </div>
   );
 }
