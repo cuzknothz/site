@@ -89,7 +89,7 @@ export const DiceApp = () => {
       {showResult && (
         <Result
           result={resultSum}
-          className='absolute top-[80px] right-1/2 translate-x-1/2'
+          className='absolute top-[50px] right-1/2 translate-x-1/2'
         />
       )}
     </div>

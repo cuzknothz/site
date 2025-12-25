@@ -76,7 +76,7 @@ export default function AppPage() {
             <AppIcon href={'/app/httppie'} name='HTTPPie'>
               <HTTPPieIcon />
             </AppIcon>
-            <AppIcon href={'/app/dice'} name='Dice'>
+            <AppIcon href={'/app/dice'} name='TaiXiu'>
               <DiceIcon />
             </AppIcon>
           </Box>
