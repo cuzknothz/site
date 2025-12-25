@@ -20,7 +20,7 @@ export default function HomePage() {
       gsap.to('svg', {
         rotate: 360,
         stagger: {
-          each: 0.05,
+          each: 0.3,
         },
         delay: 1,
       });
