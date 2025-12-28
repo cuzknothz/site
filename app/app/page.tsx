@@ -52,7 +52,7 @@ export default function AppPage() {
               'grid w-auto grid-cols-4 gap-3 rounded-[30px] border-none! p-3 [&__svg]:h-6! [&__svg]:w-6!',
             )}
           >
-            <AppIcon href={'/app/chat'} name='Chat AI'>
+            <AppIcon href={'/app/chat'} name='Chat AI' underDevelopment>
               <AiIcon />
             </AppIcon>
             <AppIcon href={'/app/chart'} name='3Chart'>
@@ -61,7 +61,7 @@ export default function AppPage() {
             <AppIcon href={'/app/finger-print'} name='FP'>
               <FingerPrintIcon />
             </AppIcon>
-            <AppIcon href={'/app/spotify'} name='Spotify'>
+            <AppIcon href={'/app/spotify'} name='Spotify' underDevelopment>
               <SpotifyIcon />
             </AppIcon>
             <AppIcon href={'/app/qr-pay'} name='QR CK'>
@@ -70,13 +70,13 @@ export default function AppPage() {
             <AppIcon href={'/app/qr-generator'} name='QR Link '>
               <QRIcon />
             </AppIcon>
-            <AppIcon href={'/app/spectrogram'} name='Spek'>
+            <AppIcon href={'/app/spectrogram'} name='Spek' underDevelopment>
               <SpekIcon />
             </AppIcon>
-            <AppIcon href={'/app/httppie'} name='HTTPPie'>
+            <AppIcon href={'/app/httppie'} name='HTTPPie' underDevelopment>
               <HTTPPieIcon />
             </AppIcon>
-            <AppIcon href={'/app/dice'} name='TaiXiu'>
+            <AppIcon href={'/app/dice'} name='Dice'>
               <DiceIcon />
             </AppIcon>
           </Box>

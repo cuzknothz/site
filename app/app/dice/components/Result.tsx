@@ -26,7 +26,7 @@ export const Result = ({ result = [], className = '' }: Props) => {
           <span className='text-[#00d9ff]'>{`${sum}`}</span>
         </div>
 
-        <span className='text-[50px] text-[#ffc400]'>{`${isTai ? 'Tài' : 'Xỉu'}`}</span>
+        <span className='text-[50px] text-[#d4ff00]'>{`${isChan ? 'Chẵn' : 'Lẻ'}`}</span>
       </div>
     </Box>
   );

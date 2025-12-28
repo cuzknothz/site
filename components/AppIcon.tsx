@@ -20,7 +20,7 @@ export const AppIcon = ({
   return (
     <Link
       href={href}
-      title='Spotify'
+      title={name + (underDevelopment ? ' (Under Development)' : '')}
       className='relative flex flex-col items-center'
     >
       <Box className='relative flex h-[55px] w-[55px] items-center justify-center overflow-hidden bg-[#00000008] duration-500 hover:bg-[#9d9d9d62] active:bg-[#3c3c3c]'>
