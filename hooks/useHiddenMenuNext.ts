@@ -1,16 +1,24 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useIsMobile } from './useDeviceType';
 import { sleep } from '@/utils/app';
 import { useGlobalStore } from '@/store/global';
+
 export const useHiddenMenuNext = () => {
+  const timer = useRef<NodeJS.Timeout>(null);
   const setShowFullMenu = useGlobalStore((s) => s.setShowFullMenu);
   const { isMobile } = useIsMobile();
   useEffect(() => {
     if (!isMobile) return;
     const onInit = async () => {
-      await sleep(1500);
-      setShowFullMenu(false);
+      timer.current = setTimeout(() => {
+        setShowFullMenu(false);
+      }, 1_500);
     };
     onInit();
+    return () => {
+      if (timer.current) {
+        clearTimeout(timer.current);
+      }
+    };
   }, []);
 };
