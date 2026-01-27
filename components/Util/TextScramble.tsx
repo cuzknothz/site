@@ -46,7 +46,10 @@ export const TextScramble = ({
   );
   return (
     <Fragment>
-      <div className={clsx(className, { 'font-bold': bold })} ref={textRef} />
+      <div
+        className={clsx(className, { 'font-bold': bold }, 'h-4')}
+        ref={textRef}
+      />
     </Fragment>
   );
 };
