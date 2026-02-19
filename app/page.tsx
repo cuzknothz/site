@@ -47,7 +47,7 @@ export default function HomePage() {
       </div>
       <div>
         <TextScramble text='Today' bold className='selection:bg-[#710bf7]!' />
-        <TextScramble text='Working as Web developer.' delay={100} />
+        <TextScramble text='Working as a Web developer.' delay={100} />
       </div>
       <div>
         <TextScramble
