@@ -55,6 +55,7 @@ export const ChatArea = () => {
   const appendMessage = useChatStore((_) => _.appendMessage);
 
   const updateMessage = useChatStore((_) => _.updateMessage);
+  const renameConversation = useChatStore((_) => _.renameConversation);
 
   const justSentId = useChatStore((_) => _.justSentId);
   const setJustSentId = useChatStore((_) => _.setJustSentId);
@@ -113,6 +114,22 @@ export const ChatArea = () => {
 
     const prevMessages = conversations[convId]?.messages ?? [];
     const historyPayload = toGeminiHistory(prevMessages);
+
+    // Auto rename if it's the first message and title is default
+    if (prevMessages.length === 0 && conversations[convId]?.title.startsWith('Cuộc trò chuyện mới')) {
+      fetch('/api/gemini/title', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userMessage: text }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.ok && data.title) {
+            renameConversation(convId, data.title);
+          }
+        })
+        .catch((err) => console.error('Failed to auto rename:', err));
+    }
 
     const userMsgId = crypto.randomUUID();
 

@@ -1,77 +1,72 @@
 'use client';
 import { Box } from '@/components/Util/Box';
 import clsx from 'clsx';
-import { cloneDeep, find, findIndex } from 'lodash';
-import { useState } from 'react';
-import { useImmer } from 'use-immer';
+import { useMemo, useState } from 'react';
 import { BoxBlock } from '../Common/BoxBlock';
+import { useHTTPieStore, KVParam } from '@/store/app/httpiez';
+import { find } from 'lodash';
 
 const options = {
   params: 'Params',
   headers: 'Headers',
-  auth: 'Auth',
   body: 'Body',
-};
-
-const defaultParams = {
-  params: {},
-  headers: {},
-  auth: {},
-  body: {},
 };
 
 export const ParamsDivision = () => {
   const [currentOption, setCurrentOption] = useState(options.params);
+  
+  const selectedRequestId = useHTTPieStore((state) => state.selectedRequestId);
+  const collection = useHTTPieStore((state) => state.collection);
+  const updateRequestParams = useHTTPieStore((state) => state.updateRequestParams);
+  const updateRequestBody = useHTTPieStore((state) => state.updateRequestBody);
 
-  const [params, setParams] = useState([
-    {
-      name: 'a',
-      value: 'b',
-      isActive: true,
-      id: 12121,
-    },
-    {
-      name: 'asdff',
-      value: 'basdf',
-      isActive: false,
-      id: 22222,
-    },
-  ]);
-  const [headers, setHeaders] = useState({});
-  const [auth, setAuth] = useState({});
-  const [body, setBody] = useState({});
+  const currentRequest = useMemo(() => find(collection, { id: selectedRequestId }), [collection, selectedRequestId]);
 
-  function onSelectOption(option: string) {
-    setCurrentOption(option);
-  }
+  if (!currentRequest) return null;
+
+  const currentListContext = currentOption === options.params ? 'params' : currentOption === options.headers ? 'headers' : 'auth';
+
+  const list: KVParam[] = currentOption === options.body ? [] : (currentRequest.params[currentListContext as 'params'|'headers'] || []);
+
+  const handleUpdateList = (newList: KVParam[]) => {
+    updateRequestParams(selectedRequestId, currentListContext as 'params'|'headers', newList);
+  };
 
   function setOnOffParam(id: number) {
-    const idx = findIndex(params, { id: id });
-    const _params = cloneDeep(params);
-    _params[idx].isActive = !_params[idx].isActive;
-    setParams(() => _params);
+    const newList = list.map(item => item.id === id ? { ...item, isActive: !item.isActive } : item);
+    handleUpdateList(newList);
   }
 
   function onChangeNameParam(id: number, name: string) {
-    const idx = findIndex(params, { id: id });
-    const _params = cloneDeep(params);
-    _params[idx].name = name;
-    setParams(() => _params);
+    const newList = list.map(item => item.id === id ? { ...item, name } : item);
+    // Auto insert an empty row if editing the last row
+    if (newList[newList.length - 1].id === id && name.trim() !== '') {
+       newList.push({ id: Date.now(), name: '', value: '', isActive: true });
+    }
+    handleUpdateList(newList);
   }
 
   function onChangeValueParam(id: number, value: string) {
-    const idx = findIndex(params, { id: id });
-    const _params = cloneDeep(params);
-    _params[idx].value = value;
-    setParams(() => _params);
+    const newList = list.map(item => item.id === id ? { ...item, value } : item);
+    if (newList[newList.length - 1].id === id && value.trim() !== '') {
+       newList.push({ id: Date.now(), name: '', value: '', isActive: true });
+    }
+    handleUpdateList(newList);
   }
+
+  function onRemoveParam(id: number) {
+    if (list.length === 1) return;
+    const newList = list.filter(item => item.id !== id);
+    handleUpdateList(newList);
+  }
+
   return (
     <>
-      <Box className='h-full w-[350px] rounded-[15px]! bg-[#f5f5f0] p-[5px]'>
-        <div className='flex gap-[5px]'>
+      <Box className='h-full w-[350px] rounded-[15px]! bg-[#f5f5f0] p-[5px] flex flex-col'>
+        <div className='flex gap-[5px] flex-none'>
           {Object.values(options).map((i, idx) => (
             <BoxBlock
-              onClick={() => onSelectOption(i)}
+              onClick={() => setCurrentOption(i)}
               key={idx}
               className={clsx(currentOption === i && 'bg-[#e0e0e0]')}
             >
@@ -79,42 +74,51 @@ export const ParamsDivision = () => {
             </BoxBlock>
           ))}
         </div>
-        <div className='mt-[10px] flex w-full flex-col px-[10px]'>
-          {params.map(({ id, isActive, name, value }) => (
-            <div
-              className='flex h-[30px] w-full items-center gap-[5px]'
-              key={id}
-            >
+        
+        <div className='mt-[10px] flex w-full flex-col px-[10px] flex-1 overflow-y-auto pb-4'>
+          {currentOption === options.body ? (
+             <textarea 
+               className='w-full flex-1 rounded-lg border border-gray-300 p-2 font-mono text-sm focus:outline-none focus:ring-1 focus:ring-[#979797]'
+               placeholder='{"key": "value"}'
+               value={currentRequest.params.bodyText || ''}
+               onChange={(e) => updateRequestBody(selectedRequestId, e.target.value)}
+             />
+          ) : (
+            list.map(({ id, isActive, name, value }, index) => (
               <div
-                className='flex h-full w-[20px]! items-center justify-center select-none'
-                onClick={() => setOnOffParam(id)}
+                className='flex group h-[30px] w-full items-center gap-[5px] mt-1'
+                key={id}
               >
-                {isActive ? 'x' : 'v'}
+                <div
+                  className='flex h-full w-[20px]! items-center justify-center select-none cursor-pointer hover:bg-gray-200 rounded'
+                  onClick={() => setOnOffParam(id)}
+                >
+                  {isActive ? '✓' : ''}
+                </div>
+                <div className='h-full flex-1'>
+                  <input
+                    type='text'
+                    placeholder='Key'
+                    className={clsx('h-full w-full rounded-[8px] border-[1px] border-transparent px-[5px] focus:border-[#979797] focus:outline-0', !isActive && 'opacity-50 line-through')}
+                    value={name}
+                    onChange={(event) => onChangeNameParam(id, event.target.value)}
+                  />
+                </div>
+                <div className='h-full flex-1'>
+                  <input
+                    type='text'
+                    placeholder='Value'
+                    className={clsx('h-full w-full rounded-[8px] border-[1px] border-transparent px-[5px] focus:border-[#979797] focus:outline-0', !isActive && 'opacity-50 line-through')}
+                    value={value}
+                    onChange={(event) => onChangeValueParam(id, event.target.value)}
+                  />
+                </div>
+                <div className='h-full w-[20px] flex items-center justify-center cursor-pointer text-gray-400 hover:text-red-500 opacity-0 group-hover:opacity-100' onClick={() => onRemoveParam(id)}>
+                  ✕
+                </div>
               </div>
-              <div className='h-full flex-1'>
-                <input
-                  type='text'
-                  placeholder='name'
-                  className='h-full w-full rounded-[8px] border-[1px] border-transparent px-[5px] focus:border-[#979797] focus:outline-0'
-                  value={name}
-                  onChange={(event) =>
-                    onChangeNameParam(id, event.target.value)
-                  }
-                />
-              </div>
-              <div className='h-full flex-1'>
-                <input
-                  type='text'
-                  placeholder='value'
-                  className='h-full w-full rounded-[8px] border-[1px] border-transparent px-[5px] focus:border-[#979797] focus:outline-0'
-                  value={value}
-                  onChange={(event) =>
-                    onChangeValueParam(id, event.target.value)
-                  }
-                />
-              </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </Box>
     </>

@@ -16,7 +16,7 @@ export const TabBar = () => {
     <div className='py-[10px]'>
       <div className='flex gap-[5px]'>
         {collection.map(({ id, method, name }) => (
-          <MiniTab id={id} method={method} name={name} />
+          <MiniTab key={id} id={id} method={method} name={name} />
         ))}
         <button
           onClick={onAddNewRequest}
