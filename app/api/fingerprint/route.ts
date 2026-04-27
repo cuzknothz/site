@@ -1,9 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { FingerprintJsServerApiClient } from '@fingerprintjs/fingerprintjs-pro-server-api';
 
-const fp = new FingerprintJsServerApiClient({
-  apiKey: process.env.FPJS_SERVER_API_KEY!, // server secret
-});
+let fpInstance: FingerprintJsServerApiClient | null = null;
+
+function getFpClient() {
+  if (!fpInstance) {
+    const apiKey = process.env.FPJS_SERVER_API_KEY;
+    if (!apiKey) throw new Error('FPJS_SERVER_API_KEY is not set');
+    fpInstance = new FingerprintJsServerApiClient({ apiKey });
+  }
+  return fpInstance;
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -16,7 +23,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const event = await fp.getEvent(requestId);
+    const event = await getFpClient().getEvent(requestId);
 
     const smart = event.products;
 
@@ -41,7 +48,7 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: Request) {
   const ip = new URL(req.url).searchParams.get('ip');
-  const apiKey = process.env.IPGEO_KEY;
+  const apiKey = process.env.IPGEO_KEY || '';
 
   const res = await fetch(
     `https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}&ip=${ip}`,

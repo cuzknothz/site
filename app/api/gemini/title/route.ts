@@ -1,20 +1,30 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { GoogleGenAI } from '@google/genai';
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
+function getGeminiClient() {
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) throw new Error('GEMINI_API_KEY is not set');
+  return new GoogleGenAI({ apiKey });
+}
 
 export async function POST(req: NextRequest) {
   try {
     const payload = await req.json();
-    const userMessage = typeof payload?.userMessage === 'string' ? payload.userMessage.trim() : '';
+    const userMessage =
+      typeof payload?.userMessage === 'string'
+        ? payload.userMessage.trim()
+        : '';
 
     if (!userMessage) {
-      return NextResponse.json({ ok: false, error: 'Missing message content' }, { status: 400 });
+      return NextResponse.json(
+        { ok: false, error: 'Missing message content' },
+        { status: 400 },
+      );
     }
 
     const prompt = `Dựa vào tin nhắn sau, hãy đặt một tiêu đề ngắn gọn (tối đa 4-6 chữ), kiểu Gen Z bựa bựa, giật gân xíu cho cuộc trò chuyện (không cần dùng ngoặc kép hay giải thích gì thêm, chỉ in ra đoạn text tiêu đề).\n\nTin nhắn: "${userMessage}"`;
 
-    const response = await ai.models.generateContent({
+    const response = await getGeminiClient().models.generateContent({
       model: 'gemini-2.5-flash',
       contents: prompt,
     });
@@ -24,6 +34,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true, title });
   } catch (error) {
     console.error('Error generating title:', error);
-    return NextResponse.json({ ok: false, error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json(
+      { ok: false, error: 'Internal Server Error' },
+      { status: 500 },
+    );
   }
 }

@@ -25,23 +25,23 @@ const article = {
   twoK24: [],
 };
 
-export const NotesPage = ({ data }: Props) => {
+export const NotesPage = ({ data = [] }: Props) => {
   const modify = useArticleListStore((state) => state.modify);
 
   const [articles, setArticles] = useState<(typeof article)['2025']>([]);
 
-  const pushArticle = async () => {
-    const lengthAricles = article['2025'].length;
+  // const pushArticle = async () => {
+  //   const lengthAricles = article['2025'].length;
 
-    for (let i = 0; i < lengthAricles; i++) {
-      await sleep(200);
-      setArticles((prevState) => [...prevState, article['2025'][i]]);
-    }
-  };
+  //   for (let i = 0; i < lengthAricles; i++) {
+  //     await sleep(200);
+  //     setArticles((prevState) => [...prevState, article['2025'][i]]);
+  //   }
+  // };
 
-  useEffect(() => {
-    pushArticle();
-  }, []);
+  // useEffect(() => {
+  //   pushArticle();
+  // }, []);
 
   return (
     <div>

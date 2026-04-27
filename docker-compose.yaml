@@ -1,0 +1,12 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - NEXT_PUBLIC_FPJS_API_KEY=${NEXT_PUBLIC_FPJS_API_KEY}
+    image: cuzknothz-site
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env

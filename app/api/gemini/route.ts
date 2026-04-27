@@ -21,7 +21,11 @@ GitHub đây nè: https://github.com/nbcgww — vào xem thì thấy cũng bon p
 ai ngờ backend rít khói suốt 😭. Nói chung respect nhẹ cx đc, code ổn nhưng đừng hỏi tại sao RAM khóc,
 CPU kêu cứu 😩.`;
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
+function getGeminiClient() {
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) throw new Error('GEMINI_API_KEY is not set');
+  return new GoogleGenAI({ apiKey });
+}
 
 const MAX_IMAGE_COUNT = 4;
 const MAX_BASE64_SIZE = 6 * 1024 * 1024; // ~6MB
@@ -43,7 +47,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const chat = ai.chats.create({
+  const chat = getGeminiClient().chats.create({
     model: 'gemini-2.5-flash',
     history,
     config: {

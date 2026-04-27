@@ -8,8 +8,8 @@ export async function getSpotifyToken(): Promise<string> {
 
   if (cachedToken && now < tokenExpiresAt) return cachedToken;
 
-  const clientId = process.env.SPOTIFY_CLIENT_ID!;
-  const clientSecret = process.env.SPOTIFY_CLIENT_SECRET!;
+  const clientId = process.env.SPOTIFY_CLIENT_ID || '';
+  const clientSecret = process.env.SPOTIFY_CLIENT_SECRET || '';
 
   try {
     const res = await axios.post(
