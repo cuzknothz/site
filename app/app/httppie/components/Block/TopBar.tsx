@@ -49,14 +49,24 @@ export const TopBar = () => {
   async function onSending() {
     if (!currentRequest) return;
     setSending(true);
-    
+
     // Set a generic loading response
-    updateResponse(selectedRequestId, { loading: true, status: 0, statusText: 'Sending...', data: null, headers: {} });
+    updateResponse(selectedRequestId, {
+      loading: true,
+      status: 0,
+      statusText: 'Sending...',
+      data: null,
+      headers: {},
+    });
 
     try {
-      const activeParams = currentRequest.params.params.filter(p => p.isActive && p.name).reduce((acc, p) => ({ ...acc, [p.name]: p.value }), {});
-      const activeHeaders = currentRequest.params.headers.filter(h => h.isActive && h.name).reduce((acc, h) => ({ ...acc, [h.name]: h.value }), {});
-      
+      const activeParams = currentRequest.params.params
+        .filter((p) => p.isActive && p.name)
+        .reduce((acc, p) => ({ ...acc, [p.name]: p.value }), {});
+      const activeHeaders = currentRequest.params.headers
+        .filter((h) => h.isActive && h.name)
+        .reduce((acc, h) => ({ ...acc, [h.name]: h.value }), {});
+
       let parsedBody = null;
       if (currentRequest.method !== 'GET' && currentRequest.params.bodyText) {
         try {
@@ -71,23 +81,23 @@ export const TopBar = () => {
         method: currentRequest.method,
         params: activeParams,
         headers: activeHeaders,
-        body: parsedBody
+        body: parsedBody,
       });
-      
+
       updateResponse(selectedRequestId, {
         status: res.data.status,
         statusText: res.data.statusText,
         headers: res.data.headers,
-        data: res.data.data
+        data: res.data.data,
       });
     } catch (err: any) {
       console.log('err', String(err));
       updateResponse(selectedRequestId, {
-         status: 500,
-         statusText: 'Internal Error',
-         headers: {},
-         data: null,
-         error: String(err)
+        status: 500,
+        statusText: 'Internal Error',
+        headers: {},
+        data: null,
+        error: String(err),
       });
     }
 
@@ -105,8 +115,17 @@ export const TopBar = () => {
   return (
     <Box className='flex h-[45px] items-center justify-between gap-2.5 rounded-[15px]! bg-[#f5f5f0] px-[5px]'>
       <div className='relative flex w-[70px] justify-center text-[#000000]'>
-        <div className='flex items-center cursor-pointer' onClick={onShowAllHTTPMethod}>
-          <p style={{ color: colorHttpMethodObjMap[currentRequest.method] || '#869e00' }}>{currentRequest.method}</p>
+        <div
+          className='flex cursor-pointer items-center'
+          onClick={onShowAllHTTPMethod}
+        >
+          <p
+            style={{
+              color: colorHttpMethodObjMap[currentRequest.method] || '#869e00',
+            }}
+          >
+            {currentRequest.method}
+          </p>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             width='15'
@@ -124,10 +143,10 @@ export const TopBar = () => {
         </div>
         {showHTTPMethod && (
           <div ref={listHTTPMethodRef}>
-            <Box className='absolute top-[25px] left-[-5px] bg-[#fafaf5] p-[8px] z-50 shadow-lg border border-gray-200'>
+            <Box className='absolute top-[25px] left-[-5px] z-50 border border-gray-200 bg-[#fafaf5] p-[8px] shadow-lg'>
               {Object.values(httpMethod).map((i, idx) => (
                 <div
-                  className='flex items-center gap-[5px] rounded-[8px] hover:bg-[#e0e0e0] px-2 py-1'
+                  className='flex items-center gap-[5px] rounded-[8px] px-2 py-1 hover:bg-[#e0e0e0]'
                   key={idx}
                 >
                   <div className='aspect-square h-[15px]! w-[15px]! flex-0'>
@@ -165,7 +184,7 @@ export const TopBar = () => {
         type='text'
         value={currentRequest.url}
         placeholder='https://example.com/'
-        className='h-full flex-1 focus:outline-0 bg-transparent'
+        className='h-full flex-1 bg-transparent focus:outline-0'
         onChange={(event) => onChangeURL(event.target.value)}
         onKeyDown={(e) => {
           if (e.key === 'Enter') onSending();

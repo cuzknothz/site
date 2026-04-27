@@ -3,7 +3,7 @@ import SearchExploreIcon from '../svg/search-explore-icon.svg';
 
 export const SearchDivision = () => {
   return (
-    <div className='group relative flex h-[48px] w-[478px] items-center justify-between rounded-[24px] bg-[#282828] px-[12px] hover:bg-[#373737] duration-500'>
+    <div className='group relative flex h-[48px] w-[478px] items-center justify-between rounded-[24px] bg-[#282828] px-[12px] duration-500 hover:bg-[#373737]'>
       <button className='z-1'>
         <SearchIcon className='h-[48px] w-[24px] fill-[#fff]' />
       </button>

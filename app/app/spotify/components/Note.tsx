@@ -26,7 +26,10 @@ export const Note = ({ setShowNote }: NoteProps) => {
   return (
     <div ref={containerRef}>
       <Box
-        className={clsx('w-[300px] bg-white p-[15px] pt-5! **:font-[14px]!', appFont.className)}
+        className={clsx(
+          'w-[300px] bg-white p-[15px] pt-5! **:font-[14px]!',
+          appFont.className,
+        )}
       >
         <p className='mb-2.5 text-center text-[13px]'>Note</p>
         <p>

@@ -116,7 +116,10 @@ export const ChatArea = () => {
     const historyPayload = toGeminiHistory(prevMessages);
 
     // Auto rename if it's the first message and title is default
-    if (prevMessages.length === 0 && conversations[convId]?.title.startsWith('Cuộc trò chuyện mới')) {
+    if (
+      prevMessages.length === 0 &&
+      conversations[convId]?.title.startsWith('Cuộc trò chuyện mới')
+    ) {
       fetch('/api/gemini/title', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
