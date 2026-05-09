@@ -50,6 +50,14 @@ const article = {
       image: '/threads.png',
     },
   ],
+  ['2k26']: [
+    {
+      title: 'NearLook (In Progress)',
+      content: 'Social app',
+      link: 'https://nearlook-web.vercel.app/vi/home',
+      image: '/nearlook.png',
+    },
+  ],
 };
 
 export default function WorksPage() {
