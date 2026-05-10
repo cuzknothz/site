@@ -54,7 +54,7 @@ const article = {
     {
       title: 'NearLook (In Progress)',
       content: 'Social app',
-      link: 'https://nearlook-web.vercel.app/vi/home',
+      link: 'https://nearlook-web.vercel.app/vi/',
       image: '/nearlook.png',
     },
   ],
